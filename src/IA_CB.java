@@ -35,6 +35,11 @@ public class IA_CB {
             Pair aux = (Pair) obj;
             return this.x == aux.x && this.y == aux.y;
         }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x,y);
+        }
     }
 
     private void initializePossibilities(int pos, int num) {
@@ -69,24 +74,22 @@ public class IA_CB {
         return res;
     }
 
+
     private String minimax() {
         TreeSet<String> guesses = new TreeSet<>();
         int max = Integer.MIN_VALUE;
-        Iterator<String> it_g = UnusedCodes.iterator();
         for (String g: UnusedCodes) {
             Map<Pair,Integer> Z_g = new HashMap<>();
-            Iterator<String> it_s = S.iterator();
             for (String s : S) {
                 Pair val = calcularNB(g,s);
                 if (Z_g.containsKey(val)) {
                     Integer int_aux = Z_g.get(val);
                     Z_g.replace(val, int_aux+1);
                 }
-                else Z_g.put(val, 1);
+                else Z_g.put(val,1);
             }
             int min = Integer.MAX_VALUE;
             Collection<Integer> col = Z_g.values();
-            Iterator<Integer> it_col = col.iterator();
             for (Integer valit : col) {
                 if (min > S.size()-valit) min = S.size()-valit;
             }
@@ -119,7 +122,6 @@ public class IA_CB {
 
     private void actualizateS(String lg, Pair lpair) {
         TreeSet<String> Saux = (TreeSet) S.clone();
-        Iterator<String> it = Saux.iterator();
         for (String a : Saux) {
             Pair p = calcularNB(a,lg);
             if (!p.equals(lpair)) S.remove(a);
