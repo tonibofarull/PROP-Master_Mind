@@ -1,3 +1,5 @@
+package Dominio;
+
 import java.util.*;
 
 public class IA_CB {
