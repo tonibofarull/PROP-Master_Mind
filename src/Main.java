@@ -12,19 +12,24 @@ public class Main {
         int op = scan.nextInt();
         while (op != 0) {
             if (op == 1) { // empezar partida
+                System.out.print("dificultad: ");
                 int dif = scan.nextInt();
+                System.out.print("rol: ");
                 String rol = scan.next();
                 if (!dom.empezarPartida(dif,rol)) System.out.println("errorrrr");
             }
             else if (op == 2) {
+                System.out.print("solucion: ");
                 String sec = scan.next();
                 System.out.println(dom.generarSolucion(sec));
             }
             else if (op == 3) {
+                System.out.print("NB: ");
                 String eva = scan.next();
                 System.out.println(dom.evaluarCandidato(eva));
             }
             else if (op == 4) {
+                System.out.print("candidato: ");
                 String can = scan.next();
                 System.out.println(dom.generarCandidato(can));
             }
