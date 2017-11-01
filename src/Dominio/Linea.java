@@ -1,11 +1,9 @@
 package Dominio;
 
-import java.util.ArrayList;
-
 public class Linea {
     private String candidato;
     private String eval;
-    public Linea(String code){
+    public Linea(String candidato){
         this.candidato=candidato;
         this.eval="";
     }
