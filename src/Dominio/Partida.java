@@ -18,7 +18,10 @@ public class Partida {
 
     //setters
     public void setSecreto(String secreto){ this.secreto=secreto; }
-    public void setNuevoCandidato(String candidato){tablero.setNuevoCandidato(candidato);}
+    public void setNuevoCandidato(String candidato){
+        tablero.setNuevoCandidato(candidato);
+        ronda++;
+    }
     public void setNuevaEvaluacion(String evaluacion){tablero.setNuevaEvaluacion(evaluacion);}
 
     //getters
