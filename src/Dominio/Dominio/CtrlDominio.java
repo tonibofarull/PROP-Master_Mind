@@ -34,7 +34,7 @@ public class CtrlDominio {
         if (player_cb.comprobarCandidato(candidato)) {
             partida.setNuevoCandidato(candidato);
             String bn_ultima_jugada = ia_cm.evaluarCandidato(candidato, partida.getSolucion());
-            partida.setNuevaEvaluacion(bn_ultima_jugada);
+            partida.setNuevaBn(bn_ultima_jugada);
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public class CtrlDominio {
         String candidato = partida.getUltimoCandidato();
         String solucion = partida.getSolucion();
         if (player_cm.comprobarBN(candidato, solucion, bn)) {
-            partida.setNuevaEvaluacion(bn);
+            partida.setNuevaBn(bn);
             String siguiente_candidato = ia_cb.generarCandidato();
             partida.setNuevoCandidato(siguiente_candidato);
             return true;
@@ -53,7 +53,8 @@ public class CtrlDominio {
     }
 
     public boolean empezarPartida(int dificultad,String rol) {
-        partida = new Dominio.Partida(dificultad, rol);
+        partida = new Partida(dificultad, rol);
+        return true;
     }
 
 }

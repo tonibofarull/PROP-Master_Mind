@@ -2,7 +2,7 @@ package Dominio;
 
 public class Partida {
     private int ronda;//ronda son las rondas que se han jugado hasta el momento
-    private String secreto;
+    private String Solucion;
     private String rol;
     private int dificultad;
     Dominio.Tablero tablero;
@@ -17,20 +17,20 @@ public class Partida {
     //todo guardar
 
     //setters
-    public void setSecreto(String secreto){ this.secreto=secreto; }
+    public void setSolucion(String Solucion){ this.Solucion=Solucion; }
     public void setNuevoCandidato(String candidato){
         tablero.setNuevoCandidato(candidato);
         ronda++;
     }
-    public void setNuevaEvaluacion(String evaluacion){tablero.setNuevaEvaluacion(evaluacion);}
+    public void setNuevaBn(String Bn){tablero.setNuevoBn(Bn);}
 
     //getters
     public int getRonda(){ return ronda; }
     public int getDificultad(){return dificultad;}
     public String getRol(){return rol;}
-    public String getSecreto(){return secreto;}
+    public String getSolucion(){return Solucion;}
     public String getUltimoCandidato(){return tablero.getUltimoCandidato();}
-    public String getUltimaEvaluacion(){return tablero.getUltimaEvaluacion();}
+    public String getUltimaBn(){return tablero.getUltimoBn();}
 
 
 
