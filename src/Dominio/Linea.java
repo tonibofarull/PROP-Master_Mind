@@ -2,19 +2,19 @@ package Dominio;
 
 public class Linea {
     private String candidato;
-    private String eval;
+    private String bn;
     public Linea(String candidato){
         this.candidato=candidato;
-        this.eval="";
+        this.bn="";
     }
-    public void setEvaluacion(String eval){
-        this.eval=eval;
+    public void setBn(String bn){
+        this.bn=bn;
     }
     public String getCandidato(){
         return candidato;
     }
-    public String getEvaluacion(){
-        return eval;
+    public String getBn(){
+        return bn;
     }
 
 
