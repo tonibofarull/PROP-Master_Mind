@@ -2,7 +2,7 @@ package Dominio;
 
 import java.util.Random;
 
-public class IA_CM extends IA {
+public class IA_CM extends Dominio.IA {
 
     public IA_CM() {}
 

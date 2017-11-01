@@ -2,7 +2,7 @@ package Dominio;
 
 import java.util.*;
 
-public class IA_CB extends IA {
+public class IA_CB extends Dominio.IA {
 
     private TreeSet<String> S;
     private TreeSet<String> candidatos_restantes;

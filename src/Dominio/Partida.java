@@ -5,12 +5,12 @@ public class Partida {
     private String secreto;
     private String rol;
     private int dificultad;
-    Tablero tablero;
+    Dominio.Tablero tablero;
     public Partida(int dificultad,String rol){
         this.dificultad=dificultad;
         this.rol=rol;
         this.ronda=0;
-        this.tablero=new Tablero();
+        this.tablero=new Dominio.Tablero();
     }
 
     //todo acabarPartida
