@@ -2,85 +2,25 @@ package Dominio;
 
 import java.util.*;
 
-public class IA_CB {
+public class IA_CB extends IA {
+
     private TreeSet<String> S;
-    private TreeSet<String> UnusedCodes;
-    private boolean first_turn;
+    private TreeSet<String> candidatos_restantes;
+    private boolean primer_turno;
 
-    private class Pair {
-        private int x;
-        private int y;
-
-        Pair(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public void setX(int x) {
-           this.x = x;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            Pair aux = (Pair) obj;
-            return this.x == aux.x && this.y == aux.y;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(x,y);
-        }
-    }
-
-    private void initializePossibilities(int pos, int num) {
+    private void inicializarDatos(int pos, int num) {
         if (pos == 4) {
             S.add(Integer.toString(num));
-            UnusedCodes.add(Integer.toString(num));
+            candidatos_restantes.add(Integer.toString(num));
             return;
         }
-        for (int i = 1; i <= 6; ++i) initializePossibilities(pos+1,num*10+i);
+        for (int i = 1; i <= 6; ++i) inicializarDatos(pos+1,num*10+i);
     }
-
-    private Pair calcularNB(String a, String b) {
-        Pair res = new Pair(0,0);
-        boolean[] vis_a = new boolean[a.length()];
-        boolean[] vis_b = new boolean[b.length()];
-        for (int i = 0; i < 4; ++i) {
-            if (a.charAt(i) == b.charAt(i)) {
-                vis_a[i] = true;
-                vis_b[i] = true;
-                res.setX(res.getX()+1);
-            }
-        }
-        for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
-                if (a.charAt(i) == b.charAt(j) && !vis_a[i] && !vis_b[j]) {
-                    vis_a[i] = true;
-                    vis_b[j] = true;
-                    res.setY(res.getY()+1);
-                }
-            }
-        }
-        return res;
-    }
-
 
     private String minimax() {
         TreeSet<String> guesses = new TreeSet<>();
         int max = Integer.MIN_VALUE;
-        for (String g: UnusedCodes) {
+        for (String g: candidatos_restantes) {
             Map<Pair,Integer> Z_g = new HashMap<>();
             for (String s : S) {
                 Pair val = calcularNB(g,s);
@@ -108,52 +48,47 @@ public class IA_CB {
         return guesses.first();
     }
 
-    private String nextGuess() {
-        if (first_turn) { // Comprobar que no se ha jugado nada aun
-            first_turn = false;
+    public IA_CB() {
+        primer_turno = true;
+        S = new TreeSet<>();
+        candidatos_restantes = new TreeSet<>();
+        inicializarDatos(0,0);
+    }
+
+    public IA_CB(ArrayList<ArrayList<String>> jugadas) { // TODO vigilar cuando llamar a esta funcion
+        primer_turno = false;
+        S = new TreeSet<>();
+        candidatos_restantes = new TreeSet<>();
+        inicializarDatos(0,0);
+        for (int i = 0; i < jugadas.size(); ++i) {
+            nuevaEvaluacion(jugadas.get(i).get(0),jugadas.get(i).get(1));
+        }
+    }
+
+    public String generarCandidato() {
+        if (primer_turno) {
+            primer_turno = false;
             String r = "1122";
             S.remove(r);
-            UnusedCodes.remove(r);
+            candidatos_restantes.remove(r);
             return r;
         }
         String r = minimax();
         S.remove(r);
-        UnusedCodes.remove(r);
+        candidatos_restantes.remove(r);
         return r;
     }
 
-    private void actualizateS(String lg, Pair lpair) {
-        TreeSet<String> Saux = (TreeSet) S.clone();
+    public void nuevaEvaluacion(String candidato, String evaluacion) {
+        int x = Character.getNumericValue(evaluacion.charAt(0));
+        int y = Character.getNumericValue(evaluacion.charAt(1));
+        Pair lg = new Pair(x,y);
+        TreeSet<String> Saux = (TreeSet<String>) S.clone();
         for (String a : Saux) {
-            Pair p = calcularNB(a,lg);
-            if (!p.equals(lpair)) S.remove(a);
+            Pair p = calcularNB(a,candidato);
+            if (!p.equals(lg)) S.remove(a);
         }
     }
 
-    private IA_CB() {
-        S = new TreeSet<>();
-        UnusedCodes = new TreeSet<>();
-        first_turn = true;
-        initializePossibilities(0,0);
-
-        System.out.print("Escribe el codigo secreto: ");
-        String solution;
-        Scanner scan = new Scanner(System.in);
-        solution = scan.next();
-        scan.close();
-
-
-        String a = nextGuess();
-        System.out.println(a);
-        while (!a.equals(solution)) {
-            Pair p = calcularNB(a,solution);
-            actualizateS(a,p);
-            a = nextGuess();
-            System.out.println(a);
-        }
-
-    }
-    public static void main(String[] argv) {
-        IA_CB ia = new IA_CB();
-    }
 }
+
