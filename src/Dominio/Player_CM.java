@@ -6,7 +6,6 @@ public class Player_CM {
     }
 
     public boolean comprobarSolucion(String solucion) {
-        if (true) return true;
         if (solucion.length() == 4) {
             for (int i = 0; i < solucion.length(); ++i) {
                 if (Character.getNumericValue(solucion.charAt(i)) < 1 || Character.getNumericValue(solucion.charAt(i)) > 6) {
