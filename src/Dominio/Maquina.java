@@ -8,6 +8,9 @@ public class Maquina {
     private TreeSet<String> candidatos_restantes;
     private boolean primer_turno;
 
+    private Tablero tablero;
+    private Normas normas;
+
     private class Pair {
         private int x;
         private int y;
@@ -108,13 +111,38 @@ public class Maquina {
         return guesses.first();
     }
 
+    private void nuevaBN(String candidato, String BN) {
+        int x = Character.getNumericValue(BN.charAt(0));
+        int y = Character.getNumericValue(BN.charAt(1));
+        Pair lg = new Pair(x,y);
+        TreeSet<String> Saux = (TreeSet<String>) S.clone();
+        for (String a : Saux) {
+            Pair p = calcularBN(a,candidato);
+            if (!p.equals(lg)) S.remove(a);
+        }
+    }
+
     // PUBLIC functions
 
-    public Maquina() {
-        primer_turno = true;
+    public Maquina(Tablero tablero, Normas normas) {
+        this.tablero = tablero;
+        this.normas = normas;
+        this.primer_turno = true;
         S = new TreeSet<>();
         candidatos_restantes = new TreeSet<>();
         inicializarDatos(0,0);
+    }
+
+    public void reanudarMaquina() {
+        int numero_lineas = tablero.getNumLineas();
+        if (numero_lineas == 0) primer_turno = false; // revisar
+        for (int i = 0; i < numero_lineas; ++i) {
+            String can = tablero.getCandidato(i);
+            if (tablero.existsBN(i)) {
+                String eval = tablero.getBN(i);
+                nuevaBN(can,eval);
+            }
+        }
     }
 
     public String generarCandidato() {
@@ -125,21 +153,15 @@ public class Maquina {
             candidatos_restantes.remove(r);
             return r;
         }
+        // actualizamos la info de la ultima jugada hecha
+        String ultimoCandidato = tablero.getUltimoCandidato();
+        String ultimaBN = tablero.getUltimoBn();
+        nuevaBN(ultimoCandidato,ultimaBN);
+
         String r = minimax();
         S.remove(r);
         candidatos_restantes.remove(r);
         return r;
-    }
-
-    public void nuevaBN(String candidato, String BN) {
-        int x = Character.getNumericValue(BN.charAt(0));
-        int y = Character.getNumericValue(BN.charAt(1));
-        Pair lg = new Pair(x,y);
-        TreeSet<String> Saux = (TreeSet<String>) S.clone();
-        for (String a : Saux) {
-            Pair p = calcularBN(a,candidato);
-            if (!p.equals(lg)) S.remove(a);
-        }
     }
 
     public String generarSolucion() {
