@@ -16,6 +16,9 @@ public class Linea {
     public String getBn(){
         return bn;
     }
+    public Boolean existsBN(){
+        return ! bn.equals("");
+    }
 
 
 }

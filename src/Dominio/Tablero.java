@@ -19,5 +19,17 @@ public class Tablero {
     public String getUltimoBn(){
         return  lineas.get(lineas.size()-1).getBn();
     }
+    public int getNumLineas(){
+        return lineas.size();
+    }
+    public String getCandidato(int i){
+        return lineas.get(i).getCandidato();
+    }
+    public Boolean existsBN(int i){
+        return ! lineas.get(i).existsBN();
+    }
+    public String getBN(int i){
+        return lineas.get(i).getBn();
+    }
     //todo GetAllCandidatoBn
 }
