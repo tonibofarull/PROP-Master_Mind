@@ -8,6 +8,11 @@ public class Maquina {
     private TreeSet<String> candidatos_restantes;
     private boolean primer_turno;
 
+    private Tablero tablero;
+    private Normas normas;
+
+    private Dificultad dificultad;
+
     private class Pair {
         private int x;
         private int y;
@@ -45,15 +50,23 @@ public class Maquina {
         }
     }
 
-    private void inicializarDatos(int pos, int num) {
+    private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, boolean repetition) {
+        int max_val = 6;
+        if (dificultad == Dificultad.DIFICIL) max_val = 7;
         if (pos == 4) {
             S.add(Integer.toString(num));
             candidatos_restantes.add(Integer.toString(num));
             return;
         }
-        for (int i = 1; i <= 6; ++i) inicializarDatos(pos+1,num*10+i);
+        for (int i = 1; i <= max_val; ++i) {
+            if (!repetition || !asign.get(i)) {
+                asign.set(i,false);
+                inicializarDatos(pos+1,num*10+i, asign, repetition);
+            }
+        }
     }
 
+    // PONER EN NORMAS
     private Pair calcularBN(String a, String b) {
         Pair res = new Pair(0,0);
         ArrayList<Boolean> vis_a = new ArrayList<>(Arrays.asList(false,false,false,false));
@@ -108,30 +121,7 @@ public class Maquina {
         return guesses.first();
     }
 
-    // PUBLIC functions
-
-    public Maquina() {
-        primer_turno = true;
-        S = new TreeSet<>();
-        candidatos_restantes = new TreeSet<>();
-        inicializarDatos(0,0);
-    }
-
-    public String generarCandidato() {
-        if (primer_turno) {
-            primer_turno = false;
-            String r = "1122";
-            S.remove(r);
-            candidatos_restantes.remove(r);
-            return r;
-        }
-        String r = minimax();
-        S.remove(r);
-        candidatos_restantes.remove(r);
-        return r;
-    }
-
-    public void nuevaBN(String candidato, String BN) {
+    private void nuevaBN(String candidato, String BN) {
         int x = Character.getNumericValue(BN.charAt(0));
         int y = Character.getNumericValue(BN.charAt(1));
         Pair lg = new Pair(x,y);
@@ -142,11 +132,79 @@ public class Maquina {
         }
     }
 
+    // PUBLIC functions
+
+    public Maquina(Tablero tablero, Normas normas, Dificultad dif, Rol rol) {
+        dificultad = dif;
+        if (rol == Rol.CODEBREAKER) {
+            this.tablero = tablero;
+            this.normas = normas;
+            this.primer_turno = true;
+            S = new TreeSet<>();
+            candidatos_restantes = new TreeSet<>();
+            ArrayList<Boolean> asign = new ArrayList<>(6);
+            boolean no_rep = dificultad == Dificultad.FACIL;
+            if (no_rep) {
+                for (int i = 1; i <= 6; ++i) asign.add(false);
+            }
+            inicializarDatos(0,0,asign,no_rep);
+        }
+    }
+
+    public void reanudarMaquina() {
+        int numero_lineas = tablero.getNumLineas();
+        if (numero_lineas == 0) primer_turno = false; // revisar
+        for (int i = 0; i < numero_lineas; ++i) {
+            String can = tablero.getCandidato(i);
+            if (tablero.existsBN(i)) {
+                String eval = tablero.getBN(i);
+                nuevaBN(can,eval);
+            }
+        }
+    }
+
+    public String generarCandidato() {
+        if (primer_turno) {
+            primer_turno = false;
+            String r = "1122";
+            S.remove(r);
+            candidatos_restantes.remove(r);
+            return r;
+        }
+        // actualizamos la info de la ultima jugada hecha
+        String ultimoCandidato = tablero.getUltimoCandidato();
+        String ultimaBN = tablero.getUltimoBn();
+        nuevaBN(ultimoCandidato,ultimaBN);
+
+        String r = minimax();
+        S.remove(r);
+        candidatos_restantes.remove(r);
+        return r;
+    }
+
     public String generarSolucion() {
+        int max_val = 7;
         int res = 0;
         Random rand = new Random(); // nextInt(bound) -> [0..bound)
-        for (int i = 0; i < 4; ++i) {
-            res = res*10 + rand.nextInt(6)+1;
+        switch (dificultad) {
+            case FACIL: // no repeticion y de 1..6
+                ArrayList<Integer> list = new ArrayList<>(6);
+                for (int i = 1; i <= 6; ++i) list.add(i);
+                for (int i = 0; i < 4; ++i) {
+                    int index = rand.nextInt(list.size());
+                    res = res*10 + list.get(index);
+                    list.remove(index);
+                }
+                break;
+            case MEDIO: // repeticion y de 1..6
+                max_val = 6;
+            case DIFICIL: // repeticion y de 1..7
+                for (int i = 0; i < 4; ++i) {
+                    res = res*10 + rand.nextInt(max_val)+1;
+                }
+                break;
+            default:
+                break;
         }
         return Integer.toString(res);
     }
