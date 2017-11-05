@@ -35,52 +35,13 @@ public class Normas {
     public boolean comprobarLinea(String codigo, Dificultad dificultad) {
         switch(dificultad) {
             case FACIL:
-                if (codigo.length() == 4) {
-                    ArrayList<Boolean> canicas_usadas = new ArrayList<>(Arrays.asList(false,false,false,false,false,false));
-                    for (int i = 0; i < codigo.length(); ++i) {
-                        if (Character.getNumericValue(codigo.charAt(i)) < 1 || Character.getNumericValue(codigo.charAt(i)) > 6) {
-                            return false;
-                        }
-                        else {
-                            if (!canicas_usadas.get(Character.getNumericValue(codigo.charAt(i)))) canicas_usadas.set(Character.getNumericValue(codigo.charAt(i)), true);
-                            else return false;
-                        }
-                    }
-                    return true;
-                }
-                return false;
+                return checkCodigo(codigo, 1, 6, 4, 1);
 
             case MEDIO:
-                if (codigo.length() == 4) {
-                    ArrayList<Integer> repeticiones_canicas = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
-                    for (int i = 0; i < codigo.length(); ++i) {
-                        if (Character.getNumericValue(codigo.charAt(i)) < 1 || Character.getNumericValue(codigo.charAt(i)) > 6) {
-                            return false;
-                        }
-                        else {
-                            repeticiones_canicas.set(Character.getNumericValue(codigo.charAt(i)), (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) + 1));
-                            if (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) >= 2) return false;
-                        }
-                    }
-                    return true;
-                }
-                return false;
+                return checkCodigo(codigo, 1, 6, 4, 2);
 
             case DIFICIL:
-                if (codigo.length() == 4) {
-                    ArrayList<Integer> repeticiones_canicas = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0));
-                    for (int i = 0; i < codigo.length(); ++i) {
-                        if (Character.getNumericValue(codigo.charAt(i)) < 1 || Character.getNumericValue(codigo.charAt(i)) > 7) {
-                            return false;
-                        }
-                        else {
-                            repeticiones_canicas.set(Character.getNumericValue(codigo.charAt(i)), (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) + 1));
-                            if (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) >= 2) return false;
-                        }
-                    }
-                    return true;
-                }
-                return false;
+                return checkCodigo(codigo, 0, 7, 4, 1);
         }
         return false;
     }
@@ -89,5 +50,26 @@ public class Normas {
         String solucion_correcta = calcularBN(candidato, solucion);
         if (!solucion_correcta.equals(bn)) return false;
         return true;
+    }
+
+    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int tamanyo_codigo, int max_rep) {
+        if (codigo.length() == tamanyo_codigo) {
+            ArrayList<Integer> repeticiones_canicas = new ArrayList<>();
+            for (int i = 0; i <= val_maximo; ++i) {
+                repeticiones_canicas.add(0);
+            }
+
+            for (int i = 0; i < codigo.length(); ++i) {
+                if (Character.getNumericValue(codigo.charAt(i)) < val_minimo || Character.getNumericValue(codigo.charAt(i)) > val_maximo) {
+                    return false;
+                }
+                else {
+                    repeticiones_canicas.set(Character.getNumericValue(codigo.charAt(i)), (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) + 1));
+                    if (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) >= max_rep + 1) return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }
