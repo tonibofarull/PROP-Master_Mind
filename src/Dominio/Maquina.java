@@ -50,7 +50,7 @@ public class Maquina {
         }
     }
 
-    private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, boolean repetition) {
+    private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, boolean no_rep) {
         int max_val = 6;
         if (dificultad == Dificultad.DIFICIL) max_val = 7;
         if (pos == 4) {
@@ -59,9 +59,9 @@ public class Maquina {
             return;
         }
         for (int i = 1; i <= max_val; ++i) {
-            if (!repetition || !asign.get(i)) {
+            if (no_rep || !asign.get(i)) {
                 asign.set(i,false);
-                inicializarDatos(pos+1,num*10+i, asign, repetition);
+                inicializarDatos(pos+1,num*10+i, asign, no_rep);
             }
         }
     }
@@ -144,16 +144,14 @@ public class Maquina {
             candidatos_restantes = new TreeSet<>();
             ArrayList<Boolean> asign = new ArrayList<>(6);
             boolean no_rep = dificultad == Dificultad.FACIL;
-            if (no_rep) {
-                for (int i = 1; i <= 6; ++i) asign.add(false);
-            }
+            if (no_rep) for (int i = 1; i <= 6; ++i) asign.add(false);
             inicializarDatos(0,0,asign,no_rep);
         }
     }
 
     public void reanudarMaquina() {
         int numero_lineas = tablero.getNumLineas();
-        if (numero_lineas == 0) primer_turno = false; // revisar
+        if (numero_lineas == 0) primer_turno = false; // TODO revisar como sabremos si se ha reiniciado
         for (int i = 0; i < numero_lineas; ++i) {
             String can = tablero.getCandidato(i);
             if (tablero.existsBN(i)) {
