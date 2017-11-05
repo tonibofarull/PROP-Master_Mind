@@ -31,8 +31,10 @@ public class Partida {
     public String getSolucion(){return Solucion;}
     public String getUltimoCandidato(){return tablero.getUltimoCandidato();}
     public String getUltimaBn(){return tablero.getUltimoBn();}
-
-
-
-
+    public Tablero getTablero() {
+        return tablero;
+    }
+    public int getdificultad(){
+        return dificultad;
+    }
 }
