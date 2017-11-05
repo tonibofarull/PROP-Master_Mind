@@ -2,8 +2,7 @@ package Dominio;
 
 public class CtrlDominio {
     private Maquina maquina;
-    private Player_CB player_cb;
-    private Player_CM player_cm;
+    private Normas normas;
     private Partida partida;
 
     public CtrlDominio() {}
@@ -25,7 +24,7 @@ public class CtrlDominio {
     public String evaluarCandidato(String bn) {
         String candidato = partida.getUltimoCandidato();
         String solucion = partida.getSolucion();
-        if (player_cm.comprobarBN(candidato, solucion, bn)) {
+        if (normas.comprobarBN(candidato, solucion, bn)) {
             partida.setNuevaBn(bn);
             maquina.nuevaBN(candidato,bn);
             String siguiente_candidato = maquina.generarCandidato();
@@ -36,7 +35,7 @@ public class CtrlDominio {
     }
 
     public String generarCandidato(String candidato) {
-        if (player_cb.comprobarCandidato(candidato)) {
+        if (normas.comprobarLinea(candidato, this.dificultad)) {
             partida.setNuevoCandidato(candidato);
             String bn_ultima_jugada = maquina.evaluarCandidato(candidato, partida.getSolucion());
             partida.setNuevaBn(bn_ultima_jugada);
@@ -48,15 +47,12 @@ public class CtrlDominio {
 
     public boolean empezarPartida(int dificultad,String rol) {
         partida = new Partida(dificultad, rol);
-        maquina = new Maquina();
-        if (rol.equals("CodeMaker")) {
-            player_cm = new Player_CM();
-        }
-        else {
-            player_cb = new Player_CB();
+        normas = new Normas();
+        if (rol.equals("CodeBreaker")) {
             String solucion = maquina.generarSolucion();
             partida.setSolucion(solucion);
         }
+        maquina = new Maquina(, normas, dificultad, rol);
         return true;
     }
 
