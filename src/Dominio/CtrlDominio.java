@@ -11,6 +11,18 @@ public class CtrlDominio {
         //Por ahora no hace nada
     }*/
 
+    public boolean empezarPartida(String dificultad_s,String rol_s) {
+        Dificultad dif = Dificultad.valueOf(dificultad_s);
+        Rol rol = Rol.valueOf(rol_s);
+        partida = new Partida(dif, rol);
+        normas = new Normas();
+        maquina = new Maquina(partida.getTablero(), normas, dif, rol);
+        if (rol == Rol.CODEBREAKER) {
+            String solucion = maquina.generarSolucion();
+            partida.setSolucion(solucion);
+        }
+        return true;
+    }
     public String generarSolucion(String solucion) {
         if (normas.comprobarLinea(solucion, partida.getDificultad())) {
             partida.setSolucion(solucion);
@@ -26,7 +38,6 @@ public class CtrlDominio {
         String solucion = partida.getSolucion();
         if (normas.comprobarBN(candidato, solucion, bn)) {
             partida.setNuevaBn(bn);
-            normas.calcularBN(candidato,bn);
             String siguiente_candidato = maquina.generarCandidato();
             partida.setNuevoCandidato(siguiente_candidato);
             return siguiente_candidato;
@@ -45,15 +56,6 @@ public class CtrlDominio {
     }
 
 
-    public boolean empezarPartida(String dificultad_s,String rol_s) {
-        partida = new Partida(Dificultad.valueOf(dificultad_s), Rol.valueOf(rol_s));
-        normas = new Normas();
-        if (Rol.valueOf(rol_s).equals("CodeBreaker")) {
-            String solucion = maquina.generarSolucion();
-            partida.setSolucion(solucion);
-        }
-        maquina = new Maquina(partida.getTablero(), normas, Dificultad.valueOf(dificultad_s), Rol.valueOf(rol_s));
-        return true;
-    }
+
 
 }

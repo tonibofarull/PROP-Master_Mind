@@ -1,11 +1,13 @@
 package Dominio;
 
 public class Partida {
+
     private int ronda;//ronda son las rondas que se han jugado hasta el momento
     private String Solucion;
     private Rol rol;
     private Dificultad dificultad;
-    Dominio.Tablero tablero;
+    private Tablero tablero;
+
     public Partida(Dificultad dificultad,Rol rol){
         this.dificultad=dificultad;
         this.rol=rol;

@@ -59,35 +59,11 @@ public class Maquina {
             return;
         }
         for (int i = 1; i <= max_val; ++i) {
-            if (no_rep || !asign.get(i)) {
-                asign.set(i,false);
+            if (!no_rep || !asign.get(i-1)) {
+                if (no_rep) asign.set(i-1,false);
                 inicializarDatos(pos+1,num*10+i, asign, no_rep);
             }
         }
-    }
-
-    // PONER EN NORMAS
-    private Pair calcularBN(String a, String b) {
-        Pair res = new Pair(0,0);
-        ArrayList<Boolean> vis_a = new ArrayList<>(Arrays.asList(false,false,false,false));
-        ArrayList<Boolean> vis_b = new ArrayList<>(Arrays.asList(false,false,false,false));
-        for (int i = 0; i < 4; ++i) {
-            if (a.charAt(i) == b.charAt(i)) {
-                vis_a.set(i,true);
-                vis_b.set(i,true);
-                res.setX(res.getX()+1);
-            }
-        }
-        for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
-                if (a.charAt(i) == b.charAt(j) && !vis_a.get(i) && !vis_b.get(j)) {
-                    vis_a.set(i,true);
-                    vis_b.set(j,true);
-                    res.setY(res.getY()+1);
-                }
-            }
-        }
-        return res;
     }
 
     private String minimax() {
@@ -96,7 +72,8 @@ public class Maquina {
         for (String g: candidatos_restantes) {
             Map<Pair,Integer> Z_g = new HashMap<>();
             for (String s : S) {
-                Pair val = calcularBN(g,s);
+                String r = normas.calcularBN(g,s);
+                Pair val = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
                 if (Z_g.containsKey(val)) {
                     Integer int_aux = Z_g.get(val);
                     Z_g.replace(val, int_aux+1);
@@ -127,24 +104,27 @@ public class Maquina {
         Pair lg = new Pair(x,y);
         TreeSet<String> Saux = (TreeSet<String>) S.clone();
         for (String a : Saux) {
-            Pair p = calcularBN(a,candidato);
+            String r = normas.calcularBN(a,candidato);
+            Pair p = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
             if (!p.equals(lg)) S.remove(a);
         }
     }
 
     // PUBLIC functions
 
-    public Maquina(Tablero tablero, Normas normas, Dificultad dif, Rol rol) {
+    public Maquina(Tablero tablero, Normas normas, Dificultad dif, Rol rolJugadorHumano) {
         dificultad = dif;
-        if (rol == Rol.CODEBREAKER) {
-            this.tablero = tablero;
-            this.normas = normas;
+        this.tablero = tablero;
+        this.normas = normas;
+        if (rolJugadorHumano == Rol.CODEMAKER) {
             this.primer_turno = true;
             S = new TreeSet<>();
             candidatos_restantes = new TreeSet<>();
-            ArrayList<Boolean> asign = new ArrayList<>(6);
+            int capacidad = 6;
+            if (dif == Dificultad.DIFICIL) capacidad = 7;
+            ArrayList<Boolean> asign = new ArrayList<>(capacidad);
             boolean no_rep = dificultad == Dificultad.FACIL;
-            if (no_rep) for (int i = 1; i <= 6; ++i) asign.add(false);
+            if (no_rep) for (int i = 1; i <= capacidad; ++i) asign.add(false);
             inicializarDatos(0,0,asign,no_rep);
         }
     }
@@ -207,8 +187,9 @@ public class Maquina {
         return Integer.toString(res);
     }
 
-    public String evaluarCandidato(String candidato, String solucion) {
-        Pair p = calcularBN(candidato, solucion);
+    public String evaluarCandidato(String candidato, String solucion) { // TODO pensar si deberia hacerlo la norma
+        String r = normas.calcularBN(candidato, solucion);
+        Pair p = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
         return p.getX() + "" + p.getY();
     }
 

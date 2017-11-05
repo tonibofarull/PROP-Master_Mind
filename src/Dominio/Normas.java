@@ -38,10 +38,10 @@ public class Normas {
                 return checkCodigo(codigo, 1, 6, 4, 1);
 
             case MEDIO:
-                return checkCodigo(codigo, 1, 6, 4, 2);
+                return checkCodigo(codigo, 1, 6, 4, 4);
 
             case DIFICIL:
-                return checkCodigo(codigo, 0, 7, 4, 1);
+                return checkCodigo(codigo, 1, 7, 4, 4);
         }
         return false;
     }
@@ -52,10 +52,10 @@ public class Normas {
         return true;
     }
 
-    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int tamanyo_codigo, int max_rep) {
-        if (codigo.length() == tamanyo_codigo) {
+    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) {
+        if (codigo.length() == size_codigo) {
             ArrayList<Integer> repeticiones_canicas = new ArrayList<>();
-            for (int i = 0; i <= val_maximo; ++i) {
+            for (int i = 0; i <= val_maximo-val_minimo; ++i) {
                 repeticiones_canicas.add(0);
             }
 
@@ -64,7 +64,8 @@ public class Normas {
                     return false;
                 }
                 else {
-                    repeticiones_canicas.set(Character.getNumericValue(codigo.charAt(i)), (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) + 1));
+                    int num_reps = repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i)));
+                    repeticiones_canicas.set(Character.getNumericValue(codigo.charAt(i)), num_reps+1);
                     if (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) >= max_rep + 1) return false;
                 }
             }
