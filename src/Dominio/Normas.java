@@ -8,7 +8,7 @@ public class Normas {
 
     }
 
-    private String calcularBN(String a, String b) {
+    public String calcularBN(String a, String b) {
         int nNegras = 0;
         int nBlancas = 0;
         ArrayList<Boolean> vis_a = new ArrayList<>(Arrays.asList(false,false,false,false));

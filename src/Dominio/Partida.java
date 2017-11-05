@@ -3,10 +3,10 @@ package Dominio;
 public class Partida {
     private int ronda;//ronda son las rondas que se han jugado hasta el momento
     private String Solucion;
-    private String rol;
-    private int dificultad;
+    private Rol rol;
+    private Dificultad dificultad;
     Dominio.Tablero tablero;
-    public Partida(int dificultad,String rol){
+    public Partida(Dificultad dificultad,Rol rol){
         this.dificultad=dificultad;
         this.rol=rol;
         this.ronda=0;
@@ -26,15 +26,12 @@ public class Partida {
 
     //getters
     public int getRonda(){ return ronda; }
-    public int getDificultad(){return dificultad;}
-    public String getRol(){return rol;}
+    public Dificultad getDificultad(){return dificultad;}
+    public Rol getRol(){return rol;}
     public String getSolucion(){return Solucion;}
     public String getUltimoCandidato(){return tablero.getUltimoCandidato();}
     public String getUltimaBn(){return tablero.getUltimoBn();}
     public Tablero getTablero() {
         return tablero;
-    }
-    public int getdificultad(){
-        return dificultad;
     }
 }

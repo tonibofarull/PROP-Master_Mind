@@ -13,9 +13,13 @@ public class Main {
         while (op != 0) {
             if (op == 1) { // empezar partida
                 System.out.print("dificultad: ");
-                int dif = scan.nextInt();
+                int diff = scan.nextInt();
                 System.out.print("rol: ");
                 String rol = scan.next();
+                String dif;
+                if (diff == 0) dif = new String("FACIL");
+                else if (diff == 0) dif = new String("MEDIO");
+                else  dif = new String("DIFICIL");
                 if (!dom.empezarPartida(dif,rol)) System.out.println("errorrrr");
             }
             else if (op == 2) {

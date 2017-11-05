@@ -12,7 +12,7 @@ public class CtrlDominio {
     }*/
 
     public String generarSolucion(String solucion) {
-        if (player_cm.comprobarSolucion(solucion)) {
+        if (normas.comprobarLinea(solucion, partida.getDificultad())) {
             partida.setSolucion(solucion);
             String candidato = maquina.generarCandidato();
             partida.setNuevoCandidato(candidato);
@@ -26,7 +26,7 @@ public class CtrlDominio {
         String solucion = partida.getSolucion();
         if (normas.comprobarBN(candidato, solucion, bn)) {
             partida.setNuevaBn(bn);
-            maquina.nuevaBN(candidato,bn);
+            normas.calcularBN(candidato,bn);
             String siguiente_candidato = maquina.generarCandidato();
             partida.setNuevoCandidato(siguiente_candidato);
             return siguiente_candidato;
@@ -35,7 +35,7 @@ public class CtrlDominio {
     }
 
     public String generarCandidato(String candidato) {
-        if (normas.comprobarLinea(candidato, this.dificultad)) {
+        if (normas.comprobarLinea(candidato, partida.getDificultad())) {
             partida.setNuevoCandidato(candidato);
             String bn_ultima_jugada = maquina.evaluarCandidato(candidato, partida.getSolucion());
             partida.setNuevaBn(bn_ultima_jugada);
@@ -45,14 +45,14 @@ public class CtrlDominio {
     }
 
 
-    public boolean empezarPartida(int dificultad,String rol) {
-        partida = new Partida(dificultad, rol);
+    public boolean empezarPartida(String dificultad_s,String rol_s) {
+        partida = new Partida(Dificultad.valueOf(dificultad_s), Rol.valueOf(rol_s));
         normas = new Normas();
-        if (rol.equals("CodeBreaker")) {
+        if (Rol.valueOf(rol_s).equals("CodeBreaker")) {
             String solucion = maquina.generarSolucion();
             partida.setSolucion(solucion);
         }
-        maquina = new Maquina(, normas, dificultad, rol);
+        maquina = new Maquina(partida.getTablero(), normas, Dificultad.valueOf(dificultad_s), Rol.valueOf(rol_s));
         return true;
     }
 
