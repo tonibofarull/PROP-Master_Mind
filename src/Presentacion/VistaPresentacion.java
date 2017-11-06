@@ -63,4 +63,9 @@ public class VistaPresentacion {
         System.out.println(nb);
     }
 
+    public void mostrarMensaje(String mensaje) {
+        System.out.println();
+        System.out.println(mensaje);
+    }
+
 }

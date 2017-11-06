@@ -13,44 +13,7 @@ public class Maquina {
 
     private Dificultad dificultad;
 
-    private class Pair {
-        private int x;
-        private int y;
-
-        Pair(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            Pair aux = (Pair) obj;
-            return this.x == aux.x && this.y == aux.y;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(x,y);
-        }
-    }
-
-    private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, boolean no_rep) {
+    private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, boolean prohibido_rep) {
         int max_val = 6;
         if (dificultad == Dificultad.DIFICIL) max_val = 7;
         if (pos == 4) {
@@ -59,9 +22,10 @@ public class Maquina {
             return;
         }
         for (int i = 1; i <= max_val; ++i) {
-            if (!no_rep || !asign.get(i-1)) {
-                if (no_rep) asign.set(i-1,false);
-                inicializarDatos(pos+1,num*10+i, asign, no_rep);
+            if (!prohibido_rep || !asign.get(i-1)) {
+                if (prohibido_rep) asign.set(i-1,true);
+                inicializarDatos(pos+1,num*10+i, asign, prohibido_rep);
+                if (prohibido_rep) asign.set(i-1,false);
             }
         }
     }
@@ -70,10 +34,9 @@ public class Maquina {
         TreeSet<String> guesses = new TreeSet<>();
         int max = Integer.MIN_VALUE;
         for (String g: candidatos_restantes) {
-            Map<Pair,Integer> Z_g = new HashMap<>();
+            Map<String,Integer> Z_g = new HashMap<>();
             for (String s : S) {
-                String r = normas.calcularNB(g,s);
-                Pair val = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
+                String val = normas.calcularNB(g,s);
                 if (Z_g.containsKey(val)) {
                     Integer int_aux = Z_g.get(val);
                     Z_g.replace(val, int_aux+1);
@@ -98,15 +61,11 @@ public class Maquina {
         return guesses.first();
     }
 
-    private void nuevaBN(String candidato, String BN) {
-        int x = Character.getNumericValue(BN.charAt(0));
-        int y = Character.getNumericValue(BN.charAt(1));
-        Pair lg = new Pair(x,y);
+    private void nuevaBN(String candidato, String NB) {
         TreeSet<String> Saux = (TreeSet<String>) S.clone();
         for (String a : Saux) {
             String r = normas.calcularNB(a,candidato);
-            Pair p = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
-            if (!p.equals(lg)) S.remove(a);
+            if (!NB.equals(r)) S.remove(a);
         }
     }
 
@@ -123,9 +82,9 @@ public class Maquina {
             int capacidad = 6;
             if (dif == Dificultad.DIFICIL) capacidad = 7;
             ArrayList<Boolean> asign = new ArrayList<>(capacidad);
-            boolean no_rep = dificultad == Dificultad.FACIL;
-            if (no_rep) for (int i = 1; i <= capacidad; ++i) asign.add(false);
-            inicializarDatos(0,0,asign,no_rep);
+            boolean prohibido_rep = dificultad == Dificultad.FACIL;
+            if (prohibido_rep) for (int i = 1; i <= capacidad; ++i) asign.add(false);
+            inicializarDatos(0,0,asign,prohibido_rep);
         }
     }
 
@@ -145,6 +104,7 @@ public class Maquina {
         if (primer_turno) {
             primer_turno = false;
             String r = "1122";
+            if (dificultad == Dificultad.FACIL) r = "1234";
             S.remove(r);
             candidatos_restantes.remove(r);
             return r;
@@ -188,9 +148,7 @@ public class Maquina {
     }
 
     public String evaluarCandidato(String candidato, String solucion) { // TODO pensar si deberia hacerlo la norma
-        String r = normas.calcularNB(candidato, solucion);
-        Pair p = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
-        return p.getX() + "" + p.getY();
+        return normas.calcularNB(candidato, solucion);
     }
 
 }

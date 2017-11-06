@@ -40,7 +40,12 @@ public class CtrlPresentacion {
     }
 
     private void partidaCodeBreaker() {
-        while (generarCandidato());
+        int turno = 1;
+        vista.mostrarMensaje("turno "+ turno);
+        while (generarCandidato()) {
+            ++turno;
+            vista.mostrarMensaje("turno "+ turno);
+        }
         System.out.println();
         System.out.println("**** Final de la partida ****");
         System.out.println();
@@ -48,7 +53,10 @@ public class CtrlPresentacion {
 
     private void partidaCodeMaker() {
         generarSolucion();
-        while (evaluarCandidato());
+        int turno = 2;
+        while (evaluarCandidato(turno)) {
+            ++turno;
+        }
         System.out.println();
         System.out.println("**** Final de la partida ****");
         System.out.println();
@@ -57,13 +65,15 @@ public class CtrlPresentacion {
     private void generarSolucion() {
         String solucion = vista.obtenerCandidatoSolucion(false);
         String candidato = dominio.generarSolucion(solucion);
+        vista.mostrarMensaje("turno "+ 1);
         vista.mostrarCandidato(candidato);
     }
 
-    private boolean evaluarCandidato() {
+    private boolean evaluarCandidato(int turno) {
         String nb = vista.obtenerNB();
         if (nb.equals("40")) return false;
         String candidato = dominio.evaluarCandidato(nb);
+        vista.mostrarMensaje("turno "+ turno);
         vista.mostrarCandidato(candidato);
         return true;
     }
