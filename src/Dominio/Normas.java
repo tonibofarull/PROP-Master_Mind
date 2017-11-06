@@ -4,6 +4,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Normas {
+
+    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) {
+        if (codigo.length() == size_codigo) {
+            ArrayList<Integer> repeticiones_canicas = new ArrayList<>();
+            for (int i = 0; i <= val_maximo-val_minimo; ++i) repeticiones_canicas.add(0);
+            for (int i = 0; i < codigo.length(); ++i) {
+                int val = Character.getNumericValue(codigo.charAt(i));
+                if (val < val_minimo || val > val_maximo) return false;
+                else {
+                    int num_reps = repeticiones_canicas.get(val-1);
+                    repeticiones_canicas.set(val-1, num_reps+1);
+                    if (repeticiones_canicas.get(val-1) >= max_rep + 1) return false;
+                }
+            }
+            return true;
+        }
+        return false;
+        // TODO: excepciones por returns
+    }
+
+    // PUBLIC functions
+
     public Normas() {
 
     }
@@ -47,31 +69,9 @@ public class Normas {
     }
 
     public boolean comprobarNB(String candidato, String solucion, String nb) {
-        String solucion_correcta = calcularNB(candidato, solucion);
-        if (!solucion_correcta.equals(nb)) return false;
-        return true;
+        String NB_correcto = calcularNB(candidato, solucion);
+        if (!NB_correcto.equals(nb)) return false;
+        return true; // TODO: excepciones por returns
     }
 
-    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) {
-        if (codigo.length() == size_codigo) {
-            ArrayList<Integer> repeticiones_canicas = new ArrayList<>();
-            for (int i = 0; i <= val_maximo-val_minimo; ++i) {
-                repeticiones_canicas.add(0);
-            }
-
-            for (int i = 0; i < codigo.length(); ++i) {
-                int val = Character.getNumericValue(codigo.charAt(i));
-                if (val < val_minimo || val > val_maximo) {
-                    return false;
-                }
-                else {
-                    int num_reps = repeticiones_canicas.get(val-1);
-                    repeticiones_canicas.set(val-1, num_reps+1);
-                    if (repeticiones_canicas.get(val-1) >= max_rep + 1) return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
 }

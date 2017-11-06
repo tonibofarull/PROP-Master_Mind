@@ -12,7 +12,7 @@ public class Partida {
         this.dificultad=dificultad;
         this.rol=rol;
         this.ronda=0;
-        this.tablero=new Dominio.Tablero();
+        this.tablero=new Tablero();
     }
 
     //todo acabarPartida
