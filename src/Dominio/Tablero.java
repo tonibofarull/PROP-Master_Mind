@@ -10,14 +10,14 @@ public class Tablero {
     public void setNuevoCandidato(String candidato){
         lineas.add(new Dominio.Linea(candidato));
     }
-    public void setNuevoBn(String Bn){
-        lineas.get(lineas.size()-1).setBn(Bn);
+    public void setNuevoNB(String NB){
+        lineas.get(lineas.size()-1).setNB(NB);
     }
     public String getUltimoCandidato(){
         return lineas.get(lineas.size()-1).getCandidato();
     }
-    public String getUltimoBn(){
-        return  lineas.get(lineas.size()-1).getBn();
+    public String getUltimoNB(){
+        return  lineas.get(lineas.size()-1).getNB();
     }
     public int getNumLineas(){
         return lineas.size();
@@ -25,11 +25,11 @@ public class Tablero {
     public String getCandidato(int i){
         return lineas.get(i).getCandidato();
     }
-    public Boolean existsBN(int i){
-        return ! lineas.get(i).existsBN();
+    public Boolean existsNB(int i){
+        return ! lineas.get(i).existsNB();
     }
-    public String getBN(int i){
-        return lineas.get(i).getBn();
+    public String getNB(int i){
+        return lineas.get(i).getNB();
     }
-    //todo GetAllCandidatoBn
+    //todo GetAllCandidatoNB
 }

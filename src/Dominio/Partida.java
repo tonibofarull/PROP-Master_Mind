@@ -24,7 +24,7 @@ public class Partida {
         tablero.setNuevoCandidato(candidato);
         ronda++;
     }
-    public void setNuevaBn(String Bn){tablero.setNuevoBn(Bn);}
+    public void setNuevaNB(String NB){tablero.setNuevoNB(NB);}
 
     //getters
     public int getRonda(){ return ronda; }
@@ -32,7 +32,7 @@ public class Partida {
     public Rol getRol(){return rol;}
     public String getSolucion(){return Solucion;}
     public String getUltimoCandidato(){return tablero.getUltimoCandidato();}
-    public String getUltimaBn(){return tablero.getUltimoBn();}
+    public String getUltimaNB(){return tablero.getUltimoNB();}
     public Tablero getTablero() {
         return tablero;
     }

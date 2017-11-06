@@ -8,7 +8,7 @@ public class Normas {
 
     }
 
-    public String calcularBN(String a, String b) {
+    public String calcularNB(String a, String b) {
         int nNegras = 0;
         int nBlancas = 0;
         ArrayList<Boolean> vis_a = new ArrayList<>(Arrays.asList(false,false,false,false));
@@ -29,7 +29,7 @@ public class Normas {
                 }
             }
         }
-        return Integer.toString(nBlancas) + Integer.toString(nNegras);
+        return Integer.toString(nNegras) + Integer.toString(nBlancas);
     }
 
     public boolean comprobarLinea(String codigo, Dificultad dificultad) {
@@ -46,9 +46,9 @@ public class Normas {
         return false;
     }
 
-    public boolean comprobarBN(String candidato, String solucion, String bn) {
-        String solucion_correcta = calcularBN(candidato, solucion);
-        if (!solucion_correcta.equals(bn)) return false;
+    public boolean comprobarNB(String candidato, String solucion, String nb) {
+        String solucion_correcta = calcularNB(candidato, solucion);
+        if (!solucion_correcta.equals(nb)) return false;
         return true;
     }
 

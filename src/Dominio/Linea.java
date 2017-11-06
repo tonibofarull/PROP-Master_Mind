@@ -2,22 +2,22 @@ package Dominio;
 
 public class Linea {
     private String candidato;
-    private String bn;
+    private String nb;
     public Linea(String candidato){
         this.candidato=candidato;
-        this.bn="";
+        this.nb="";
     }
-    public void setBn(String bn){
-        this.bn=bn;
+    public void setNB(String nb){
+        this.nb=nb;
     }
     public String getCandidato(){
         return candidato;
     }
-    public String getBn(){
-        return bn;
+    public String getNB(){
+        return nb;
     }
-    public Boolean existsBN(){
-        return ! bn.equals("");
+    public Boolean existsNB(){
+        return ! nb.equals("");
     }
 
 

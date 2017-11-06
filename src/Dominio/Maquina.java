@@ -72,7 +72,7 @@ public class Maquina {
         for (String g: candidatos_restantes) {
             Map<Pair,Integer> Z_g = new HashMap<>();
             for (String s : S) {
-                String r = normas.calcularBN(g,s);
+                String r = normas.calcularNB(g,s);
                 Pair val = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
                 if (Z_g.containsKey(val)) {
                     Integer int_aux = Z_g.get(val);
@@ -104,7 +104,7 @@ public class Maquina {
         Pair lg = new Pair(x,y);
         TreeSet<String> Saux = (TreeSet<String>) S.clone();
         for (String a : Saux) {
-            String r = normas.calcularBN(a,candidato);
+            String r = normas.calcularNB(a,candidato);
             Pair p = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
             if (!p.equals(lg)) S.remove(a);
         }
@@ -134,8 +134,8 @@ public class Maquina {
         if (numero_lineas == 0) primer_turno = false; // TODO revisar como sabremos si se ha reiniciado
         for (int i = 0; i < numero_lineas; ++i) {
             String can = tablero.getCandidato(i);
-            if (tablero.existsBN(i)) {
-                String eval = tablero.getBN(i);
+            if (tablero.existsNB(i)) {
+                String eval = tablero.getNB(i);
                 nuevaBN(can,eval);
             }
         }
@@ -151,7 +151,7 @@ public class Maquina {
         }
         // actualizamos la info de la ultima jugada hecha
         String ultimoCandidato = tablero.getUltimoCandidato();
-        String ultimaBN = tablero.getUltimoBn();
+        String ultimaBN = tablero.getUltimoNB();
         nuevaBN(ultimoCandidato,ultimaBN);
 
         String r = minimax();
@@ -188,7 +188,7 @@ public class Maquina {
     }
 
     public String evaluarCandidato(String candidato, String solucion) { // TODO pensar si deberia hacerlo la norma
-        String r = normas.calcularBN(candidato, solucion);
+        String r = normas.calcularNB(candidato, solucion);
         Pair p = new Pair(Character.getNumericValue(r.charAt(0)),Character.getNumericValue(r.charAt(1)));
         return p.getX() + "" + p.getY();
     }
