@@ -18,7 +18,7 @@ public class Main {
                 String rol = scan.next();
                 String dif;
                 if (diff == 0) dif = "FACIL";
-                else if (diff == 0) dif = "MEDIO";
+                else if (diff == 1) dif = "MEDIO";
                 else dif = "DIFICIL";
                 if (!dom.empezarPartida(dif,rol)) System.out.println("Error en empezar partida"); // TODO hacerlo con excepciones el martes
             }

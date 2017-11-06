@@ -60,13 +60,14 @@ public class Normas {
             }
 
             for (int i = 0; i < codigo.length(); ++i) {
-                if (Character.getNumericValue(codigo.charAt(i)) < val_minimo || Character.getNumericValue(codigo.charAt(i)) > val_maximo) {
+                int val = Character.getNumericValue(codigo.charAt(i));
+                if (val < val_minimo || val > val_maximo) {
                     return false;
                 }
                 else {
-                    int num_reps = repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i)));
-                    repeticiones_canicas.set(Character.getNumericValue(codigo.charAt(i)), num_reps+1);
-                    if (repeticiones_canicas.get(Character.getNumericValue(codigo.charAt(i))) >= max_rep + 1) return false;
+                    int num_reps = repeticiones_canicas.get(val-1);
+                    repeticiones_canicas.set(val-1, num_reps+1);
+                    if (repeticiones_canicas.get(val-1) >= max_rep + 1) return false;
                 }
             }
             return true;
