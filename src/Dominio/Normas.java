@@ -3,9 +3,9 @@ package Dominio;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Normas {
+public class Normas{
 
-    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) {
+    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) throws Exception{
         if (codigo.length() == size_codigo) {
             ArrayList<Integer> repeticiones_canicas = new ArrayList<>();
             for (int i = 0; i <= val_maximo-val_minimo; ++i) repeticiones_canicas.add(0);
@@ -15,12 +15,12 @@ public class Normas {
                 else {
                     int num_reps = repeticiones_canicas.get(val-1);
                     repeticiones_canicas.set(val-1, num_reps+1);
-                    if (repeticiones_canicas.get(val-1) >= max_rep + 1) return false;
+                    if (repeticiones_canicas.get(val-1) >= max_rep + 1) throw new Exception("El número de repeticiones del código supera al número máximo permitido.");
                 }
             }
             return true;
         }
-        return false;
+        throw new Exception("El tamaño del código introducido no corresponde con el tamaño adecuado.");
         // TODO: excepciones por returns
     }
 
@@ -68,9 +68,9 @@ public class Normas {
         return false;
     }
 
-    public boolean comprobarNB(String candidato, String solucion, String nb) {
+    public boolean comprobarNB(String candidato, String solucion, String nb) throws Exception{
         String NB_correcto = calcularNB(candidato, solucion);
-        if (!NB_correcto.equals(nb)) return false;
+        if (!NB_correcto.equals(nb)) throw new Exception("El código nb introducido no corresponde con el código nb real.");
         return true; // TODO: excepciones por returns
     }
 
