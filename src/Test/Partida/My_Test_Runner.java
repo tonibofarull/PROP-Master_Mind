@@ -5,7 +5,7 @@ import org.junit.runner.notification.Failure;
 public class My_Test_Runner {
 
     public static void main(String[] args){
-        Result result = JUnitCore.runClasses(Partida_Init_Test.class);
+        Result result = JUnitCore.runClasses(Partida_Suite.class);
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }

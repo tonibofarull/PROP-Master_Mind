@@ -25,7 +25,8 @@ public class Partida_Tablero_Test {
 
     @Parameters
     public static Collection<Object[]> data() {
-        Object[][] data = new Object[][] { {"12354","N"}
+        Object[][] data = new Object[][] { {"1234","NNNN"}
+        ,{"",""},{"1234","BBNN"},{"4","B"},{"1234","N"}
         };
         return Arrays.asList(data);
     }
@@ -42,5 +43,6 @@ public class Partida_Tablero_Test {
         p.setNuevoCandidato(candidato);
         p.setNuevaNB(NB);
         assertEquals("error al definir/obtener nuevo candidato",p.getUltimoCandidato(),candidato);
+        assertEquals("error al definir/obtener NB",p.getUltimaNB(),NB);
     }
 }
