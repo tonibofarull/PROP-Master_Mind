@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class Partida_Unit_Test {
+public class Partida_Init_Test {
 
     //parametros para las pruebas
     @Parameter(0)
@@ -27,7 +27,7 @@ public class Partida_Unit_Test {
     @Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][] { {FACIL,CODEMAKER,"0"},
-        {MEDIO,CODEBREAKER,"1"}, {DIFICIL,CODEMAKER,"123"},
+        {MEDIO,CODEBREAKER,"1"}, {DIFICIL,CODEMAKER,"1233"},
         {MEDIO,CODEMAKER,"13234"}, {FACIL,CODEBREAKER,"111111111123"}
         };
         return Arrays.asList(data);
