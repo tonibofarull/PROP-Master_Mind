@@ -1,3 +1,5 @@
+package Test.Partida;
+
 //imports junit
 import org.junit.Test;
 import org.junit.runner.RunWith;

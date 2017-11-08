@@ -1,7 +1,10 @@
+// CODIGO REPLICADO DE LA CLASE MAQUINA.JAVA ORIGINAL
+
 package Test.Maquina;
 
 import Dominio.Dificultad;
 import Dominio.Rol;
+
 
 import java.util.*;
 

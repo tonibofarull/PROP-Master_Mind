@@ -5,23 +5,22 @@ import java.util.Arrays;
 
 public class Normas{
 
-    private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) throws Exception{
+    private void checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) throws Exception {
         if (codigo.length() == size_codigo) {
             ArrayList<Integer> repeticiones_canicas = new ArrayList<>();
             for (int i = 0; i <= val_maximo-val_minimo; ++i) repeticiones_canicas.add(0);
             for (int i = 0; i < codigo.length(); ++i) {
                 int val = Character.getNumericValue(codigo.charAt(i));
-                if (val < val_minimo || val > val_maximo) return false;
+                if (val < val_minimo || val > val_maximo) throw new Exception("El código contiene valor fuera de los rangos permitidos.");
                 else {
                     int num_reps = repeticiones_canicas.get(val-1);
                     repeticiones_canicas.set(val-1, num_reps+1);
-                    if (repeticiones_canicas.get(val-1) >= max_rep + 1) throw new Exception("El número de repeticiones del código supera al número máximo permitido.");
+                    if (repeticiones_canicas.get(val-1) >= max_rep + 1)
+                        throw new Exception("El número de repeticiones del código supera al número máximo permitido.");
                 }
             }
-            return true;
         }
-        throw new Exception("El tamaño del código introducido no corresponde con el tamaño adecuado.");
-        // TODO: excepciones por returns
+        else throw new Exception("El tamaño del código introducido no corresponde con el tamaño adecuado.");
     }
 
     // PUBLIC functions
@@ -54,24 +53,23 @@ public class Normas{
         return Integer.toString(nNegras) + Integer.toString(nBlancas);
     }
 
-    public boolean comprobarLinea(String codigo, Dificultad dificultad) {
+    public void comprobarLinea(String codigo, Dificultad dificultad) throws Exception {
         switch(dificultad) {
             case FACIL:
-                return checkCodigo(codigo, 1, 6, 4, 1);
-
+                checkCodigo(codigo, 1, 6, 4, 1);
+                break;
             case MEDIO:
-                return checkCodigo(codigo, 1, 6, 4, 4);
-
+                checkCodigo(codigo, 1, 6, 4, 4);
+                break;
             case DIFICIL:
-                return checkCodigo(codigo, 1, 7, 4, 4);
+                checkCodigo(codigo, 1, 7, 4, 4);
+                break;
         }
-        return false;
     }
 
-    public boolean comprobarNB(String candidato, String solucion, String nb) throws Exception{
+    public void comprobarNB(String candidato, String solucion, String nb) throws Exception{
         String NB_correcto = calcularNB(candidato, solucion);
         if (!NB_correcto.equals(nb)) throw new Exception("El código nb introducido no corresponde con el código nb real.");
-        return true; // TODO: excepciones por returns
     }
 
 }

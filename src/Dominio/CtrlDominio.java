@@ -25,12 +25,11 @@ public class CtrlDominio {
     }
     public String generarSolucion(String solucion) {
         try {
-            if (normas.comprobarLinea(solucion, partida.getDificultad())) {
-                partida.setSolucion(solucion);
-                String candidato = maquina.generarCandidato();
-                partida.setNuevoCandidato(candidato);
-                return candidato;
-            }
+            normas.comprobarLinea(solucion, partida.getDificultad());
+            partida.setSolucion(solucion);
+            String candidato = maquina.generarCandidato();
+            partida.setNuevoCandidato(candidato);
+            return candidato;
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -42,12 +41,11 @@ public class CtrlDominio {
         String candidato = partida.getUltimoCandidato();
         String solucion = partida.getSolucion();
         try {
-            if (normas.comprobarNB(candidato, solucion, nb)) {
-                partida.setNuevaNB(nb);
-                String siguiente_candidato = maquina.generarCandidato();
-                partida.setNuevoCandidato(siguiente_candidato);
-                return siguiente_candidato;
-            }
+            normas.comprobarNB(candidato, solucion, nb);
+            partida.setNuevaNB(nb);
+            String siguiente_candidato = maquina.generarCandidato();
+            partida.setNuevoCandidato(siguiente_candidato);
+            return siguiente_candidato;
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -57,12 +55,11 @@ public class CtrlDominio {
 
     public String generarCandidato(String candidato) {
         try {
-            if (normas.comprobarLinea(candidato, partida.getDificultad())) {
-                partida.setNuevoCandidato(candidato);
-                String nb_ultima_jugada = maquina.evaluarCandidato(candidato, partida.getSolucion());
-                partida.setNuevaNB(nb_ultima_jugada);
-                return nb_ultima_jugada;
-            }
+            normas.comprobarLinea(candidato, partida.getDificultad());
+            partida.setNuevoCandidato(candidato);
+            String nb_ultima_jugada = maquina.evaluarCandidato(candidato, partida.getSolucion());
+            partida.setNuevaNB(nb_ultima_jugada);
+            return nb_ultima_jugada;
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

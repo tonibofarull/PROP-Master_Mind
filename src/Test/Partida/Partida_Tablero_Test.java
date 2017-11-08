@@ -1,3 +1,5 @@
+package Test.Partida;
+
 //imports junit
 import org.junit.Before;
 import org.junit.Test;
