@@ -1,4 +1,7 @@
-package Dominio;
+package Test.Maquina;
+
+import Dominio.Dificultad;
+import Dominio.Rol;
 
 import java.util.*;
 
@@ -8,7 +11,7 @@ public class Maquina {
     private TreeSet<String> S;
     private TreeSet<String> candidatos_restantes;
 
-    private Normas normas;
+    private Stub_Normas normas;
 
     private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, int max_val, boolean prohibido_rep) {
         if (pos == 4) {
@@ -74,7 +77,7 @@ public class Maquina {
 
     // PUBLIC functions
 
-    public Maquina(Normas normas, Dificultad dificultad, Rol rolJugadorHumano) {
+    public Maquina(Stub_Normas normas, Dificultad dificultad, Rol rolJugadorHumano) {
         this.normas = normas;
         if (rolJugadorHumano == Rol.CODEMAKER) {
             this.primer_turno = true;
