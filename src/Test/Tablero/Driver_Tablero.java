@@ -6,7 +6,7 @@ public class Driver_Tablero {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Tablero t = null;
-        System.out.println("1 - Crear instancia\n2 - Set candidato\n3 - Set NB\n4 - Get Candidato\n5 - Get NB\n6 - Get n.Lineas\n7 - Get i-esimo candidato\n8 - Get i-esimo NB\n9 - Existe i-esimo NB\n10 - Opciones\n0 - Salir");
+        System.out.println("1 - Crear instancia\n2 - Set candidato\n3 - Set NB\n4 - Get Candidato\n5 - Get NB\n6 - Get n.Lineas\n7 - Get i-esimo candidato\n8 - Get i-esimo NB\n9 - Opciones\n0 - Salir");
         int opcion = scan.nextInt();
         while (opcion!=0){
             int i;
@@ -40,12 +40,7 @@ public class Driver_Tablero {
                     System.out.println(t.getNB(i));
                     break;
                 case 9:
-                    i=scan.nextInt();
-                    System.out.println(t.existsNB(i));
-                    break;
-
-                case 10:
-                    System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Existe NB\n6 - Opciones\n0 - Salir");
+                    System.out.println("1 - Crear instancia\n2 - Set candidato\n3 - Set NB\n4 - Get Candidato\n5 - Get NB\n6 - Get n.Lineas\n7 - Get i-esimo candidato\n8 - Get i-esimo NB\n9 - Opciones\n0 - Salir");
                     break;
                 default: break;
             }

@@ -33,10 +33,6 @@ public class Tablero {
         return lineas.get(i).getCandidato();
     }
 
-    public Boolean existsNB(int i){
-        return ! lineas.get(i).existsNB();
-    }
-
     public String getNB(int i){
         return lineas.get(i).getNB();
     }

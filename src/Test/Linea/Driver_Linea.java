@@ -7,7 +7,7 @@ public class Driver_Linea {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Linea l = null;
-        System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Existe NB\n6 - Opciones\n0 - Salir");
+        System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Opciones\n0 - Salir");
         int opcion = scan.nextInt();
         while (opcion!=0){
             switch (opcion){
@@ -26,11 +26,9 @@ public class Driver_Linea {
                 case 4:
                     System.out.println(l.getNB());
                     break;
+
                 case 5:
-                    System.out.println(l.existsNB());
-                    break;
-                case 6:
-                    System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Existe NB\n6 - Opciones\n0 - Salir");
+                    System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Opciones\n0 - Salir");
                     break;
                 default: break;
             }

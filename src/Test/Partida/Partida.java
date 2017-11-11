@@ -20,10 +20,6 @@ public class Partida {
     }
     public Partida(){this.tablero=new Stub_Tablero();}
 
-    //todo acabarPartida
-    //todo guardar
-
-    //setters
     public void setSolucion(String Solucion){
         this.Solucion=Solucion;
     }

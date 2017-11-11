@@ -17,8 +17,4 @@ public class Stub_Linea {
     public String getNB(){
         return "11";
     }
-
-    public Boolean existsNB(){
-        return true;
-    }
 }

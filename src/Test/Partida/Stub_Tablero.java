@@ -21,20 +21,4 @@ public class Stub_Tablero {
         return "40";
     }
 
-    public int getNumLineas() {
-        return 1;
-    }
-
-    public String getCandidato(int i) {
-        return "1122";
-    }
-
-    public Boolean existsNB(int i) {
-        return true;
-    }
-
-    public String getNB(int i) {
-        return "40";
-    }
-
 }

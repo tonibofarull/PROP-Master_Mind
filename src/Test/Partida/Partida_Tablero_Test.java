@@ -13,7 +13,7 @@ public class Partida_Tablero_Test {
         Partida p=new Partida();
         p.setNuevaNB("22");
         p.setNuevoCandidato("1432");
-        assertEquals("error al obtener o candidato",p.getUltimoCandidato(),"1122");
-        assertEquals("error al definir/obtener NB",p.getUltimaNB(),"40");
+        assertEquals("error al obtener  candidato",p.getUltimoCandidato(),"1122");
+        assertEquals("error al obtener NB",p.getUltimaNB(),"40");
     }
 }
