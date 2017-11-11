@@ -33,7 +33,4 @@ public class Partida {
     public String getSolucion(){return Solucion;}
     public String getUltimoCandidato(){return tablero.getUltimoCandidato();}
     public String getUltimaNB(){return tablero.getUltimoNB();}
-    public Tablero getTablero() {
-        return tablero;
-    }
 }

@@ -10,7 +10,6 @@ public class Maquina {
 
     private Dificultad dificultad;
 
-    private Tablero tablero;
     private Normas normas;
 
     private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, int max_val, boolean prohibido_rep) {
@@ -77,9 +76,8 @@ public class Maquina {
 
     // PUBLIC functions
 
-    public Maquina(Tablero tablero, Normas normas, Dificultad dif, Rol rolJugadorHumano) {
+    public Maquina(Normas normas, Dificultad dif, Rol rolJugadorHumano) {
         dificultad = dif;
-        this.tablero = tablero;
         this.normas = normas;
         if (rolJugadorHumano == Rol.CODEMAKER) {
             this.primer_turno = true;
@@ -96,7 +94,7 @@ public class Maquina {
         }
     }
 
-    public String generarCandidato() {
+    public String generarCandidato(String ultimoCandidato, String ultimaNB) {
         if (primer_turno) {
             primer_turno = false;
 
@@ -109,8 +107,6 @@ public class Maquina {
         }
         // si no es el primer turno es debido a que hemos propuesto un candidato que no era la solcion,
         // -- obtenemos el ultimo candidato con las NB y actualizamos las estructuras de datos
-        String ultimoCandidato = tablero.getUltimoCandidato();
-        String ultimaNB = tablero.getUltimoNB();
         nuevaNB(ultimoCandidato,ultimaNB);
 
         // obtenemos el mejor candidato segun el algoritmo de minimax y actualizamos los datos pertinentes
@@ -144,10 +140,6 @@ public class Maquina {
             default: break;
         }
         return Integer.toString(solucion);
-    }
-
-    public String evaluarCandidato(String candidato, String solucion) { // TODO: deberia estar en Normas (?)
-        return normas.calcularNB(candidato, solucion);
     }
 
 }
