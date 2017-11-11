@@ -11,6 +11,7 @@ import Dominio.*;
 import static Dominio.Dificultad.*;
 import static Dominio.Rol.*;
 //imports java
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -36,12 +37,48 @@ public class Partida_Init_Test {
     }
 
     @Test
-    public void test_solucion() {
-        Partida p=new Partida(dificultad,rol);
+    public void test_setters() throws NoSuchFieldException, IllegalAccessException {
+        final Partida p=new Partida(dificultad,rol);
         p.setSolucion(solucion);
-        assertEquals("Error al definir/obtener la solucion",p.getSolucion(),solucion);
-        assertEquals("Error al definir/obtener la dificultad",p.getDificultad(),dificultad);
-        assertEquals("Error al definir/obtener el rol",p.getRol(),rol);
+
+        //probamos la inicializacion de dificultad
+        Field field=p.getClass().getDeclaredField("dificultad");
+        field.setAccessible(true);
+        assertEquals("Error inicializar dificultad",field.get(p),dificultad);
+
+        //probamos la inicializacion de rol
+        field=p.getClass().getDeclaredField("rol");
+        field.setAccessible(true);
+        assertEquals("Error inicializar rol",field.get(p),rol);
+
+        //probamos el setter de solucion
+        p.setSolucion(solucion);
+        field=p.getClass().getDeclaredField("Solucion");
+        field.setAccessible(true);
+        assertEquals("Error inicializar dificultad",field.get(p),solucion);
     }
+
+    @Test
+    public final void test_getters() throws NoSuchFieldException, IllegalAccessException {
+        final Partida p =new Partida();
+        //probamos el getter de dificultad
+        Field field=p.getClass().getDeclaredField("dificultad");
+        field.setAccessible(true);
+        field.set(p,dificultad);
+        assertEquals("Error getter dificultad",p.getDificultad(),dificultad);
+
+        //probamos getter de rol
+        field=p.getClass().getDeclaredField("rol");
+        field.setAccessible(true);
+        field.set(p,rol);
+        assertEquals("Error getter rol",p.getRol(),rol);
+
+        //probamos getter de solucion
+        field=p.getClass().getDeclaredField("Solucion");
+        field.setAccessible(true);
+        field.set(p,solucion);
+        assertEquals("Error getter solucion",p.getSolucion(),solucion);
+    }
+
 
 }

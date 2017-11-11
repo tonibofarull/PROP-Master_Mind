@@ -1,4 +1,4 @@
-package Test.Maquina;
+package Test.Partida;
 
 public class Stub_Tablero {
 
@@ -6,11 +6,11 @@ public class Stub_Tablero {
     }
 
     public void setNuevoCandidato(String candidato) {
-        return;
+
     }
 
     public void setNuevoNB(String NB) {
-        return;
+
     }
 
     public String getUltimoCandidato() {

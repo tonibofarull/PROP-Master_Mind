@@ -5,19 +5,25 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 //imports  proyecto
 import Dominio.*;
+
+import java.lang.reflect.Field;
+
 import static Dominio.Dificultad.*;
 import static Dominio.Rol.*;
 
 
 public class Test_Rondas {
     @Test
-    public void test_rondas(){
-        Partida p=new Partida(FACIL,CODEMAKER);
+    public void test_rondas() throws NoSuchFieldException, IllegalAccessException {
+        final Partida p=new Partida(MEDIO,CODEBREAKER);
+        int r=8;
 
-        for (int i=0;i<10;i++) {
-            assertEquals("Error en el numero de rondas",i,p.getRonda());
-            p.setNuevoCandidato("123");
-            p.setNuevaNB("BN");
-        }
+        assertEquals("Error inicializar ronda",0,p.getRonda());
+
+        final Field field= p.getClass().getDeclaredField("ronda");
+        field.setAccessible(true);
+        field.set(p,r);
+
+        assertEquals("Error inicializar ronda",r,p.getRonda());
     }
 }
