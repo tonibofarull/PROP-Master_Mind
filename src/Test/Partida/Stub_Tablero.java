@@ -17,8 +17,4 @@ public class Stub_Tablero {
         return "1122";
     }
 
-    public String getUltimoNB() {
-        return "40";
-    }
-
 }
