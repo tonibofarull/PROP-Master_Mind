@@ -28,7 +28,7 @@ public class Driver_Maquina {
         String ultimoCandidato = "1234";
         String ultimaNB = "20";
         while (opcion != 4) {
-            switch(opcion){
+            switch (opcion) {
                 case 0:
                     System.out.println("0 - Facil");
                     System.out.println("1 - Medio");

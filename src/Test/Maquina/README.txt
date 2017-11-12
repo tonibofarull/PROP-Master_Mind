@@ -1,0 +1,2 @@
+Los 3 primeros tests comprueban que el funcionamiento de generarCandidato sea correcto para las distintas dificultades. (Maquina es CodeBreaker)
+Los 3 últimos comprueban que el generador random de soluciones iniciales cumpla con las restricciones de cada dificultad.
