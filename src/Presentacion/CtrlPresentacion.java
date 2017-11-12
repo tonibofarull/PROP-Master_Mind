@@ -64,25 +64,42 @@ public class CtrlPresentacion {
 
     private void generarSolucion() {
         String solucion = vista.obtenerCandidatoSolucion(false);
-        String candidato = dominio.generarSolucion(solucion);
-        vista.mostrarMensaje("turno "+ 1);
-        vista.mostrarCandidato(candidato);
+        try {
+            String candidato = dominio.generarSolucion(solucion);
+            vista.mostrarMensaje("turno "+ 1);
+            vista.mostrarCandidato(candidato);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private boolean evaluarCandidato(int turno) {
         String nb = vista.obtenerNB();
         if (nb.equals("40")) return false;
-        String candidato = dominio.evaluarCandidato(nb);
-        vista.mostrarMensaje("turno "+ turno);
-        vista.mostrarCandidato(candidato);
-        return true;
+        try {
+            String candidato = dominio.evaluarCandidato(nb);
+            vista.mostrarMensaje("turno " + turno);
+            vista.mostrarCandidato(candidato);
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     private boolean generarCandidato() {
-        String candidato = vista.obtenerCandidatoSolucion(true);
-        String nb = dominio.generarCandidato(candidato);
-        vista.mostrarNB(nb);
-        return !nb.equals("40");
+        try {
+            String candidato = vista.obtenerCandidatoSolucion(true);
+            String nb = dominio.generarCandidato(candidato);
+            vista.mostrarNB(nb);
+            return !nb.equals("40");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
 }
