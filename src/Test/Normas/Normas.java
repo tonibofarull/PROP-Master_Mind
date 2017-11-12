@@ -1,11 +1,13 @@
-package Dominio;
+package Test.Normas;
+
+import Dominio.Dificultad;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Normas{
+public class Normas {
 
-    private void checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) throws Exception {
+    public void checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) throws Exception {
         if (codigo.length() == size_codigo) {
             ArrayList<Integer> repeticiones_canicas = new ArrayList<>();
             for (int i = 0; i <= val_maximo-val_minimo; ++i) repeticiones_canicas.add(0);
