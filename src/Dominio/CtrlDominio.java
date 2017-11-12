@@ -33,11 +33,10 @@ public class CtrlDominio {
 
     public String evaluarCandidato(String nb) throws Exception{
         String candidato = partida.getUltimoCandidato();
-        String NB = partida.getUltimaNB();
         String solucion = partida.getSolucion();
         normas.comprobarNB(candidato, solucion, nb);
         partida.setNuevaNB(nb);
-        String siguiente_candidato = maquina.generarCandidato(candidato,NB,partida.getDificultad());
+        String siguiente_candidato = maquina.generarCandidato(candidato,nb,partida.getDificultad());
         partida.setNuevoCandidato(siguiente_candidato);
         return siguiente_candidato;
     }
