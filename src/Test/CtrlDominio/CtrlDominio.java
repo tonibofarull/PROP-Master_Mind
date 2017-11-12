@@ -1,4 +1,6 @@
-package Dominio;
+package Test.CtrlDominio;
+
+import Dominio.*;
 
 public class CtrlDominio {
     private Maquina maquina;
