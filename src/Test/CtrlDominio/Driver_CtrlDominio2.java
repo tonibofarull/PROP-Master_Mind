@@ -1,10 +1,8 @@
 package Test.CtrlDominio;
 
-import Dominio.CtrlDominio;
-
 import java.util.Scanner;
 
-public class Driver_CtrlDominio {
+public class Driver_CtrlDominio2 {
     private static void mostrarMenu() {
         System.out.println("0 - crear instancia CtrlDominio");
         System.out.println("1 - empezarPartida");

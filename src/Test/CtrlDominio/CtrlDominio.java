@@ -3,9 +3,9 @@ package Test.CtrlDominio;
 import Dominio.*;
 
 public class CtrlDominio {
-    private Maquina maquina;
-    private Normas normas;
-    private Partida partida;
+    private Stub_Maquina maquina;
+    private Stub_Normas normas;
+    private Stub_Partida partida;
 
     public CtrlDominio() {}
 
@@ -16,9 +16,9 @@ public class CtrlDominio {
     public boolean empezarPartida(String dificultad_s,String rol_s) {
         Dificultad dif = Dificultad.valueOf(dificultad_s);
         Rol rol = Rol.valueOf(rol_s);
-        partida = new Partida(dif, rol);
-        normas = new Normas();
-        maquina = new Maquina(normas, dif, rol);
+        partida = new Stub_Partida(dif, rol);
+        normas = new Stub_Normas();
+        maquina = new Stub_Maquina(normas, dif, rol);
         if (rol == Rol.CODEBREAKER) {
             String solucion = maquina.generarSolucion(partida.getDificultad());
             partida.setSolucion(solucion);
