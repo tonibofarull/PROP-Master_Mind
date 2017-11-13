@@ -1,4 +1,4 @@
-package Test.Partida;
+package Test.Stubs;
 
 import Dominio.Dificultad;
 import Dominio.Rol;
@@ -22,9 +22,6 @@ public class Stub_Partida {
     public void setNuevaNB(String NB){
 
     }
-
-    //getters
-
 
     public Dificultad getDificultad(){
         return Dificultad.FACIL;

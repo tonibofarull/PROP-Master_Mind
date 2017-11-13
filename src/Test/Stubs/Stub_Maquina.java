@@ -1,4 +1,4 @@
-package Test.Maquina;
+package Test.Stubs;
 
 import Dominio.Dificultad;
 import Dominio.Rol;

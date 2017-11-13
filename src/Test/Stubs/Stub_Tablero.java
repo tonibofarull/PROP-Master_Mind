@@ -1,4 +1,4 @@
-package Test.Partida;
+package Test.Stubs;
 
 public class Stub_Tablero {
 

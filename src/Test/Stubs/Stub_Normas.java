@@ -1,4 +1,4 @@
-package Test.Maquina;
+package Test.Stubs;
 
 import Dominio.Dificultad;
 
@@ -7,8 +7,6 @@ public class Stub_Normas {
     private boolean checkCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) {
         return true;
     }
-
-    // PUBLIC functions
 
     public Stub_Normas() {
 

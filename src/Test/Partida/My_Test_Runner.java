@@ -12,9 +12,9 @@ public class My_Test_Runner {
             System.out.println(failure.toString());
         }
         if (result.wasSuccessful()) {
-            System.out.println("El s'ha realizat correctament");
+            System.out.println("El se ha realizado correctamente");
         } else {
-            System.out.println("El test ha fallat");
+            System.out.println("El test ha fallado");
         }
     }
 }

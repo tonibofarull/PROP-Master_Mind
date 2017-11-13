@@ -1,4 +1,4 @@
-package Test.Tablero;
+package Test.Stubs;
 
 public class Stub_Linea {
 

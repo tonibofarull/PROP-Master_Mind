@@ -2,6 +2,7 @@ package Test.Maquina;
 
 import Dominio.Dificultad;
 import Dominio.Rol;
+import Test.Stubs.Stub_Normas;
 
 import java.util.Scanner;
 
@@ -15,41 +16,74 @@ public class Driver_Maquina {
         System.out.println("4 - salir");
     }
 
+    private static void testConstructor() {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("dificultad (0 - Facil, 1 - Medio, 2 - Dificil): ");
+        int dif = scan.nextInt();
+        Dificultad dificultad = Dificultad.FACIL;
+        if (dif == 1) dificultad = Dificultad.MEDIO;
+        else if (dif == 2) dificultad = Dificultad.DIFICIL;
+
+        System.out.print("rol (0 - CodeBreaker, 1 - CodeMaker): ");
+        int r = scan.nextInt();
+        Rol rol = Rol.CODEBREAKER;
+        if (r == 1) rol = Rol.CODEMAKER;
+
+        Stub_Normas normas = new Stub_Normas();
+        Maquina maquina = new Maquina(normas,dificultad,rol);
+    }
+
+    private static void testGenerarCandidato() {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("ultimoCandidato: ");
+        String ultimoCandidato = scan.next();
+        System.out.print("ultimaNB: ");
+        String ultimaNB = scan.next();
+        System.out.print("dificultad (0 - Facil, 1 - Medio, 2 - Dificil): ");
+        int dif = scan.nextInt();
+        Dificultad dificultad = Dificultad.FACIL;
+        if (dif == 1) dificultad = Dificultad.MEDIO;
+        else if (dif == 2) dificultad = Dificultad.DIFICIL;
+
+        Stub_Normas normas = new Stub_Normas();
+        Maquina maquina = new Maquina(normas,dificultad,Rol.CODEBREAKER);
+        String candidato = maquina.generarCandidato(ultimoCandidato,ultimaNB,dificultad);
+        System.out.println(candidato);
+    }
+
+    private static void testGenerarSolucion() {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("dificultad (0 - Facil, 1 - Medio, 2 - Dificil): ");
+        int dif = scan.nextInt();
+        Dificultad dificultad = Dificultad.FACIL;
+        if (dif == 1) dificultad = Dificultad.MEDIO;
+        else if (dif == 2) dificultad = Dificultad.DIFICIL;
+
+        Stub_Normas normas = new Stub_Normas();
+        Maquina maquina = new Maquina(normas,dificultad,Rol.CODEBREAKER);
+        String solucion = maquina.generarSolucion(dificultad);
+        System.out.println(solucion);
+    }
+
     public static void main(String[] args) {
         mostrarMenu();
         System.out.println();
         Scanner scan = new Scanner(System.in);
         System.out.print("opcion: ");
         int opcion = scan.nextInt();
-
-        Stub_Normas normas = new Stub_Normas();
-        Maquina maquina = new Maquina(normas,Dificultad.FACIL,Rol.CODEBREAKER);
-        Dificultad dificultad = Dificultad.FACIL;
-        String ultimoCandidato = "1234";
-        String ultimaNB = "20";
         while (opcion != 4) {
             switch (opcion) {
                 case 0:
-                    System.out.println("0 - Facil");
-                    System.out.println("1 - Medio");
-                    System.out.println("2 - Dificil");
-                    int dif = scan.nextInt();
-                    if (dif == 1) dificultad = Dificultad.MEDIO;
-                    if (dif == 2) dificultad = Dificultad.DIFICIL;
-                    System.out.println("0 - CodeMaker");
-                    System.out.println("1 - CodeBreaker");
-                    int r = scan.nextInt();
-                    Rol rol = Rol.CODEMAKER;
-                    if (r == 1) rol = Rol.CODEBREAKER;
-                    maquina = new Maquina(normas,dificultad,rol);
+                    testConstructor();
                     break;
                 case 1:
-                    String candidato = maquina.generarCandidato(ultimoCandidato,ultimaNB,dificultad);
-                    System.out.println(candidato);
+                    testGenerarCandidato();
                     break;
                 case 2:
-                    String solucion = maquina.generarSolucion(dificultad);
-                    System.out.println(solucion);
+                    testGenerarSolucion();
                     break;
                 case 3:
                     mostrarMenu();

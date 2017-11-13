@@ -1,36 +1,96 @@
 package Dominio;
 
+/**
+ * Partida representa las caracteristicas generales:
+ *      solucion
+ *      rondas jugadas
+ *      rol del jugador humano
+ *      dificultad
+ *      y el tablero
+ *
+ * @author Sergi Avila
+ */
 public class Partida {
 
-    private int ronda;//ronda son las rondas que se han jugado hasta el momento
-    private String Solucion;
+    private String solucion;
+    private int ronda;
     private Rol rol;
     private Dificultad dificultad;
     private Tablero tablero;
 
-    public Partida(Dificultad dificultad,Rol rol){
-        this.dificultad=dificultad;
-        this.rol=rol;
-        this.ronda=0;
-        this.tablero=new Tablero();
+    /**
+     * @pre Cierto
+     * @post Se ha creado instancia de Partida
+     */
+    public Partida(Dificultad dificultad, Rol rol) {
+        this.ronda = 0;
+        this.rol = rol;
+        this.dificultad = dificultad;
+        this.tablero = new Tablero();
     }
 
-    //todo acabarPartida
-    //todo guardar
+    // SETTERS
 
-    //setters
-    public void setSolucion(String Solucion){ this.Solucion=Solucion; }
-    public void setNuevoCandidato(String candidato){
+    /**
+     * @pre Cierto
+     * @post Se ha asignado la solucion
+     */
+    public void setSolucion(String solucion) { this.solucion = solucion; }
+
+    /**
+     * @pre candidato cumple con las normas para la dificultad de la partida
+     * @post Se ha anadido a tablero el candidato y se ha aumentado el numero de rondas en 1
+     */
+    public void setNuevoCandidato(String candidato) {
         tablero.setNuevoCandidato(candidato);
         ronda++;
     }
-    public void setNuevaNB(String NB){tablero.setNuevoNB(NB);}
 
-    //getters
-    public int getRonda(){ return ronda; }
-    public Dificultad getDificultad(){return dificultad;}
-    public Rol getRol(){return rol;}
-    public String getSolucion(){return Solucion;}
-    public String getUltimoCandidato(){return tablero.getUltimoCandidato();}
-    public String getUltimaNB(){return tablero.getUltimoNB();}
+    /**
+     * @pre Se ha anadido un candidato anteriormente
+     * @post Se ha anadido a tablero la evaluacion NB
+     */
+    public void setNuevaNB(String NB) { tablero.setNuevoNB(NB); }
+
+    // GETTERS
+
+    /**
+     * @pre Cierto
+     * @post Se devuelve la solcion
+     */
+    public String getSolucion() { return solucion; }
+
+    /**
+     * @pre Se ha anadido un candidato anteriormente
+     * @post Se devuelve el ultimo candidato anadido al tablero
+     */
+    public String getUltimoCandidato() { return tablero.getUltimoCandidato(); }
+
+    /**
+     * @pre Se ha anadido una NB anteriormente
+     * @post Se devuelve la ultima NB anadido al tablero
+     */
+    public String getUltimaNB() { return tablero.getUltimoNB(); }
+
+    /**
+     * @pre Cierto
+     * @post Devuelve ronda
+     */
+    public int getRonda() { return ronda; }
+
+    /**
+     * @pre Cierto
+     * @post Devuelve rol
+     */
+    public Rol getRol() { return rol; }
+
+    /**
+     * @pre Cierto
+     * @post Devuelve dificultad
+     */
+    public Dificultad getDificultad() { return dificultad; }
+
+
+    // TODO: acabarPartida
+    // TODO: guardar
 }

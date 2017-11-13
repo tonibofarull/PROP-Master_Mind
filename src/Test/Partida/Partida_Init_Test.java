@@ -1,4 +1,5 @@
 package Test.Partida;
+import Dominio.Partida;
 
 //imports junit
 import org.junit.Test;
@@ -53,14 +54,14 @@ public class Partida_Init_Test {
 
         //probamos el setter de solucion
         p.setSolucion(solucion);
-        field=p.getClass().getDeclaredField("Solucion");
+        field=p.getClass().getDeclaredField("solucion");
         field.setAccessible(true);
         assertEquals("Error inicializar dificultad",field.get(p),solucion);
     }
 
     @Test
     public final void test_getters() throws NoSuchFieldException, IllegalAccessException {
-        final Partida p =new Partida();
+        final Partida p =new Partida(dificultad,rol);
         //probamos el getter de dificultad
         Field field=p.getClass().getDeclaredField("dificultad");
         field.setAccessible(true);
@@ -74,7 +75,7 @@ public class Partida_Init_Test {
         assertEquals("Error getter rol",p.getRol(),rol);
 
         //probamos getter de solucion
-        field=p.getClass().getDeclaredField("Solucion");
+        field=p.getClass().getDeclaredField("solucion");
         field.setAccessible(true);
         field.set(p,solucion);
         assertEquals("Error getter solucion",p.getSolucion(),solucion);

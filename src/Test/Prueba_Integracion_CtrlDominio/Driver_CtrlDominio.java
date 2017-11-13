@@ -1,4 +1,4 @@
-package Test.CtrlDominio;
+package Test.Prueba_Integracion_CtrlDominio;
 
 import Dominio.CtrlDominio;
 
@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Driver_CtrlDominio {
     private static void mostrarMenu() {
-        System.out.println("0 - crear instancia CtrlDominio");
+        System.out.println("0 - crear instancia Prueba_Integracion_CtrlDominio");
         System.out.println("1 - empezarPartida");
         System.out.println("2 - generarSolucion");
         System.out.println("3 - evaluarCandidato");
@@ -27,7 +27,7 @@ public class Driver_CtrlDominio {
             switch(opcion){
                 case 0:
                     ctrlDominio = new CtrlDominio();
-                    System.out.println("Instancia de CtrlDominio creada correctamente");
+                    System.out.println("Instancia de Prueba_Integracion_CtrlDominio creada correctamente");
                     break;
                 case 1:
                     System.out.println("Introduzca la dificultad:");
