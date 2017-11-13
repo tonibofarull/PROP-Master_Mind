@@ -29,9 +29,9 @@ public class Partida_Init_Test {
 
     @Parameters
     public static Collection<Object[]> data() {
-        Object[][] data = new Object[][] { {FACIL,CODEMAKER,"0"},
-        {MEDIO,CODEBREAKER,"1"}, {DIFICIL,CODEMAKER,"1233"},
-        {MEDIO,CODEMAKER,"13234"}, {FACIL,CODEBREAKER,"111111111123"}
+        Object[][] data = new Object[][] { {FACIL,CODEMAKER,"1462"},
+        {MEDIO,CODEBREAKER,"1111"}, {DIFICIL,CODEMAKER,"1674"},
+        {MEDIO,CODEMAKER,"6666"}, {FACIL,CODEBREAKER,"5123"}
         };
         return Arrays.asList(data);
     }

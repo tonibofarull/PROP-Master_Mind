@@ -1,6 +1,5 @@
 package Test.Tablero;
 
-import Dominio.Linea;
 
 import java.util.ArrayList;
 
@@ -21,20 +20,4 @@ public class Tablero {
         return lineas.get(lineas.size()-1).getCandidato();
     }
 
-    public String getUltimoNB(){
-        return  lineas.get(lineas.size()-1).getNB();
-    }
-
-    public int getNumLineas(){
-        return lineas.size();
-    }
-
-    public String getCandidato(int i){
-        return lineas.get(i).getCandidato();
-    }
-
-    public String getNB(int i){
-        return lineas.get(i).getNB();
-    }
-    //todo GetAllCandidatoNB
 }

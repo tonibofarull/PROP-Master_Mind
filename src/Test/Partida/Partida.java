@@ -33,9 +33,6 @@ public class Partida {
     }
 
     //getters
-    public int getRonda(){
-        return ronda;
-    }
 
     public Dificultad getDificultad(){
         return dificultad;
@@ -51,10 +48,6 @@ public class Partida {
 
     public String getUltimoCandidato(){
         return tablero.getUltimoCandidato();
-    }
-
-    public String getUltimaNB(){
-        return tablero.getUltimoNB();
     }
 
 }
