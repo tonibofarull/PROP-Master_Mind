@@ -11,9 +11,9 @@ import java.util.*;
 public class Normas {
 
     /**
-     * @throws Exception si no se cumplen las condiciones de dificultad
+     * @throws Exception si no se cumplen las condiciones segun la dificultad
      * @pre Cierto
-     * @post Se ha comprobado que el codigo cumpla las normas de dificultad
+     * @post Se ha comprobado que el codigo cumple las normas de dificultad
      */
     private void comprobarCodigo(String codigo, int val_minimo, int val_maximo, int size_codigo, int max_rep) throws Exception {
         if (codigo.length() == size_codigo) {
@@ -70,7 +70,7 @@ public class Normas {
     }
 
     /**
-     * @throws Exception si no se cumplen las condiciones de dificultad
+     * @throws Exception si no se cumplen las condiciones segun la dificultad
      * @pre Cierto
      * @post Se ha comprobado que el codigo cumpla las normas de dificultad
      */

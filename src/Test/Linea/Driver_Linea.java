@@ -1,7 +1,5 @@
 package Test.Linea;
 
-import Dominio.Linea;
-
 import java.util.Scanner;
 
 public class Driver_Linea {
@@ -19,6 +17,7 @@ public class Driver_Linea {
                     l = new Linea(candidato);
                     break;
                 case 2:
+                    System.out.println("Escribe nb");
                     String nb = scan.next();
                     l.setNB(nb);
                     break;
@@ -34,6 +33,7 @@ public class Driver_Linea {
                 default:
                     break;
             }
+            System.out.print("opcion: ");
             opcion = scan.nextInt();
         }
     }

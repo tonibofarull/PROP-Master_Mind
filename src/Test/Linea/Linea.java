@@ -1,4 +1,4 @@
-package Dominio;
+package Test.Linea;
 
 /**
  * Linea representa un candidato del CodeBreaker y las NB del CodeMaker (si ya se ha realizado la evaluacion)

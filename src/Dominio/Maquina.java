@@ -12,8 +12,8 @@ import java.util.*;
 public class Maquina {
 
     private boolean primer_turno;
-    private ArrayList<String> S;
-    private ArrayList<String> candidatos_restantes;
+    private TreeSet<String> S;
+    private TreeSet<String> candidatos_restantes;
 
     private Normas normas;
 
@@ -122,8 +122,8 @@ public class Maquina {
         this.normas = normas;
         if (rolJugadorHumano == Rol.CODEMAKER) {
             this.primer_turno = true;
-            S = new ArrayList<>();
-            candidatos_restantes = new ArrayList<>();
+            S = new TreeSet<>();
+            candidatos_restantes = new TreeSet<>();
 
             int max_val = 6;
             if (dificultad == Dificultad.DIFICIL) max_val = 7;

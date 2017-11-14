@@ -7,12 +7,11 @@ import java.util.Scanner;
 public class Driver_Normas {
     private static void mostrarMenu() {
         System.out.println("0 - crear instancia Normas");
-        System.out.println("1 - checkCodigo");
-        System.out.println("2 - calcularNB");
-        System.out.println("3 - comprobarLinea");
-        System.out.println("4 - comprobarNB");
-        System.out.println("5 - visualizar Menu");
-        System.out.println("6 - salir");
+        System.out.println("1 - calcularNB");
+        System.out.println("2 - comprobarLinea");
+        System.out.println("3 - comprobarNB");
+        System.out.println("4 - visualizar Menu");
+        System.out.println("5 - salir");
     }
 
     public static void main(String[] args) {
@@ -24,41 +23,13 @@ public class Driver_Normas {
         scan.nextLine();
         Normas normas = new Normas();
         Dificultad dif;
-        while (opcion != 6) {
+        while (opcion != 5) {
             switch(opcion){
                 case 0:
                     normas = new Normas();
                     System.out.println("Instancia de normas creada correctamente");
                     break;
                 case 1:
-                    try {
-                        System.out.println("Introduzca código a comprobar (Conjunto de enteros de la forma " + '"' + "1423413" + '"' + "):");
-                        String codigo = scan.nextLine();
-                        System.out.println();
-                        System.out.println("Introduzca valor mínimo del rango de valores aceptados:");
-                        int val_minimo = scan.nextInt();
-                        scan.nextLine();
-                        System.out.println();
-                        System.out.println("Introduzca valor máximo del rango de valores aceptados:");
-                        int val_maximo = scan.nextInt();
-                        scan.nextLine();
-                        System.out.println();
-                        System.out.println("Introduzca el tamaño del código a comprobar:");
-                        int size_codigo = scan.nextInt();
-                        scan.nextLine();
-                        System.out.println();
-                        System.out.println("Introduzca el número máximo de repeticiones aceptado:");
-                        int max_rep = scan.nextInt();
-                        scan.nextLine();
-                        System.out.println();
-                        normas.checkCodigo(codigo, val_minimo, val_maximo, size_codigo, max_rep);
-                        System.out.println("Código correcto.");
-                    }
-                    catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 2:
                     try {
                         System.out.println("Introduzca el candidato a comprobar:");
                         String candidato = scan.nextLine();
@@ -73,7 +44,7 @@ public class Driver_Normas {
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 3:
+                case 2:
                     try {
                         System.out.println("Introduzca el codigo a comprobar:");
                         String codigo = scan.nextLine();
@@ -95,7 +66,7 @@ public class Driver_Normas {
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 4:
+                case 3:
                     try {
                         System.out.println("Introduzca el candidato a comprobar:");
                         String codigo = scan.nextLine();
@@ -113,7 +84,7 @@ public class Driver_Normas {
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 5:
+                case 4:
                     mostrarMenu();
                     break;
                 default: break;

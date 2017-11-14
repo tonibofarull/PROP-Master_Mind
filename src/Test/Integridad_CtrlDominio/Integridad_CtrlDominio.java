@@ -1,8 +1,10 @@
-package Test.CtrlDominio;
+package Test.Integridad_CtrlDominio;
+
+import Dominio.CtrlDominio;
 
 import java.util.Scanner;
 
-public class Driver_CtrlDominio2 {
+public class Integridad_CtrlDominio {
     private static void mostrarMenu() {
         System.out.println("0 - crear instancia CtrlDominio");
         System.out.println("1 - empezarPartida");
@@ -19,7 +21,6 @@ public class Driver_CtrlDominio2 {
         Scanner scan = new Scanner(System.in);
         System.out.print("opcion: ");
         int opcion = scan.nextInt();
-        scan.nextLine();
 
         CtrlDominio ctrlDominio = new CtrlDominio();
         while (opcion != 6) {
@@ -34,7 +35,6 @@ public class Driver_CtrlDominio2 {
                     System.out.println("1 - Medio");
                     System.out.println("2 - Dificil");
                     int dif = scan.nextInt();
-                    scan.nextLine();
                     System.out.println();
                     String dificultad;
                     if (dif == 0) dificultad = "FACIL";
@@ -43,17 +43,15 @@ public class Driver_CtrlDominio2 {
                     System.out.println("0 - CodeMaker");
                     System.out.println("1 - CodeBreaker");
                     int r = scan.nextInt();
-                    scan.nextLine();
                     System.out.println();
                     String rol = "CODEMAKER";
                     if (r == 1) rol = "CODEBREAKER";
-                    if (ctrlDominio.empezarPartida(dificultad, rol) ) System.out.println("Partida creada correctamente");
-                    else System.out.println("Problemas al generar la partida");
+                    ctrlDominio.empezarPartida(dificultad, rol);
                     break;
 
                 case 2:
                     System.out.println("Introduzca la solución:");
-                    String solucion = scan.nextLine();
+                    String solucion = scan.next();
                     System.out.println();
                     try {
                         String candidato = ctrlDominio.generarSolucion(solucion);
@@ -66,7 +64,7 @@ public class Driver_CtrlDominio2 {
                     break;
                 case 3:
                     System.out.println("Introduzca la evaluación del último candidato introducido:");
-                    String nb = scan.nextLine();
+                    String nb = scan.next();
                     System.out.println();
                     try {
                         String candidato = ctrlDominio.evaluarCandidato(nb);
@@ -79,7 +77,7 @@ public class Driver_CtrlDominio2 {
                     break;
                 case 4:
                     System.out.println("Introduzca el siguiente candidato a solución:");
-                    String candidato = scan.nextLine();
+                    String candidato = scan.next();
                     System.out.println();
                     try {
                         String nb_s = ctrlDominio.generarCandidato(candidato);
@@ -98,7 +96,6 @@ public class Driver_CtrlDominio2 {
             System.out.println();
             System.out.print("opcion: ");
             opcion = scan.nextInt();
-            scan.nextLine();
         }
     }
 }

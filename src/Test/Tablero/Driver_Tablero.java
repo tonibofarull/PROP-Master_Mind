@@ -13,12 +13,15 @@ public class Driver_Tablero {
             switch (opcion){
                 case 1:
                     t=new Tablero();
+                    System.out.println("Instancia creada");
                     break;
                 case 2:
+                    System.out.print("candidato: ");
                     String candidato=scan.next();
                     t.setNuevoCandidato(candidato);
                     break;
                 case 3:
+                    System.out.print("nb: ");
                     String nb=scan.next();
                     t.setNuevoNB(nb);
                     break;
@@ -31,6 +34,7 @@ public class Driver_Tablero {
                     break;
                 default: break;
             }
+            System.out.print("opcion: ");
             opcion=scan.nextInt();
         }
     }

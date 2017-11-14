@@ -2,11 +2,11 @@ package Dominio;
 
 /**
  * Partida representa las caracteristicas generales:
- *      solucion
- *      rondas jugadas
- *      rol del jugador humano
- *      dificultad
- *      y el tablero
+ *      - solucion
+ *      - rondas jugadas
+ *      - rol del jugador humano
+ *      - dificultad
+ *      - tablero
  *
  * @author Sergi Avila
  */
