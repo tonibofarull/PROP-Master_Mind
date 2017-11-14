@@ -1,7 +1,7 @@
 package Dominio;
 
 /**
- * Prueba_Integracion_CtrlDominio
+ * CtrlDominio
  *
  * @author Ferran Martinez
  */
