@@ -48,7 +48,7 @@ public class Driver_Maquina {
         else if (dif == 2) dificultad = Dificultad.DIFICIL;
 
         Stub_Normas normas = new Stub_Normas();
-        Maquina maquina = new Maquina(normas,dificultad,Rol.CODEBREAKER);
+        Maquina maquina = new Maquina(normas,dificultad,Rol.CODEMAKER);
         String candidato = maquina.generarCandidato(ultimoCandidato,ultimaNB,dificultad);
         System.out.println(candidato);
     }

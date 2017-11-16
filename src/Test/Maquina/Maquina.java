@@ -69,7 +69,7 @@ public class Maquina {
                 String val = normas.calcularNB(g, s);
                 if (NB_g.containsKey(val)) {
                     Integer int_aux = NB_g.get(val);
-                    NB_g.replace(val, int_aux + 1);
+                    NB_g.put(val, int_aux + 1);
                 } else NB_g.put(val, 1);
             }
             int min = Integer.MAX_VALUE;
