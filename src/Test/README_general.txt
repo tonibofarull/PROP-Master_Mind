@@ -10,3 +10,9 @@ En cualquier dificultad son 4 enteros y dependiendo de la dificultad hay restric
 
 2) NB: 40
 Son 2 enteros, el primero indica las negras y el segundo las blancas.
+
+--------------------------------------------------------------------------------------
+
+NOTA:
+En la ejecucion de las funciones en los drivers hay que tener en cuenta las precondiciones incluidas en la documentacion
+y en el propio codigo de la clase a testear
