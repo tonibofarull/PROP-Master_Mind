@@ -56,7 +56,7 @@ public class Partida {
 
     /**
      * @pre Cierto
-     * @post Se devuelve la solcion
+     * @post Se devuelve la solucion
      */
     public String getSolucion() { return solucion; }
 

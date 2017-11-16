@@ -144,7 +144,7 @@ public class Maquina {
      * @param dificultad      Dificultad de la partida
      *
      * @pre ultimaNB es la evaluacion del ultimoCandidato con la solucion de la partida.
-     * @post Se devuelve la mejor candidato posible actualmente.
+     * @post Se devuelve el mejor candidato posible actualmente.
      */
     public String generarCandidato(String ultimoCandidato, String ultimaNB, Dificultad dificultad) {
         if (primer_turno) {

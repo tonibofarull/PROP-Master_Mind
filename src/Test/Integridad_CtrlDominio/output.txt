@@ -1,0 +1,42 @@
+Instancia de CtrlDominio creada correctamente
+
+Partida empezada correctamente
+
+Partida empezada correctamente
+
+Partida empezada correctamente
+
+Partida empezada correctamente
+
+Partida empezada correctamente
+
+Partida empezada correctamente
+
+Solucion introducida correctamente
+Candidato generado: 1234
+
+El tamaño del codigo introducido no corresponde con el tamano adecuado.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+Candidato evaluado correctamente
+Siguiente candidato: 1342
+
+El codigo nb introducido no corresponde con el codigo nb real.
+
+El codigo nb introducido tiene valores fuera del rango válido (0 - 4).
+
+El codigo nb introducido tiene un número de valores diferente al esperado.
+
+Solucion introducida correctamente
+Evaluación: 21
+
+El tamaño del codigo introducido no corresponde con el tamano adecuado.
+
+El numero de repeticiones del codigo supera al numero maximo permitido.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+El codigo contiene valores fuera de los rangos permitidos.
