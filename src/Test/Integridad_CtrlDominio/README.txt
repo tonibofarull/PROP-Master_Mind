@@ -1,5 +1,6 @@
 Sobre la clase CtrlDominio se han realizado pruebas de integración, además de las correspondientes pruebas con drivers
-y stubs. Las correspondientes pruebas con drivers y stubs pueden ser encontradas en el package "CtrlDominio".
+y stubs. Las correspondientes pruebas con drivers y stubs pueden ser encontradas en el package "CtrlDominio".0
+
 
 El driver de CtrlDominio funciona mediante inputs y outputs por el canal estándar. Para ello, el driver consta de un menú que
 muestra las opciones a probar, y cada opcion, de ser necesario, mostrará información sobre las operaciones adicionales a

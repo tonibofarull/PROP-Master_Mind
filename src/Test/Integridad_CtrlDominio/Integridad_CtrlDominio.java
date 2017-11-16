@@ -47,6 +47,7 @@ public class Integridad_CtrlDominio {
                     String rol = "CODEMAKER";
                     if (r == 1) rol = "CODEBREAKER";
                     ctrlDominio.empezarPartida(dificultad, rol);
+                    System.out.println("Partida empezada correctamente");
                     break;
 
                 case 2:

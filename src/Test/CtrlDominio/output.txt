@@ -1,6 +1,6 @@
 Instancia de CtrlDominio creada correctamente
 
-
+Partida empezada correctamente
 
 Solucion introducida correctamente
 Candidato generado: 1234
