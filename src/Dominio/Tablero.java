@@ -2,6 +2,7 @@ package Dominio;
 
 import java.util.ArrayList;
 
+
 /**
  * Tablero representa el conjunto de lineas que se han jugado actualmente en la partida
  * Para todas las lineas excepto la ultima hay una evaluacion realizada
@@ -40,12 +41,6 @@ public class Tablero {
      * @post Se devuelve el candidato de la ultima linea
      */
     public String getUltimoCandidato() { return lineas.get(lineas.size() - 1).getCandidato(); }
-
-    /**
-     * @pre Previamente se ha anadido un NB
-     * @post Se devuelve el NB de la ultima linea
-     */
-    public String getUltimoNB() { return lineas.get(lineas.size() - 1).getNB(); }
 
 
     // TODO: guardarPartida
