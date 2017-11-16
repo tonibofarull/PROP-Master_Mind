@@ -1,0 +1,13 @@
+Instancia de CtrlDominio creada correctamente
+
+
+
+Solucion introducida correctamente
+Candidato generado: 1234
+
+Candidato evaluado correctamente
+Siguiente candidato: 1234
+
+Solucion introducida correctamente
+Evaluación: 40
+

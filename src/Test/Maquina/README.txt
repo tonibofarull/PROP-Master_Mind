@@ -7,4 +7,4 @@ Probamos que para las diferentes dificultades (1 para cada linea del test), se g
 En la segunda parte:
 
 Probamos todas las dificultades como anteriormente y generamos 4 valores random para la solucion.
-Observacion: el test para generar la solcion inicial no se puede recrear debido a que los valores se generar de forma aleatoria.
+Observacion: el test para generar la solucion inicial no se puede recrear debido a que los valores se generar de forma aleatoria.

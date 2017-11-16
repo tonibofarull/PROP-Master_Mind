@@ -42,26 +42,26 @@ public class Normas {
     }
 
     /**
-     * @pre Cierto
-     * @post Se devuelve las NB entre los candidatos a y b.
+     * @pre El candidato y solución han sido validados previamente.
+     * @post Se devuelve las NB entre candidato y solución
      */
-    public String calcularNB(String a, String b) {
+    public String calcularNB(String candidato, String solucion) {
         int nNegras = 0;
         int nBlancas = 0;
-        ArrayList<Boolean> vis_a = new ArrayList<>(Arrays.asList(false, false, false, false));
-        ArrayList<Boolean> vis_b = new ArrayList<>(Arrays.asList(false, false, false, false));
+        ArrayList<Boolean> vis_candidato = new ArrayList<>(Arrays.asList(false, false, false, false));
+        ArrayList<Boolean> vis_solucion = new ArrayList<>(Arrays.asList(false, false, false, false));
         for (int i = 0; i < 4; ++i) {
-            if (a.charAt(i) == b.charAt(i)) {
-                vis_a.set(i, true);
-                vis_b.set(i, true);
+            if (candidato.charAt(i) == solucion.charAt(i)) {
+                vis_candidato.set(i, true);
+                vis_solucion.set(i, true);
                 ++nNegras;
             }
         }
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-                if (a.charAt(i) == b.charAt(j) && !vis_a.get(i) && !vis_b.get(j)) {
-                    vis_a.set(i, true);
-                    vis_b.set(j, true);
+                if (candidato.charAt(i) == solucion.charAt(j) && !vis_candidato.get(i) && !vis_solucion.get(j)) {
+                    vis_candidato.set(i, true);
+                    vis_solucion.set(j, true);
                     ++nBlancas;
                 }
             }
@@ -90,10 +90,16 @@ public class Normas {
 
     /**
      * @throws Exception si la evaluacion del candidato con la solucion es diferente de NB
-     * @pre Cierto
+     * @throws Exception si el codigo nb introducido es de tamaño diferente a 2
+     * @throws Exception si los valores del código nb son menores a 0 o mayores al número de bolas
+     * @pre Candidato y Solución han sido comprobados previamente.
      * @post Se ha comprobado que NB corresponda a la evaluacion del candidato con la solucion
      */
     public void comprobarNB(String candidato, String solucion, String nb) throws Exception {
+        if (nb.length() != 2) throw new Exception("El codigo nb introducido tiene un número de valores diferente al esperado.");
+        int nvalue = Character.getNumericValue(nb.charAt(0));
+        int bvalue = Character.getNumericValue(nb.charAt(1));
+        if (nvalue < 0 || nvalue > 4 || bvalue < 0 || bvalue > 4) throw new Exception ("El codigo nb introducido tiene valores fuera del rango válido (0 - 4).");
         String NB_correcto = calcularNB(candidato, solucion);
         if (!NB_correcto.equals(nb))
             throw new Exception("El codigo nb introducido no corresponde con el codigo nb real.");

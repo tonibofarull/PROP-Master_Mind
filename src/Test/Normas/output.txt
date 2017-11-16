@@ -1,0 +1,45 @@
+Instancia de normas creada correctamente
+
+Valor de NB: 40
+
+Valor de NB: 04
+
+Valor de NB: 22
+
+Valor de NB: 21
+
+Valor de NB: 00
+
+Código correcto
+
+El tamaño del codigo introducido no corresponde con el tamano adecuado.
+
+El numero de repeticiones del codigo supera al numero maximo permitido.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+Código correcto
+
+El tamaño del codigo introducido no corresponde con el tamano adecuado.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+Código correcto
+
+El tamaño del codigo introducido no corresponde con el tamano adecuado.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+El codigo contiene valores fuera de los rangos permitidos.
+
+Código correcto
+
+El codigo nb introducido no corresponde con el codigo nb real.
+
+El codigo nb introducido tiene un número de valores diferente al esperado.
+
+El codigo nb introducido tiene valores fuera del rango válido (0 - 4).
