@@ -1,6 +1,7 @@
 package Test.Linea;
 
 import java.util.Scanner;
+import Dominio.Linea;
 
 public class Driver_Linea {
 

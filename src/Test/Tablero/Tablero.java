@@ -1,6 +1,6 @@
 package Test.Tablero;
 
-import Dominio.Linea;
+import Test.Stubs.Stub_Linea;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Tablero {
 
-    private ArrayList<Linea> lineas; // contiene las lineas en el orden en que se han jugado
+    private ArrayList<Stub_Linea> lineas; // contiene las lineas en el orden en que se han jugado
 
     /**
      * @pre Cierto
@@ -27,7 +27,7 @@ public class Tablero {
      * @pre Cierto
      * @post Se ha anadido a tablero una nueva linea con el candidato
      */
-    public void setNuevoCandidato(String candidato) { lineas.add(new Linea(candidato)); }
+    public void setNuevoCandidato(String candidato) { lineas.add(new Stub_Linea(candidato)); }
 
     /**
      * @pre El ultimo candidato anadido no tiene evaluacion
@@ -42,12 +42,6 @@ public class Tablero {
      * @post Se devuelve el candidato de la ultima linea
      */
     public String getUltimoCandidato() { return lineas.get(lineas.size() - 1).getCandidato(); }
-
-    /**
-     * @pre Previamente se ha anadido un NB
-     * @post Se devuelve el NB de la ultima linea
-     */
-    public String getUltimoNB() { return lineas.get(lineas.size() - 1).getNB(); }
 
 
     // TODO: guardarPartida
