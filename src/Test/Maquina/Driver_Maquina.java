@@ -2,6 +2,7 @@ package Test.Maquina;
 
 import Dominio.Dificultad;
 import Dominio.Rol;
+
 import Test.Stubs.Stub_Normas;
 
 import java.util.Scanner;

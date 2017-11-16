@@ -91,6 +91,6 @@ public class Partida {
     public Dificultad getDificultad() { return dificultad; }
 
 
-    // TODO: acabarPartida
-    // TODO: guardar
+    // TODO: guardarPartida
+    // TODO: cargarPartida
 }

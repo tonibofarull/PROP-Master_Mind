@@ -7,7 +7,8 @@ public class Driver_Linea {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Linea l = null;
-        System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Opciones\n0 - Salir");
+        System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Opciones\n0 - Salir\n");
+        System.out.print("opcion: ");
         int opcion = scan.nextInt();
         while (opcion != 0) {
             switch (opcion) {
@@ -22,10 +23,12 @@ public class Driver_Linea {
                     l.setNB(nb);
                     break;
                 case 3:
-                    System.out.println(l.getCandidato());
+                    if (l == null) System.out.println("Se tiene que inicializar antes una linea");
+                    else System.out.println(l.getCandidato());
                     break;
                 case 4:
-                    System.out.println(l.getNB());
+                    if (l == null || l.getNB() == null) System.out.println("Se tiene que inicializar antes una linea y asignar NB");
+                    else System.out.println(l.getNB());
                     break;
                 case 5:
                     System.out.println("1 - Crear instancia\n2 - Generar NB\n3 - Get Candidato\n4 - Get NB\n5 - Opciones\n0 - Salir");

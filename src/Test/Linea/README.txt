@@ -1,0 +1,1 @@
+Probamos 4 inicializaciones variando candidato y NB, para cada test ejecutamos los getters para comprobar que se hacen correctamente.

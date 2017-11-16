@@ -19,14 +19,14 @@ public class Maquina {
 
     /**
      * Inicializa S y candidatos_restantes con todas las combinaciones de candidatos validos.
-     * Un candidato es valido si los digitos estan comprendidos en [1..max_val] y cumplen con la restricion de
-     * prohibido_rep.
+     * Un candidato es valido si los digitos estan comprendidos entre [1..max_val] y en caso de
+     * prohibido_rep ser cierto, no se repiten digitos.
      *
      * @param pos           Indica en que cifra del numero se encuentra la recursion.
      * @param num           Contiene el valor acumulado del candidato.
      * @param asign         Indica para cada digito si este se ha usado anteriormente en la generacion del candidato
      *                      actual. Solo se utiliza cuando esta prohibido la repeticion de digitos.
-     * @param max_val       valor maximo que puede ser asignado a un digito.
+     * @param max_val       Valor maximo que puede ser asignado a un digito.
      * @param prohibido_rep Indica si esta prohibido la repeticion de digitos.
      *
      * @pre Cierto.
@@ -139,7 +139,7 @@ public class Maquina {
      * Actualiza las estructuras de datos necesarias para ejecutar el FiveGuess y devuelve el mejor candidato actual
      *
      * @param ultimoCandidato Es valido para la dificultad dada
-     * @param ultimaNB        Es valido para la dificultad dada i corresponde a las NB de evaluar:
+     * @param ultimaNB        Es valido para la dificultad dada y corresponde a las NB de evaluar:
      *                        el ultimoCandidato con la solucion real
      * @param dificultad      Dificultad de la partida
      *
@@ -158,7 +158,7 @@ public class Maquina {
             return candidato;
         }
         // si no es el primer turno es debido a que hemos propuesto un candidato que no era la solcion,
-        //    obtenemos el ultimo candidato con las NB y actualizamos las estructuras de datos
+        //    como paremetro obtenemos el ultimo candidato con las NB y actualizamos las estructuras de datos
         nuevaNB(ultimoCandidato, ultimaNB);
 
         // obtenemos el mejor candidato segun el algoritmo de minimax y actualizamos los datos pertinentes
@@ -171,10 +171,10 @@ public class Maquina {
     /**
      * Genera una solucion valida para la partida.
      *
-     * @param dificultad dificultad de la partida.
+     * @param dificultad Dificultad de la partida.
      *
      * @pre Cierto.
-     * @post solucion random valida para la dificultad recibida.
+     * @post Solucion random valida para la dificultad recibida.
      */
     public String generarSolucion(Dificultad dificultad) {
         int max_val = 7;
@@ -203,4 +203,5 @@ public class Maquina {
         return Integer.toString(solucion);
     }
 
+    // TODO: pedirAyuda
 }

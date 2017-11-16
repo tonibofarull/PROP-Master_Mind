@@ -13,7 +13,7 @@ public class CtrlDominio {
 
     /**
      * @pre Cierto
-     * @post Se ha creado instancia de Prueba_Integracion_CtrlDominio
+     * @post Se ha creado instancia de CtrlDominio
      */
     public CtrlDominio() {
 
@@ -78,4 +78,8 @@ public class CtrlDominio {
         return nb_ultima_jugada;
     }
 
+    // TODO: pedirAyuda
+    // TODO: consultarRanking
+    // TODO: guardarPartida
+    // TODO: cargarPartida
 }
