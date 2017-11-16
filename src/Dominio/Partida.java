@@ -66,11 +66,6 @@ public class Partida {
      */
     public String getUltimoCandidato() { return tablero.getUltimoCandidato(); }
 
-    /**
-     * @pre Se ha anadido una NB anteriormente
-     * @post Se devuelve la ultima NB anadido al tablero
-     */
-    public String getUltimaNB() { return tablero.getUltimoNB(); }
 
     /**
      * @pre Cierto
