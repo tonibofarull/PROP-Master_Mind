@@ -30,7 +30,7 @@ public class Tablero {
     public void setNuevoCandidato(String candidato) { lineas.add(new Stub_Linea(candidato)); }
 
     /**
-     * @pre lineas.size() > 0
+     * @pre El ultimo candidato anadido no tiene evaluacion
      * @post Se ha asignado a la ultima linea la evaluacion NB
      */
     public void setNuevoNB(String NB) { lineas.get(lineas.size() - 1).setNB(NB); }
@@ -38,17 +38,11 @@ public class Tablero {
     // GETTERS
 
     /**
-     * @pre lineas.size() > 0
+     * @pre Previamente se ha anadido un candidato
      * @post Se devuelve el candidato de la ultima linea
      */
     public String getUltimoCandidato() { return lineas.get(lineas.size() - 1).getCandidato(); }
 
-    /**
-     * @pre lineas.size() > 0
-     * @post Se devuelve el NB de la ultima linea
-     */
-    public String getUltimoNB() { return lineas.get(lineas.size() - 1).getNB(); }
 
-
-    // TODO: GetAllCandidatoNB
+    // TODO: guardarPartida
 }

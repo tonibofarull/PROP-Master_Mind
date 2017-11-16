@@ -4,8 +4,8 @@ import Test.Stubs.Stub_Maquina;
 import Test.Stubs.Stub_Normas;
 import Test.Stubs.Stub_Partida;
 
-import Dominio.Rol;
 import Dominio.Dificultad;
+import Dominio.Rol;
 
 /**
  * CtrlDominio
@@ -20,7 +20,7 @@ public class CtrlDominio {
 
     /**
      * @pre Cierto
-     * @post Se ha creado instancia de Prueba_Integracion_CtrlDominio
+     * @post Se ha creado instancia de CtrlDominio
      */
     public CtrlDominio() {
 
@@ -85,4 +85,8 @@ public class CtrlDominio {
         return nb_ultima_jugada;
     }
 
+    // TODO: pedirAyuda
+    // TODO: consultarRanking
+    // TODO: guardarPartida
+    // TODO: cargarPartida
 }

@@ -2,8 +2,7 @@ package Test.Normas;
 
 import Dominio.Dificultad;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Normas tiene las funcionalidades para comprobar el cumplimiento de las normas segun la dificultad
@@ -33,7 +32,7 @@ public class Normas {
                         throw new Exception("El numero de repeticiones del codigo supera al numero maximo permitido.");
                 }
             }
-        } else throw new Exception("El tamaño del codigo introducido no corresponde con el tamano adecuado.");
+        } else throw new Exception("El tamano del codigo introducido no corresponde con el tamano adecuado.");
     }
 
     /**
@@ -45,8 +44,8 @@ public class Normas {
     }
 
     /**
-     * @pre El candidato y solución han sido validados previamente.
-     * @post Se devuelve las NB entre candidato y solución
+     * @pre El candidato y solucion han sido validados previamente.
+     * @post Se devuelve las NB entre candidato y solucion
      */
     public String calcularNB(String candidato, String solucion) {
         int nNegras = 0;
@@ -94,17 +93,20 @@ public class Normas {
     /**
      * @throws Exception si la evaluacion del candidato con la solucion es diferente de NB
      * @throws Exception si el codigo nb introducido es de tamaño diferente a 2
-     * @throws Exception si los valores del código nb son menores a 0 o mayores al número de bolas
-     * @pre Candidato y Solución han sido comprobados previamente.
+     * @throws Exception si los valores del codigo nb son menores a 0 o mayores al numero de bolas
+     * @pre Candidato y Solucion han sido comprobados previamente.
      * @post Se ha comprobado que NB corresponda a la evaluacion del candidato con la solucion
      */
     public void comprobarNB(String candidato, String solucion, String nb) throws Exception {
-        if (nb.length() != 2) throw new Exception("El codigo nb introducido tiene un número de valores diferente al esperado.");
+        if (nb.length() != 2)
+            throw new Exception("El codigo nb introducido tiene un numero de valores diferente al esperado.");
         int nvalue = Character.getNumericValue(nb.charAt(0));
         int bvalue = Character.getNumericValue(nb.charAt(1));
-        if (nvalue < 0 || nvalue > 4 || bvalue < 0 || bvalue > 4) throw new Exception ("El codigo nb introducido tiene valores fuera del rango válido (0 - 4).");
+        if (nvalue < 0 || nvalue > 4 || bvalue < 0 || bvalue > 4)
+            throw new Exception ("El codigo nb introducido tiene valores fuera del rango valido (0 - 4).");
         String NB_correcto = calcularNB(candidato, solucion);
         if (!NB_correcto.equals(nb))
             throw new Exception("El codigo nb introducido no corresponde con el codigo nb real.");
     }
+
 }

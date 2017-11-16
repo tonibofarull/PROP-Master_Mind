@@ -7,6 +7,7 @@ public class Driver_Tablero {
         Scanner scan = new Scanner(System.in);
         Tablero t = null;
         System.out.println("1 - Crear instancia\n2 - Set candidato\n3 - Set NB\n4 - Get Candidato\n5 - Opciones\n0 - Salir");
+        System.out.print("opcion: ");
         int opcion = scan.nextInt();
         while (opcion!=0){
             int i;
@@ -18,15 +19,18 @@ public class Driver_Tablero {
                 case 2:
                     System.out.print("candidato: ");
                     String candidato=scan.next();
-                    t.setNuevoCandidato(candidato);
+                    if (t == null) System.out.println("Se tiene que inicializar un tablero");
+                    else t.setNuevoCandidato(candidato);
                     break;
                 case 3:
                     System.out.print("nb: ");
                     String nb=scan.next();
-                    t.setNuevoNB(nb);
+                    if (t == null) System.out.println("Se tiene que inicializar un tablero");
+                    else t.setNuevoNB(nb);
                     break;
                 case 4:
-                    System.out.println(t.getUltimoCandidato());
+                    if (t == null || t.getUltimoCandidato() == null) System.out.println("Se tiene que inicializar un candidato");
+                    else System.out.println(t.getUltimoCandidato());
                     break;
 
                 case 5:

@@ -56,7 +56,7 @@ public class Partida {
 
     /**
      * @pre Cierto
-     * @post Se devuelve la solcion
+     * @post Se devuelve la solucion
      */
     public String getSolucion() { return solucion; }
 
@@ -91,6 +91,6 @@ public class Partida {
     public Dificultad getDificultad() { return dificultad; }
 
 
-    // TODO: acabarPartida
-    // TODO: guardar
+    // TODO: guardarPartida
+    // TODO: cargarPartida
 }
