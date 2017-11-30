@@ -136,6 +136,23 @@ public class Maquina {
     }
 
     /**
+     * Restablece el estado de la maquina
+     * @param info Cotienen pares de candidatos y NBs
+     */
+    public void restablecerEstado(ArrayList<ArrayList<String>> info) {
+        primer_turno = info.size() == 0;
+        for (ArrayList<String> val : info) {
+            String candidato = val.get(0);
+            S.remove(candidato);
+            candidatos_restantes.remove(candidato);
+            if (val.size() == 2) {
+                String NB = val.get(1);
+                nuevaNB(candidato,NB);
+            }
+        }
+    }
+
+    /**
      * Actualiza las estructuras de datos necesarias para ejecutar el FiveGuess y devuelve el mejor candidato actual
      *
      * @param ultimoCandidato Es valido para la dificultad dada
@@ -202,6 +219,6 @@ public class Maquina {
         }
         return Integer.toString(solucion);
     }
- 
+
     // TODO: pedirAyuda
 }
