@@ -11,7 +11,7 @@ package Dominio;
  * @author Sergi Avila
  */
 public class Partida {
-
+    //Sergi es tonto
     private String solucion;
     private int ronda;
     private Rol rol;
