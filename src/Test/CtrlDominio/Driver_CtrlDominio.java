@@ -18,11 +18,18 @@ public class Driver_CtrlDominio {
         System.out.println();
         Scanner scan = new Scanner(System.in);
         System.out.print("opcion: ");
-        int opcion = scan.nextInt();
-        scan.nextLine();
+        int opcion;
+        try {
+            opcion = scan.nextInt();
+            scan.nextLine();
+        }
+        catch (Exception e) {
+            opcion = 7;
+        }
 
         CtrlDominio ctrlDominio = new CtrlDominio();
         while (opcion != 6) {
+
             switch(opcion){
                 case 0:
                     ctrlDominio = new CtrlDominio();
