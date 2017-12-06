@@ -42,6 +42,17 @@ public class Tablero {
      */
     public String getUltimoCandidato() { return lineas.get(lineas.size() - 1).getCandidato(); }
 
-
-    // TODO: guardarPartida
+    /**
+     * @pre Todas, excepto quizas la ultima linea tienen una evaluacion
+     * @post Devuelve un arraylist con todos los candidatos y evaluaciones
+     */
+    public ArrayList<String> guardarPartida(){
+        ArrayList <String> datos=new ArrayList<>();
+        for (Linea l:lineas){
+            datos.add(l.getCandidato());
+            //el != null no peta...verdad?
+            if (l.getNB()!=null)datos.add(l.getNB());
+        }
+        return datos;
+    }
 }
