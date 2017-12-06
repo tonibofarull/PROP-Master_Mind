@@ -1,5 +1,7 @@
 package Dominio;
 
+import java.util.ArrayList;
+
 /**
  * Partida representa las caracteristicas generales:
  *      - solucion
@@ -85,7 +87,37 @@ public class Partida {
      */
     public Dificultad getDificultad() { return dificultad; }
 
-
-    // TODO: guardarPartida
+    /*
+     * formato de los datos a guardar: arraylist de string
+     *
+     * {rol,dificultad,ronda,solucion,candidato1,NB1......candidatoN,NBN}
+     */
+    public ArrayList<String> guardarPartida(){
+        ArrayList<String> datos = new ArrayList<>();
+        switch (rol){
+            case CODEMAKER:
+                datos.add("CODEMAKER");
+                break;
+            default:
+                datos.add("CODEBREAKER");
+                break;
+        }
+        switch (dificultad){
+            case FACIL:
+                datos.add("FACIL");
+                break;
+            case MEDIO:
+                datos.add("MEDIO");
+                break;
+            default:
+                datos.add("DIFICIL");
+                break;
+        }
+        datos.add(String.valueOf(ronda));
+        datos.add(solucion);
+        //todo adall los inserta en orden?
+        datos.addAll(tablero.guardarPartida());
+        return datos;
+    }
     // TODO: cargarPartida
 }
