@@ -3,12 +3,14 @@ package Dominio;
 import java.util.*;
 
 /**
- * Normas tiene las funcionalidades para comprobar el cumplimiento de las normas segun la dificultad
+ * Codigo tiene las funcionalidades para comprobar el cumplimiento de las normas segun la dificultad
  * y proporcionar utilidades sobre ellas (calcularNB)
  *
  * @author Ferran Martinez
  */
-public class Normas {
+public class Codigo implements Comparable<Codigo> {
+
+    private String codigo;
 
     /**
      * @throws Exception si no se cumplen las condiciones segun la dificultad
@@ -35,23 +37,27 @@ public class Normas {
 
     /**
      * @pre Cierto
-     * @post Se ha creado instancia de Normas
+     * @post Se ha creado instancia de Codigo con el valor del candidato
      */
-    public Normas() {
+    public Codigo(String candidato) {
+        codigo = candidato;
+    }
 
+    public String getCodigo() {
+        return codigo;
     }
 
     /**
      * @pre El candidato y solucion han sido validados previamente.
      * @post Se devuelve las NB entre candidato y solucion
      */
-    public String calcularNB(String candidato, String solucion) {
+    public String calcularNB(Codigo candidato) {
         int nNegras = 0;
         int nBlancas = 0;
         ArrayList<Boolean> vis_candidato = new ArrayList<>(Arrays.asList(false, false, false, false));
         ArrayList<Boolean> vis_solucion = new ArrayList<>(Arrays.asList(false, false, false, false));
         for (int i = 0; i < 4; ++i) {
-            if (candidato.charAt(i) == solucion.charAt(i)) {
+            if (candidato.codigo.charAt(i) == codigo.charAt(i)) {
                 vis_candidato.set(i, true);
                 vis_solucion.set(i, true);
                 ++nNegras;
@@ -59,7 +65,7 @@ public class Normas {
         }
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-                if (candidato.charAt(i) == solucion.charAt(j) && !vis_candidato.get(i) && !vis_solucion.get(j)) {
+                if (candidato.codigo.charAt(i) == codigo.charAt(j) && !vis_candidato.get(i) && !vis_solucion.get(j)) {
                     vis_candidato.set(i, true);
                     vis_solucion.set(j, true);
                     ++nBlancas;
@@ -74,7 +80,7 @@ public class Normas {
      * @pre Cierto
      * @post Se ha comprobado que el codigo cumpla las normas de dificultad
      */
-    public void comprobarLinea(String codigo, Dificultad dificultad) throws Exception {
+    public void comprobarLinea(Dificultad dificultad) throws Exception {
         switch (dificultad) {
             case FACIL:
                 comprobarCodigo(codigo, 1, 6, 4, 1);
@@ -95,16 +101,35 @@ public class Normas {
      * @pre Candidato y Solucion han sido comprobados previamente.
      * @post Se ha comprobado que NB corresponda a la evaluacion del candidato con la solucion
      */
-    public void comprobarNB(String candidato, String solucion, String nb) throws Exception {
+    public void comprobarNB(Codigo candidato, String nb) throws Exception {
         if (nb.length() != 2)
             throw new Exception("El codigo nb introducido tiene un numero de valores diferente al esperado.");
         int nvalue = Character.getNumericValue(nb.charAt(0));
         int bvalue = Character.getNumericValue(nb.charAt(1));
         if (nvalue < 0 || nvalue > 4 || bvalue < 0 || bvalue > 4)
             throw new Exception ("El codigo nb introducido tiene valores fuera del rango valido (0 - 4).");
-        String NB_correcto = calcularNB(candidato, solucion);
+        String NB_correcto = this.calcularNB(candidato);
         if (!NB_correcto.equals(nb))
             throw new Exception("El codigo nb introducido no corresponde con el codigo nb real.");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return codigo.equals(((Codigo) o).codigo);
+    }
+
+    @Override
+    public int hashCode() {
+        return codigo.hashCode();
+    }
+
+    @Override
+    public int compareTo(Codigo s) {
+        return codigo.compareTo(s.codigo);
+    }
+
+    @Override
+    public String toString() {
+        return codigo;
+    }
 }

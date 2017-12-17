@@ -8,7 +8,6 @@ package Dominio;
 public class CtrlDominio {
 
     private Maquina maquina;
-    private Normas normas;
     private Partida partida;
 
     /**
@@ -23,17 +22,16 @@ public class CtrlDominio {
      * @param dificultad_s String con valores: {"CODEMAKER","CODEBREAKER"}
      * @param rol_s        String con valores: {"FACIL","MEDIO","DIFICIL"}
      * @pre Cierto
-     * @post Se han creado instancias de Maquina, Normas y Partida con los parametros indicados
+     * @post Se han creado instancias de Maquina, Codigo y Partida con los parametros indicados
      */
     public void empezarPartida(String dificultad_s, String rol_s) {
         Dificultad dif = Dificultad.valueOf(dificultad_s);
         Rol rol = Rol.valueOf(rol_s);
         partida = new Partida(dif, rol);
-        normas = new Normas();
-        maquina = new Maquina(normas, dif, rol);
+        maquina = new Maquina(dif, rol);
         if (rol == Rol.CODEBREAKER) {
             String solucion = maquina.generarSolucion(partida.getDificultad());
-            partida.setSolucion(solucion);
+            partida.setSolucion(new Codigo(solucion));
         }
     }
 
@@ -43,10 +41,11 @@ public class CtrlDominio {
      * @post Se devuelve el primer candidato de la Maquina
      */
     public String generarSolucion(String solucion) throws Exception {
-        normas.comprobarLinea(solucion, partida.getDificultad());
-        partida.setSolucion(solucion);
+        Codigo codigo = new Codigo(solucion);
+        codigo.comprobarLinea(partida.getDificultad());
+        partida.setSolucion(codigo);
         String candidato = maquina.generarCandidato(null, null, partida.getDificultad());
-        partida.setNuevoCandidato(candidato);
+        partida.setNuevoCandidato(new Codigo(candidato));
         return candidato;
     }
 
@@ -56,12 +55,12 @@ public class CtrlDominio {
      * @post Se devuelve el siguiente candidato
      */
     public String evaluarCandidato(String nb) throws Exception {
-        String candidato = partida.getUltimoCandidato();
-        String solucion = partida.getSolucion();
-        normas.comprobarNB(candidato, solucion, nb);
+        Codigo candidato = partida.getUltimoCandidato();
+        Codigo solucion = partida.getSolucion();
+        solucion.comprobarNB(candidato, nb);
         partida.setNuevaNB(nb);
         String siguiente_candidato = maquina.generarCandidato(candidato, nb, partida.getDificultad());
-        partida.setNuevoCandidato(siguiente_candidato);
+        partida.setNuevoCandidato(new Codigo(siguiente_candidato));
         return siguiente_candidato;
     }
 
@@ -70,10 +69,11 @@ public class CtrlDominio {
      * @pre Cierto
      * @post Se devuelve la siguiente evaluacion
      */
-    public String generarCandidato(String candidato) throws Exception {
-        normas.comprobarLinea(candidato, partida.getDificultad());
+    public String generarCandidato(String cand) throws Exception {
+        Codigo candidato = new Codigo(cand);
+        candidato.comprobarLinea(partida.getDificultad());
         partida.setNuevoCandidato(candidato);
-        String nb_ultima_jugada = normas.calcularNB(candidato, partida.getSolucion());
+        String nb_ultima_jugada = candidato.calcularNB(partida.getSolucion());
         partida.setNuevaNB(nb_ultima_jugada);
         return nb_ultima_jugada;
     }

@@ -7,14 +7,14 @@ package Dominio;
  */
 public class Linea {
 
-    private String candidato;
+    private Codigo candidato;
     private String NB;
 
     /**
      * @pre Cierto
      * @post Se ha creado instancia de Linea con el atributo candidato asignado, NB es null
      */
-    public Linea(String candidato) {
+    public Linea(Codigo candidato) {
         this.candidato = candidato;
         this.NB = null;
     }
@@ -33,7 +33,7 @@ public class Linea {
      * @pre Cierto
      * @post Se devuelve candidato
      */
-    public String getCandidato() { return candidato; }
+    public Codigo getCandidato() { return candidato; }
 
     /**
      * @pre Cierto

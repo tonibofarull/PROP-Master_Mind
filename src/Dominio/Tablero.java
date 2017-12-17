@@ -26,7 +26,7 @@ public class Tablero {
      * @pre Cierto
      * @post Se ha anadido a tablero una nueva linea con el candidato
      */
-    public void setNuevoCandidato(String candidato) { lineas.add(new Linea(candidato)); }
+    public void setNuevoCandidato(Codigo candidato) { lineas.add(new Linea(candidato)); }
 
     /**
      * @pre El ultimo candidato anadido no tiene evaluacion
@@ -40,7 +40,7 @@ public class Tablero {
      * @pre Previamente se ha anadido un candidato
      * @post Se devuelve el candidato de la ultima linea
      */
-    public String getUltimoCandidato() { return lineas.get(lineas.size() - 1).getCandidato(); }
+    public Codigo getUltimoCandidato() { return lineas.get(lineas.size() - 1).getCandidato(); }
 
     /**
      * @pre Todas, excepto quizas la ultima linea tienen una evaluacion
@@ -49,8 +49,8 @@ public class Tablero {
     public ArrayList<String> guardarPartida(){
         ArrayList <String> datos=new ArrayList<>();
         for (Linea l:lineas){
-            datos.add(l.getCandidato());
-            //el != null no peta...verdad?
+            datos.add(l.getCandidato().getCodigo());
+            // TODO: el != null no peta...verdad?
             if (l.getNB()!=null)datos.add(l.getNB());
         }
         return datos;

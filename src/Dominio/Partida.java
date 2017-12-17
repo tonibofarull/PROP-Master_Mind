@@ -13,8 +13,7 @@ import java.util.ArrayList;
  * @author Sergi Avila
  */
 public class Partida {
-    //Sergi es tonto
-    private String solucion;
+    private Codigo solucion;
     private int ronda;
     private Rol rol;
     private Dificultad dificultad;
@@ -37,13 +36,13 @@ public class Partida {
      * @pre Cierto
      * @post Se ha asignado la solucion
      */
-    public void setSolucion(String solucion) { this.solucion = solucion; }
+    public void setSolucion(Codigo solucion) { this.solucion = solucion; }
 
     /**
      * @pre candidato cumple con las normas para la dificultad de la partida
      * @post Se ha anadido a tablero el candidato y se ha aumentado el numero de rondas en 1
      */
-    public void setNuevoCandidato(String candidato) {
+    public void setNuevoCandidato(Codigo candidato) {
         tablero.setNuevoCandidato(candidato);
         ronda++;
     }
@@ -60,13 +59,13 @@ public class Partida {
      * @pre Cierto
      * @post Se devuelve la solucion
      */
-    public String getSolucion() { return solucion; }
+    public Codigo getSolucion() { return solucion; }
 
     /**
      * @pre Se ha anadido un candidato anteriormente
      * @post Se devuelve el ultimo candidato anadido al tablero
      */
-    public String getUltimoCandidato() { return tablero.getUltimoCandidato(); }
+    public Codigo getUltimoCandidato() { return tablero.getUltimoCandidato(); }
 
 
     /**
@@ -114,7 +113,7 @@ public class Partida {
                 break;
         }
         datos.add(String.valueOf(ronda));
-        datos.add(solucion);
+        datos.add(solucion.getCodigo());
         //todo adall los inserta en orden?
         datos.addAll(tablero.guardarPartida());
         return datos;

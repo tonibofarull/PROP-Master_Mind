@@ -12,10 +12,8 @@ import java.util.*;
 public class Maquina {
 
     private boolean primer_turno;
-    private TreeSet<String> S;
-    private TreeSet<String> candidatos_restantes;
-
-    private Normas normas;
+    private TreeSet<Codigo> S;
+    private TreeSet<Codigo> candidatos_restantes;
 
     /**
      * Inicializa S y candidatos_restantes con todas las combinaciones de candidatos validos.
@@ -34,8 +32,8 @@ public class Maquina {
      */
     private void inicializarDatos(int pos, int num, ArrayList<Boolean> asign, int max_val, boolean prohibido_rep) {
         if (pos == 4) {
-            S.add(Integer.toString(num));
-            candidatos_restantes.add(Integer.toString(num));
+            S.add(new Codigo(Integer.toString(num)));
+            candidatos_restantes.add(new Codigo(Integer.toString(num)));
             return;
         }
         for (int i = 1; i <= max_val; ++i) {
@@ -53,15 +51,15 @@ public class Maquina {
      * @pre Cierto.
      * @post Se devuelve el mejor candidato posible aplicando minimax para los datos de S y candidatos_restantes actuales.
      */
-    private String minimax() {
-        TreeSet<String> guesses = new TreeSet<>();
+    private Codigo minimax() {
+        TreeSet<Codigo> guesses = new TreeSet<>();
         int max = Integer.MIN_VALUE;
-        for (String g : candidatos_restantes) {
+        for (Codigo g : candidatos_restantes) {
             Map<String, Integer> NB_g = new HashMap<>();
             // NB_g contedra el numero de veces que aparecen los distintos NB's resultantes de comparar:
             //    g con los elementos de S
-            for (String s : S) {
-                String val = normas.calcularNB(g, s);
+            for (Codigo s : S) {
+                String val = s.calcularNB(g);
                 if (NB_g.containsKey(val)) {
                     Integer int_aux = NB_g.get(val);
                     NB_g.put(val, int_aux + 1);
@@ -83,7 +81,7 @@ public class Maquina {
             }
         }
         // de entre todas los posibles candidatos en orden creciente, escogemos el primero que sea de S
-        for (String r : guesses) {
+        for (Codigo r : guesses) {
             if (S.contains(r)) return r;
         }
         // si no hay candidato que este en S escogemos el de valor menor
@@ -97,11 +95,11 @@ public class Maquina {
      * @pre NB es la evaluacion de candidato con la solucion real.
      * @post Se han eliminado de s los candidatos tales que evaluacion(s,candidato) != NB.
      */
-    private void nuevaNB(String candidato, String NB) {
-        Iterator<String> it = S.iterator();
+    private void nuevaNB(Codigo candidato, String NB) {
+        Iterator<Codigo> it = S.iterator();
         while (it.hasNext()) {
-            String g = it.next();
-            String nb = normas.calcularNB(g, candidato);
+            Codigo g = it.next();
+            String nb = g.calcularNB(candidato);
             if (!NB.equals(nb)) it.remove();
         }
     }
@@ -111,15 +109,13 @@ public class Maquina {
     /**
      * Constructor de Maquina
      *
-     * @param normas           Instancia de Normas
      * @param dificultad       Dificultad de la partida
      * @param rolJugadorHumano Rol escogido por la persona
      *
      * @pre Cierto.
      * @post Se ha creado instancia de Maquina.
      */
-    public Maquina(Normas normas, Dificultad dificultad, Rol rolJugadorHumano) {
-        this.normas = normas;
+    public Maquina(Dificultad dificultad, Rol rolJugadorHumano) {
         if (rolJugadorHumano == Rol.CODEMAKER) {
             this.primer_turno = true;
             S = new TreeSet<>();
@@ -142,7 +138,7 @@ public class Maquina {
     public void restablecerEstado(ArrayList<ArrayList<String>> info) {
         primer_turno = info.size() == 0;
         for (ArrayList<String> val : info) {
-            String candidato = val.get(0);
+            Codigo candidato = new Codigo(val.get(0));
             S.remove(candidato);
             candidatos_restantes.remove(candidato);
             if (val.size() == 2) {
@@ -163,15 +159,15 @@ public class Maquina {
      * @pre ultimaNB es la evaluacion del ultimoCandidato con la solucion de la partida.
      * @post Se devuelve el mejor candidato posible actualmente.
      */
-    public String generarCandidato(String ultimoCandidato, String ultimaNB, Dificultad dificultad) {
+    public String generarCandidato(Codigo ultimoCandidato, String ultimaNB, Dificultad dificultad) {
         if (primer_turno) {
             primer_turno = false;
 
             String candidato = "1122";
             if (dificultad == Dificultad.FACIL) candidato = "1234"; // Valor arbitrario
 
-            S.remove(candidato);
-            candidatos_restantes.remove(candidato);
+            S.remove(new Codigo(candidato));
+            candidatos_restantes.remove(new Codigo(candidato));
             return candidato;
         }
         // si no es el primer turno es debido a que hemos propuesto un candidato que no era la solcion,
@@ -179,10 +175,10 @@ public class Maquina {
         nuevaNB(ultimoCandidato, ultimaNB);
 
         // obtenemos el mejor candidato segun el algoritmo de minimax y actualizamos los datos pertinentes
-        String r = minimax();
+        Codigo r = minimax();
         S.remove(r);
         candidatos_restantes.remove(r);
-        return r;
+        return r.getCodigo();
     }
 
     /**
