@@ -10,7 +10,7 @@ public class Ranking {
         top10 = new ArrayList<>(10);
     }
 
-    public void anadirPuntiacion(String name, String score) {
+    public void anadirPuntuacion(String name, String score) {
         boolean found = false;
         int scoreval = Integer.parseInt(score);
         ArrayList<String> aux = new ArrayList<>(2);

@@ -1,5 +1,8 @@
 package Dominio;
 
+import Persistencia.CtrlPersistencia;
+import java.util.ArrayList;
+
 /**
  * CtrlDominio
  *
@@ -9,13 +12,17 @@ public class CtrlDominio {
 
     private Maquina maquina;
     private Partida partida;
+    private Ranking ranking;
+    
+    private CtrlPersistencia CP;
 
     /**
      * @pre Cierto
      * @post Se ha creado instancia de CtrlDominio
      */
     public CtrlDominio() {
-
+        CP = new CtrlPersistencia();
+        cargarRanking();
     }
 
     /**
@@ -27,6 +34,7 @@ public class CtrlDominio {
     public void empezarPartida(String dificultad_s, String rol_s) {
         Dificultad dif = Dificultad.valueOf(dificultad_s);
         Rol rol = Rol.valueOf(rol_s);
+        CP = new CtrlPersistencia();
         partida = new Partida(dif, rol);
         maquina = new Maquina(dif, rol);
         if (rol == Rol.CODEBREAKER) {
@@ -60,7 +68,7 @@ public class CtrlDominio {
         solucion.comprobarNB(candidato, nb);
         partida.setNuevaNB(nb);
         String siguiente_candidato = maquina.generarCandidato(candidato, nb, partida.getDificultad());
-        partida.setNuevoCandidato(new Codigo(siguiente_candidato));
+        if (!nb.equals("40")) partida.setNuevoCandidato(new Codigo(siguiente_candidato));
         return siguiente_candidato;
     }
 
@@ -77,9 +85,59 @@ public class CtrlDominio {
         partida.setNuevaNB(nb_ultima_jugada);
         return nb_ultima_jugada;
     }
+    
+    // ------------------------
+    // ANADIDAS PARA LA INTERFAZ TODO: revisar las funciones necesarias
+    
+    public String getRondas() {
+        return Integer.toString(partida.getRonda());
+    }
 
-    // TODO: pedirAyuda
-    // TODO: consultarRanking
-    // TODO: guardarPartida
-    // TODO: cargarPartida
+    public ArrayList<ArrayList<String>> consultarRanking() {
+        ArrayList<ArrayList<String>> r = ranking.consultaRanking();
+        return r;
+    }
+    
+    public void anadirPuntuacion(String user, String punt) {
+        ranking.anadirPuntuacion(user, punt);
+        
+        ArrayList<ArrayList<String>> top10 = ranking.consultaRanking();
+        CP.guardarRanking(top10); // TODO: ESTA TODO EL RATO GUARDADO EN LA BD!!!!
+    }
+    
+    public void cargarRanking() {
+        ranking = new Ranking();
+        ArrayList<ArrayList<String>> top10 = CP.cargarRanking();
+        for (ArrayList<String> pos : top10) {
+            String user = pos.get(0);
+            String punt = pos.get(1);
+            ranking.anadirPuntuacion(user,punt);
+        }
+    }
+    
+    public void guardarPartida() {
+        ArrayList<String> gp = partida.guardarPartida();
+        CP.guardarPartida(gp);
+    }
+    
+    public ArrayList<String> cargarPartida() throws Exception { // TODO CARGAR PARTIDA SIN PARTIDA GUARDADA
+        ArrayList<String> gp =  CP.cargarPartida();
+        CP.borrarPartida();
+        
+        
+        Dificultad dif = Dificultad.FACIL;
+        if (gp.get(0).equals("MEDIO")) dif = Dificultad.MEDIO;
+        else if (gp.get(0).equals("DIFICIL")) dif = Dificultad.DIFICIL;
+        Rol rol = Rol.CODEBREAKER;
+        if (gp.get(1).equals("CODEMAKER")) rol = Rol.CODEMAKER;
+        
+        // Reinicializamos las instancias de maquina y partida
+        partida = new Partida(dif, rol); // creamos partida
+        partida.cargarPartida(gp); // cargamos partida
+        maquina = new Maquina(dif, rol);
+        maquina.restablecerEstado(gp);
+        
+        return gp; // TODO: indices guarros
+    }
+    
 }

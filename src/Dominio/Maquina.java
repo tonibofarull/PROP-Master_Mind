@@ -135,15 +135,17 @@ public class Maquina {
      * Restablece el estado de la maquina
      * @param info Cotienen pares de candidatos y NBs
      */
-    public void restablecerEstado(ArrayList<ArrayList<String>> info) {
-        primer_turno = info.size() == 0;
-        for (ArrayList<String> val : info) {
-            Codigo candidato = new Codigo(val.get(0));
-            S.remove(candidato);
-            candidatos_restantes.remove(candidato);
-            if (val.size() == 2) {
-                String NB = val.get(1);
-                nuevaNB(candidato,NB);
+    public void restablecerEstado(ArrayList<String> info) {
+        if (info.get(1).equals("CODEMAKER")) {
+            primer_turno = info.size() == 0;
+            for (int i = 4; i < info.size(); i += 2) {
+                Codigo candidato = new Codigo(info.get(i));
+                S.remove(candidato);
+                candidatos_restantes.remove(candidato);
+                if (i+1 < info.size()) {
+                    String NB = info.get(i+1);
+                    nuevaNB(candidato,NB);
+                }
             }
         }
     }

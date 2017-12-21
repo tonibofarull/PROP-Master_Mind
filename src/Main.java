@@ -1,12 +1,16 @@
-import Presentacion.*;
+import Presentacion.CtrlPresentacion;
 
 public class Main {
 
-    private static CtrlPresentacion CP;
-
     public static void main(String[] args) {
-        CP = new CtrlPresentacion();
-        CP.iniciarControlador();
+        javax.swing.SwingUtilities.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        CtrlPresentacion CP = new CtrlPresentacion();
+                    }
+                }
+        );
     }
 
 }

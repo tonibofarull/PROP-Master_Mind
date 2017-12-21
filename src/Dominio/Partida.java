@@ -93,14 +93,6 @@ public class Partida {
      */
     public ArrayList<String> guardarPartida(){
         ArrayList<String> datos = new ArrayList<>();
-        switch (rol){
-            case CODEMAKER:
-                datos.add("CODEMAKER");
-                break;
-            default:
-                datos.add("CODEBREAKER");
-                break;
-        }
         switch (dificultad){
             case FACIL:
                 datos.add("FACIL");
@@ -112,11 +104,25 @@ public class Partida {
                 datos.add("DIFICIL");
                 break;
         }
+        switch (rol){
+            case CODEMAKER:
+                datos.add("CODEMAKER");
+                break;
+            default:
+                datos.add("CODEBREAKER");
+                break;
+        }
         datos.add(String.valueOf(ronda));
         datos.add(solucion.getCodigo());
         //todo adall los inserta en orden?
         datos.addAll(tablero.guardarPartida());
+        
         return datos;
     }
-    // TODO: cargarPartida
+    public void cargarPartida(ArrayList<String> datos) {
+        ronda = Integer.valueOf(datos.get(2));
+        solucion = new Codigo(datos.get(3));
+        tablero = new Tablero();
+        tablero.cargarPartida(datos);
+    }
 }

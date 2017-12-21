@@ -1,8 +1,10 @@
 package Persistencia;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
-
+ 
 public class CtrlPersistencia {
 
     public void guardarPartida(ArrayList<String> datos){
@@ -22,7 +24,7 @@ public class CtrlPersistencia {
      * @pre cierto
      * @post Devuelve un arraylist con la ultima partida guardada, en caso de no haber, el arraylist esta vacio (NO null,vacio)
      */
-    public ArrayList<String> cargarPartida(){
+    public ArrayList<String> cargarPartida() throws Exception {
         ArrayList<String> datosPartida=new ArrayList<>();
         File archivo= new File("datos");
         try {
@@ -32,8 +34,19 @@ public class CtrlPersistencia {
             datosPartida = (ArrayList<String>)ois.readObject();
             ois.close();
             fis.close();
-        }catch (Exception e){}
+        }
+        catch (Exception e){
+            throw new Exception("No se ha encontrado ninguna partida");
+        }
         return datosPartida;
+    }
+    
+    public void borrarPartida(){
+        try {
+            File f = new File("datos");
+            f.delete();
+        }
+        catch (Exception e) {}
     }
 
     //igual que para partida,pero con ranking

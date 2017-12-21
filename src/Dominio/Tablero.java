@@ -55,4 +55,17 @@ public class Tablero {
         }
         return datos;
     }
+    
+    
+    public void cargarPartida(ArrayList<String> datos){
+        for (int i = 4; i < datos.size(); i += 2) {
+            Codigo candidato = new Codigo(datos.get(i));
+            Linea l = new Linea(candidato);
+            if (i+1 < datos.size()) {
+                String NB = datos.get(i+1);
+                l.setNB(NB);
+            }
+            lineas.add(l);
+        }
+    }
 }
