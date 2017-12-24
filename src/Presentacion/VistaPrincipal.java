@@ -79,20 +79,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
-    public void goCodeBreaker() {
-        vistaCodeBreaker cb = new vistaCodeBreaker(this,CP);
+    public void goCodeBreaker(String dif) {
+        vistaCodeBreaker cb = new vistaCodeBreaker(this,CP, dif);
         ventana.add(cb);
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
-    public void goCodeMaker(String solucion, String candidato) {
-        vistaCodeMaker cm = new vistaCodeMaker(this,CP,solucion,candidato);
+    public void goCodeMaker(String solucion, String candidato, String dif) {
+        vistaCodeMaker cm = new vistaCodeMaker(this,CP,solucion,candidato, dif);
         ventana.add(cm);
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
      
-    public void goIntroCodeMaker() {
-        vistaIntroducirSecreto cm = new vistaIntroducirSecreto(this,CP);
+    public void goIntroCodeMaker(String dif) {
+        vistaIntroducirSecreto cm = new vistaIntroducirSecreto(this,CP,dif);
         ventana.add(cm);
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
@@ -101,12 +101,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         try {
             ArrayList<String> al = CP.cargarPartida();
             if (al.get(1).equals("CODEMAKER")) {
-                vistaCodeMaker cm = new vistaCodeMaker(this,CP,al.get(3),al.get(4));
+                vistaCodeMaker cm = new vistaCodeMaker(this,CP,al.get(3),al.get(4),al.get(0));
                 cm.cargarPartida(al);
                 ventana.add(cm);
             }
             else {
-                vistaCodeBreaker cb = new vistaCodeBreaker(this,CP);
+                vistaCodeBreaker cb = new vistaCodeBreaker(this,CP,al.get(0));
                 cb.cargarPartida(al);
                 ventana.add(cb);
             }

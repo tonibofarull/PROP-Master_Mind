@@ -12,9 +12,12 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
     private CtrlPresentacion CP;
     private VistaPrincipal VP;
     
-    public vistaIntroducirSecreto(VistaPrincipal VP, CtrlPresentacion CP) {
+    private String dif;
+    
+    public vistaIntroducirSecreto(VistaPrincipal VP, CtrlPresentacion CP, String dif) {
         this.VP = VP;
         this.CP = CP;
+        this.dif = dif;
         initComponents();
         
         inicializarPanelEntrada(jPanel1);
@@ -54,28 +57,26 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addContainerGap(165, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton5))
-                .addGap(124, 124, 124))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                    .addComponent(jButton5)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(103, 103, 103)
                 .addComponent(jButton6)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(103, 103, 103)
                 .addComponent(jLabel1)
-                .addGap(75, 75, 75)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(43, 43, 43)
-                .addComponent(jButton6)
+                .addGap(71, 71, 71)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -94,7 +95,7 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
             
             String solucion = colorToInt(c1) + "" + colorToInt(c2) + "" + colorToInt(c3) + ""  +colorToInt(c4);
             String candidato = CP.generarSolucion(solucion);
-            VP.goCodeMaker(solucion,candidato);
+            VP.goCodeMaker(solucion,candidato,dif);
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

@@ -18,17 +18,14 @@ public abstract class vistaPartida extends javax.swing.JPanel {
     protected int j = 0;
     protected int card = 0;
     
-    public vistaPartida(CtrlPresentacion CP, VistaPrincipal VP) {
+    public vistaPartida(CtrlPresentacion CP, VistaPrincipal VP, String dif) {
         this.CP = CP;
         this.VP = VP;
         initComponents();
         jLabel1.setVisible(false);
-        inicializarPanelEntrada(jPanel_entrada);
+        inicializarPanelEntrada(jPanel_entrada,dif);
+
         
-        /*
-        up.setEnabled(false);
-        down.setEnabled(false);
-        */
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +41,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         jPanel_sol = new javax.swing.JPanel();
         jPanel_NB = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel_num = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
@@ -81,7 +79,6 @@ public abstract class vistaPartida extends javax.swing.JPanel {
             }
         });
 
-        jPanel_sol.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel_sol.setLayout(new java.awt.GridLayout(1, 4));
 
         jPanel_NB.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -89,62 +86,67 @@ public abstract class vistaPartida extends javax.swing.JPanel {
 
         jLabel1.setText("Solucion");
 
+        jPanel_num.setMaximumSize(new java.awt.Dimension(60, 300));
+        jPanel_num.setMinimumSize(new java.awt.Dimension(60, 300));
+        jPanel_num.setPreferredSize(new java.awt.Dimension(60, 300));
+        jPanel_num.setLayout(new java.awt.CardLayout());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(jPanel_sol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(up, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(down))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(opciones)
+                    .addComponent(jPanel_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(up, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(down)
-                            .addComponent(jPanel_sol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jPanel_NB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jugar)))
-                        .addGap(137, 137, 137)))
+                        .addComponent(jPanel_num, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jPanel_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jugar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel_NB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addComponent(opciones)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jPanel_NB, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel_tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel_NB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(opciones)
+                            .addComponent(jPanel_num, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opciones)
-                                    .addComponent(jPanel_sol, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(80, 80, 80)
-                                .addComponent(up)
+                                .addGap(59, 59, 59)
+                                .addComponent(jugar)
+                                .addGap(55, 55, 55))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(down))
-                            .addComponent(jPanel_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jugar)
-                        .addGap(56, 56, 56))))
+                                .addComponent(jPanel_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel_sol, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(up)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(down)
+                        .addGap(260, 260, 260)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -160,15 +162,15 @@ public abstract class vistaPartida extends javax.swing.JPanel {
                 options,
                 options[2]);
         switch (n) {
-            case 2:
-                VP.goMenuPrincipal();
+            case 0:
+                CP.guardarPartida();
                 break;
             case 1:
                 CP.guardarPartida();
                 VP.goMenuPrincipal();
                 break;
-            case 0:
-                CP.guardarPartida();
+            case 2:
+                VP.goMenuPrincipal();
                 break;
         }
     }//GEN-LAST:event_opcionesActionPerformed
@@ -178,32 +180,16 @@ public abstract class vistaPartida extends javax.swing.JPanel {
     }//GEN-LAST:event_jugarActionPerformed
 
     private void upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upActionPerformed
-        if (card > 0) {
-            /*
-            --card;
-            if (card == 0) {
-                up.setEnabled(false);
-                down.setEnabled(true);
-            }
-            */
-            ((CardLayout) jPanel_NB.getLayout()).previous(jPanel_NB);
-            ((CardLayout) jPanel_tablero.getLayout()).previous(jPanel_tablero);
-        }
+        ((CardLayout) jPanel_num.getLayout()).previous(jPanel_num);
+        ((CardLayout) jPanel_NB.getLayout()).previous(jPanel_NB);
+        ((CardLayout) jPanel_tablero.getLayout()).previous(jPanel_tablero);
         
     }//GEN-LAST:event_upActionPerformed
 
     private void downActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downActionPerformed
-        if (card < j/6) {
-            /*
-            ++card;
-            if (card == j/6) {
-                down.setEnabled(false);
-                up.setEnabled(true);
-            }
-            */
-            ((CardLayout) jPanel_NB.getLayout()).next(jPanel_NB);
-            ((CardLayout) jPanel_tablero.getLayout()).next(jPanel_tablero);
-        }
+        ((CardLayout) jPanel_num.getLayout()).next(jPanel_num);
+        ((CardLayout) jPanel_NB.getLayout()).next(jPanel_NB);
+        ((CardLayout) jPanel_tablero.getLayout()).next(jPanel_tablero);
     }//GEN-LAST:event_downActionPerformed
 
     public void cargarPartida(ArrayList<String> info) {
@@ -214,7 +200,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
             String NB = null;
             if (i+1 < info.size()) NB = info.get(i+1);
 
-            if (j%6 == 0) {
+            if (j%6 == 0 && info.get(1).equals("CODEBREAKER")) {
                 tablero_act = new JPanel(new GridLayout(6,4));
                 inicializarTablero(tablero_act);
                 jPanel_tablero.add(tablero_act);
@@ -224,11 +210,29 @@ public abstract class vistaPartida extends javax.swing.JPanel {
                 inicializarTablero(NB_act);
                 jPanel_NB.add(NB_act);
                 ((CardLayout) jPanel_NB.getLayout()).next(jPanel_NB);
+                
+                num_act = new JPanel(new GridLayout(6,1));
+                for (int q = 0; q < 6; ++q) {
+                    JButton but = new JButton();
+                    but.setVisible(false);
+                    num_act.add(but);
+                }
+                jPanel_num.add(num_act);
+                ((CardLayout) jPanel_num.getLayout()).next(jPanel_num);
             }
             for (int u = 0; u < 4; ++u) {
                 tablero_act.getComponent(4*(j%6)+u).setBackground(intToColor(Character.getNumericValue(candidato.charAt(u))));
                 tablero_act.getComponent(4*(j%6)+u).setVisible(true);
             }
+            
+            ((JButton) num_act.getComponent(j%6)).setText(Integer.toString(j+1));
+            num_act.getComponent(j%6).setVisible(true);
+            ((JButton) num_act.getComponent(j%6)).setOpaque(false);
+            ((JButton) num_act.getComponent(j%6)).setContentAreaFilled(false);
+            ((JButton) num_act.getComponent(j%6)).setBorderPainted(false);
+            
+            
+            
             if (NB == null) { ++j; return; }
             int num_N = Character.getNumericValue(NB.charAt(0));
             int num_B = Character.getNumericValue(NB.charAt(1));
@@ -242,6 +246,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
                     NB_act.getComponent(4*(j%6)+q).setBackground(Color.white);
                 }
             }
+            // incrementamos ronda
             
             ++j;
         }
@@ -249,7 +254,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
     
     protected abstract void datosIntroducidos();
     
-    protected abstract void inicializarPanelEntrada(JPanel jPanel_entrada);
+    protected abstract void inicializarPanelEntrada(JPanel jPanel_entrada, String dif);
     
     protected void inicializarTablero(JPanel panel) {
         for (int i = 0; i < 4*6; ++i) { // Inicializamos los botones del tablero
@@ -282,12 +287,14 @@ public abstract class vistaPartida extends javax.swing.JPanel {
    
     protected javax.swing.JPanel NB_act;
     protected javax.swing.JPanel tablero_act;
+    protected javax.swing.JPanel num_act;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton down;
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JPanel jPanel_NB;
     protected javax.swing.JPanel jPanel_entrada;
+    protected javax.swing.JPanel jPanel_num;
     protected javax.swing.JPanel jPanel_sol;
     protected javax.swing.JPanel jPanel_tablero;
     protected javax.swing.JButton jugar;

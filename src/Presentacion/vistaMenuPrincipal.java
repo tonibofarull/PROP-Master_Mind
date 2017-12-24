@@ -1,6 +1,7 @@
 package Presentacion;
 
 import static java.lang.System.exit;
+import javax.swing.JOptionPane;
 
 public class vistaMenuPrincipal extends javax.swing.JPanel {
 
@@ -81,7 +82,18 @@ public class vistaMenuPrincipal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        exit(0);
+        String msj = "Estas seguro que quieres salir?";
+                Object[] options = {"Cancelar",
+                                "Salir"};
+        int n = JOptionPane.showOptionDialog(this,
+               msj,
+               "Mensaje",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE,
+               null,
+               options,
+               options[1]);
+        if (n == 1) exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
     private void rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingActionPerformed
