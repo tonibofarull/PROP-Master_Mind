@@ -11,14 +11,13 @@ public class CtrlPresentacion {
     
 
     public CtrlPresentacion() {
-        dominio = new CtrlDominio();
-        
-        try { 
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            e.printStackTrace();
+         try { 
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
+        } catch (Exception ex) { 
+            ex.printStackTrace(); 
         }
         
+        dominio = new CtrlDominio();
         vista = new VistaPrincipal(this);
     }
 
