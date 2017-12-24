@@ -82,6 +82,36 @@ public class vistaCodeMaker extends vistaPartida {
             String NB = num_N + "" + num_B;
             System.out.println(NB);
             
+            for (int i = 0; i < 4; ++i) {
+                int k = j-1;
+                if (i < num_N) {
+                    NB_act.getComponent(4*(k%6)+i).setVisible(true);
+                    NB_act.getComponent(4*(k%6)+i).setBackground(Color.black);
+                }
+                else if (i-num_N < num_B) {
+                    NB_act.getComponent(4*(k%6)+i).setVisible(true);
+                    NB_act.getComponent(4*(k%6)+i).setBackground(Color.white);
+                }
+            }
+            
+            
+            // Si NB == 40 -> Se ha acabado el juego
+            // Custom button text
+            if (NB.equals("40")) {
+                String msj = "Partida finalizada\nPuntuacion: " + CP.getRondas();
+                Object[] options = {"Volver al menu principal"};
+                 int n = JOptionPane.showOptionDialog(this,
+                        msj,
+                        "Mensaje",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[0]);
+                VP.goMenuPrincipal();
+            }
+            
+            
             String candidato = CP.evaluarCandidato(NB);
             // AÑADIMOS LA JUGADA A LA LISTA
 
@@ -112,45 +142,17 @@ public class vistaCodeMaker extends vistaPartida {
                 ((CardLayout) jPanel_num.getLayout()).next(jPanel_num);
                 
             }
-            
+           
+            ArrayList<Color> al = stringToColor(candidato);
             for (int i = 0; i < 4; ++i) {
-                int k = j-1;
-                if (i < num_N) {
-                    NB_act.getComponent(4*(k%6)+i).setVisible(true);
-                    NB_act.getComponent(4*(k%6)+i).setBackground(Color.black);
-                }
-                else if (i-num_N < num_B) {
-                    NB_act.getComponent(4*(k%6)+i).setVisible(true);
-                    NB_act.getComponent(4*(k%6)+i).setBackground(Color.white);
-                }
+               tablero_act.getComponent(4*(j%6)+i).setVisible(true);
+               if (i == 0) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
+               if (i == 1) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
+               if (i == 2) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
+               if (i == 3) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
             }
             
             
-            // Si NB == 40 -> Se ha acabado el juego
-            // Custom button text
-            if (NB.equals("40")) {
-                String msj = "Partida finalizada\nPuntuacion: " + CP.getRondas();
-                Object[] options = {"Volver al menu principal"};
-                 int n = JOptionPane.showOptionDialog(this,
-                        msj,
-                        "Mensaje",
-                        JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        options,
-                        options[0]);
-                VP.goMenuPrincipal();
-            }
-            else {
-                ArrayList<Color> al = stringToColor(candidato);
-                for (int i = 0; i < 4; ++i) {
-                   tablero_act.getComponent(4*(j%6)+i).setVisible(true);
-                   if (i == 0) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
-                   if (i == 1) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
-                   if (i == 2) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
-                   if (i == 3) tablero_act.getComponent(4*(j%6)+i).setBackground(al.get(i));
-                }
-            }
             ((JButton) num_act.getComponent(j%6)).setText(Integer.toString(j+1));
             num_act.getComponent(j%6).setVisible(true);
             ++j;

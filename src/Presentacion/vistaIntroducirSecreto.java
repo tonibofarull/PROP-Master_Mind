@@ -103,20 +103,36 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     protected void inicializarPanelEntrada(JPanel panel) {
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; ++i) { // Inicializamos los botones del candidato
             JButton but = new JButton();
-            but.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    Color cbut = ((JButton) evt.getSource()).getBackground();
-                    if (cbut == Color.red) but.setBackground(Color.green);
-                    else if (cbut == Color.green) but.setBackground(Color.blue);
-                    else if (cbut == Color.blue) but.setBackground(Color.cyan);
-                    else if (cbut == Color.cyan) but.setBackground(Color.magenta);
-                    else if (cbut == Color.magenta) but.setBackground(Color.yellow);
-                    else if (cbut == Color.yellow) but.setBackground(Color.orange);
-                    else but.setBackground(Color.red);
-                }
-            });
+            but.setBackground(Color.gray);
+            if (dif.equals("DIFICIL")) {
+                but.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        Color cbut = ((JButton) evt.getSource()).getBackground();
+                        if (cbut == Color.red) but.setBackground(Color.green);
+                        else if (cbut == Color.green) but.setBackground(Color.blue);
+                        else if (cbut == Color.blue) but.setBackground(Color.cyan);
+                        else if (cbut == Color.cyan) but.setBackground(Color.magenta);
+                        else if (cbut == Color.magenta) but.setBackground(Color.yellow);
+                        else if (cbut == Color.yellow) but.setBackground(Color.orange);
+                        else but.setBackground(Color.red);
+                    }
+                });
+            }
+            else {
+                but.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        Color cbut = ((JButton) evt.getSource()).getBackground();
+                        if (cbut == Color.red) but.setBackground(Color.green);
+                        else if (cbut == Color.green) but.setBackground(Color.blue);
+                        else if (cbut == Color.blue) but.setBackground(Color.cyan);
+                        else if (cbut == Color.cyan) but.setBackground(Color.magenta);
+                        else if (cbut == Color.magenta) but.setBackground(Color.yellow);
+                        else but.setBackground(Color.red);
+                    }
+                });
+            }
             panel.add(but);
         }
     } 
