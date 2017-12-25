@@ -177,9 +177,6 @@ public abstract class vistaPartida extends javax.swing.JPanel {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         datosIntroducidos();
-        ((CardLayout) jPanel_num.getLayout()).last(jPanel_num);
-        ((CardLayout) jPanel_NB.getLayout()).last(jPanel_NB);
-        ((CardLayout) jPanel_tablero.getLayout()).last(jPanel_tablero);
     }//GEN-LAST:event_jugarActionPerformed
 
     private void upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upActionPerformed
