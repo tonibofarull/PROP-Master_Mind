@@ -82,6 +82,8 @@ public class vistaCodeMaker extends vistaPartida {
             String NB = num_N + "" + num_B;
             System.out.println(NB);
             
+            String candidato = CP.evaluarCandidato(NB);
+            
             for (int i = 0; i < 4; ++i) {
                 int k = j-1;
                 if (i < num_N) {
@@ -111,8 +113,6 @@ public class vistaCodeMaker extends vistaPartida {
                 VP.goMenuPrincipal();
             }
             
-            
-            String candidato = CP.evaluarCandidato(NB);
             // AÑADIMOS LA JUGADA A LA LISTA
 
             if (j%6 == 0) {

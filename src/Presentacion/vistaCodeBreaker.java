@@ -92,11 +92,14 @@ public class vistaCodeBreaker extends vistaPartida {
                         options,
                         options[1]);
                  if (n == 0) {
-                    String user = JOptionPane.showInputDialog(
-                        this, 
-                        "Introduce el nickname", 
-                        "Registrar ranking", 
-                        JOptionPane.WARNING_MESSAGE);
+                    String user = "";
+                    while (user.isEmpty()) {
+                        user = JOptionPane.showInputDialog(
+                            this, 
+                            "Introduce el nickname", 
+                            "Registrar ranking", 
+                            JOptionPane.WARNING_MESSAGE);
+                    }
                     CP.anadirPuntuacion(user, CP.getRondas());
                  } 
                 VP.goMenuPrincipal();
