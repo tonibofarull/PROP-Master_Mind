@@ -275,7 +275,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        this.texto_rol = "<b>Rol CodeMaker:</b> Genera código secreto. Evalua jugadas del CodeMaker.";
+        this.texto_rol = "<b>Rol CodeMaker:</b> Genera código secreto. Evalua jugadas del CodeBreaker.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
