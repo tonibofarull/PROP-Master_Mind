@@ -9,6 +9,7 @@ public class vistaAyuda extends javax.swing.JFrame {
     
     public vistaAyuda() {     
         initComponents();
+        cerrar.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +24,7 @@ public class vistaAyuda extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(640, 480));
 
-        cerrar.setBackground(new java.awt.Color(255, 0, 0));
+        cerrar.setBackground(new java.awt.Color(204, 204, 204));
         cerrar.setText("Salir");
         cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,9 +48,9 @@ public class vistaAyuda extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cerrar)
+                .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
