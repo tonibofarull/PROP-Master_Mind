@@ -1,4 +1,3 @@
-
 package Presentacion;
 
 /**
@@ -8,15 +7,8 @@ package Presentacion;
 public class vistaAyuda extends javax.swing.JFrame {
 
     
-    public vistaAyuda(String rol) {     
+    public vistaAyuda() {     
         initComponents();
-        if (rol=="CODEBREAKER"){
-            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/Presentacion/res/help_breaker.png")));
-        }
-        else{
-            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/Presentacion/res/help_maker.png")));
-
-        }
     }
 
     /**
@@ -33,24 +25,22 @@ public class vistaAyuda extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
         setSize(new java.awt.Dimension(640, 480));
 
-        cerrar.setText("Volver");
+        cerrar.setBackground(new java.awt.Color(255, 0, 0));
+        cerrar.setText("Salir");
         cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cerrarActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,11 +51,11 @@ public class vistaAyuda extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(266, 266, 266)
-                .addComponent(cerrar)
-                .addContainerGap(311, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cerrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,6 +73,13 @@ public class vistaAyuda extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
 
+    public void mostrarAyudaCB() {
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_breaker.png")));
+    }
+    
+    public void mostrarAyudaCM() {
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_maker.png")));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cerrar;

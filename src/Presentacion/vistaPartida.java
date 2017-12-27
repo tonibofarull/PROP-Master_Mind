@@ -10,6 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * Panel comun a los dos distintos roles, administra las funcionalidades comunes
+ *
+ * @author Antoni Bofarull
+ */
 public abstract class vistaPartida extends javax.swing.JPanel {
 
     protected CtrlPresentacion CP;
@@ -42,6 +47,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         jPanel_NB = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel_num = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
@@ -91,6 +97,13 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         jPanel_num.setPreferredSize(new java.awt.Dimension(60, 300));
         jPanel_num.setLayout(new java.awt.CardLayout());
 
+        jButton1.setText("?");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,7 +127,9 @@ public abstract class vistaPartida extends javax.swing.JPanel {
                     .addComponent(jugar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel_NB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
-                .addComponent(opciones)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,7 +143,10 @@ public abstract class vistaPartida extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel_tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel_NB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(opciones)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(opciones)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
                             .addComponent(jPanel_num, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -195,6 +213,12 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         ((CardLayout) jPanel_tablero.getLayout()).next(jPanel_tablero);
     }//GEN-LAST:event_downActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        mostrarAyuda();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    protected abstract void mostrarAyuda();
+    
     public void cargarPartida(ArrayList<String> info) {
         j = 0;
         
@@ -294,6 +318,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton down;
+    protected javax.swing.JButton jButton1;
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JPanel jPanel_NB;
     protected javax.swing.JPanel jPanel_entrada;

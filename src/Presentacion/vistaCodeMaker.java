@@ -10,6 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * Se encarga de administrar el panel cuando el usuario juga como rol de CodeMaker
+ *
+ * @author Antoni Bofarull
+ */
 public class vistaCodeMaker extends vistaPartida {
 
     private String solucion;
@@ -187,6 +192,13 @@ public class vistaCodeMaker extends vistaPartida {
         return al;
     }
 
+    protected void mostrarAyuda() {                                         
+        vistaAyuda va = new vistaAyuda();
+        va.mostrarAyudaCM();
+        va.setLocationRelativeTo(this);
+        va.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

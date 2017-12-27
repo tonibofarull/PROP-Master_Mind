@@ -5,6 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
  
+/**
+ * CtrlPersistencia
+ *
+ * @author Ferran Martinez
+ */
 public class CtrlPersistencia {
 
     public void guardarPartida(ArrayList<String> datos){

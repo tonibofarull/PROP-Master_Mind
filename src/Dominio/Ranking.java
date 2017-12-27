@@ -2,6 +2,11 @@ package Dominio;
 
 import java.util.ArrayList;
 
+/**
+ * Se encarga de administrar los usuarios y las puntuaciones
+ *
+ * @author Sergi Avila
+ */
 public class Ranking {
 
     private ArrayList<ArrayList<String>> top10;

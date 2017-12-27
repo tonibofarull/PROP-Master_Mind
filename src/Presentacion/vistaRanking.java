@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class vistaRanking extends javax.swing.JPanel {
 
@@ -14,19 +15,23 @@ public class vistaRanking extends javax.swing.JPanel {
     public vistaRanking(VistaPrincipal VP, CtrlPresentacion CP) {
         this.VP = VP;
         this.CP = CP;
-        tableModel= new DefaultTableModel(new Object [][] {},
-            new String [] {
-                "Nom", "Puntuació"
-            }
-        );
 
-        
-        
+        tableModel = new DefaultTableModel() { // Evitamos poder modificar casillas
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+              return false;
+            }
+        };
+        tableModel.addColumn("Nombre");
+        tableModel.addColumn("Puntuación");
+                
         initComponents();
         
         ArrayList<ArrayList<String>> top10 = CP.getRanking();
         for (ArrayList<String> pos : top10) {
             tableModel.addRow(new String[]{pos.get(0),pos.get(1)});
+        }
+        for (int i = 0; i < 10-top10.size(); ++i) {
+            tableModel.addRow(new String[]{"",""});
         }
     }
 
@@ -53,6 +58,11 @@ public class vistaRanking extends javax.swing.JPanel {
         });
 
         jTable1.setModel(tableModel);
+        jTable1.setFocusable(false);
+        jTable1.setRequestFocusEnabled(false);
+        jTable1.setRowSelectionAllowed(false);
+        jTable1.setUpdateSelectionOnSort(false);
+        jTable1.setVerifyInputWhenFocusTarget(false);
         jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -60,27 +70,23 @@ public class vistaRanking extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel1)
-                            .addComponent(volver)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volver))
+                .addGap(222, 222, 222))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(82, 82, 82)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(volver)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

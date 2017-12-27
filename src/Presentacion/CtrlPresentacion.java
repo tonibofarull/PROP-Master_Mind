@@ -4,6 +4,11 @@ import Dominio.CtrlDominio;
 import java.util.ArrayList;
 import javax.swing.UIManager;
 
+/**
+ * CtrlPresentacion
+ *
+ * @author Ferran Martinez
+ */
 public class CtrlPresentacion {
     
     private CtrlDominio dominio;

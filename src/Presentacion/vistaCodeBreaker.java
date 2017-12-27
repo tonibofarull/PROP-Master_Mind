@@ -10,6 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Se encarga de administrar el panel cuando el usuario juga como rol de CodeBreaker
+ *
+ * @author Antoni Bofarull
+ */
 public class vistaCodeBreaker extends vistaPartida {
 
     public vistaCodeBreaker(VistaPrincipal VP, CtrlPresentacion CP, String dif) {
@@ -144,5 +149,12 @@ public class vistaCodeBreaker extends vistaPartida {
             panel.add(but);
         }
     } 
+    
+    protected void mostrarAyuda() {                                         
+        vistaAyuda va = new vistaAyuda();
+        va.mostrarAyudaCB();
+        va.setLocationRelativeTo(this);
+        va.setVisible(true);
+    }
 
 }

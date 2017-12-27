@@ -7,6 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * Permite al usuario elegir el codigo secreto para la partida cuando este ejerce de CodeMaker
+ *
+ * @author Antoni Bofarull
+ */
 public class vistaIntroducirSecreto extends javax.swing.JPanel {
 
     private CtrlPresentacion CP;

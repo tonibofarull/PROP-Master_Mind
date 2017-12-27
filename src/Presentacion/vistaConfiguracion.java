@@ -2,6 +2,11 @@ package Presentacion;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Permite al usuario escoger la configuracion de la partida
+ *
+ * @author Ferran Martinez
+ */
 public class vistaConfiguracion extends javax.swing.JPanel {
 
     private VistaPrincipal VP; 
@@ -260,7 +265,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        this.texto_dificultad = "<b>Dificultad Difícil:</b> Código de 4 elementos. Con Repeticiones. 6 Colores.";
+        this.texto_dificultad = "<b>Dificultad Difícil:</b> Código de 4 elementos. Con Repeticiones. 7 Colores.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
@@ -270,7 +275,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        this.texto_dificultad = "<b>Dificultad Medio:</b> Código de 4 elementos. Con Repeticiones. 7 Colores.";
+        this.texto_dificultad = "<b>Dificultad Medio:</b> Código de 4 elementos. Con Repeticiones. 6 Colores.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 

@@ -11,6 +11,11 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+/**
+ * VistaPrincipal es la clase encargada de actualizar el JPanel
+ *
+ * @author Ferran Martinez
+ */
 public class VistaPrincipal extends javax.swing.JFrame {
 
     private CtrlPresentacion CP;
