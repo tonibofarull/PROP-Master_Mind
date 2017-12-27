@@ -25,59 +25,26 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-<<<<<<< HEAD
               <EmptySpace pref="221" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" alignment="2" min="-2" pref="197" max="-2" attributes="0"/>
                   <Component id="volver" alignment="2" min="-2" max="-2" attributes="0"/>
-=======
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="volver" alignment="2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="208" max="-2" attributes="0"/>
-                  </Group>
->>>>>>> origin/master
               </Group>
-<<<<<<< HEAD
               <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
-=======
-              <EmptySpace pref="252" max="32767" attributes="0"/>
->>>>>>> origin/master
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-<<<<<<< HEAD
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-=======
-              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
->>>>>>> origin/master
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="188" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-=======
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="190" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
->>>>>>> origin/master
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="volver" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
               <EmptySpace pref="94" max="32767" attributes="0"/>
-=======
-              <EmptySpace pref="112" max="32767" attributes="0"/>
->>>>>>> origin/master
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,7 +81,6 @@
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
             </Property>
-<<<<<<< HEAD
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
             <Property name="rowSelectionAllowed" type="boolean" value="false"/>
@@ -123,11 +89,6 @@
             </Property>
             <Property name="updateSelectionOnSort" type="boolean" value="false"/>
             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
-=======
-            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-            </Property>
->>>>>>> origin/master
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="vistaRanking_jTable1"/>

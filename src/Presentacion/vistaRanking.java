@@ -82,9 +82,9 @@ public class vistaRanking extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(34, 34, 34)
                 .addComponent(volver)
                 .addContainerGap(94, Short.MAX_VALUE))
         );
