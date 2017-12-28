@@ -85,9 +85,9 @@ public class vistaCodeBreaker extends vistaPartida {
             // Si NB == 40 -> Se ha acabado el juego
             //Custom button text
             if (NB.equals("40")) {
-                String msj = "Partida finalizada\nFelicidades! Tienes una puntuacion de: " + CP.getRondas();
+                String msj = "Partida finalizada.\nFelicidades! Tienes una puntuación de: " + CP.getRondas();
                 Object[] options = {"Registrar ranking",
-                                "Volver al menu principal"};
+                                "Volver al menú principal"};
                  int n = JOptionPane.showOptionDialog(this,
                         msj,
                         "Mensaje",
@@ -128,7 +128,7 @@ public class vistaCodeBreaker extends vistaPartida {
                         else if (cbut == Color.blue) but.setBackground(Color.cyan);
                         else if (cbut == Color.cyan) but.setBackground(Color.magenta);
                         else if (cbut == Color.magenta) but.setBackground(Color.yellow);
-                        else if (cbut == Color.yellow) but.setBackground(Color.orange);
+                        else if (cbut == Color.yellow) but.setBackground(new Color(0xff,0x99,0x00));
                         else but.setBackground(Color.red);
                     }
                 });

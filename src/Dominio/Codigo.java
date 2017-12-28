@@ -24,15 +24,15 @@ public class Codigo implements Comparable<Codigo> {
             for (int i = 0; i < codigo.length(); ++i) {
                 int val = Character.getNumericValue(codigo.charAt(i));
                 if (val < val_minimo || val > val_maximo)
-                    throw new Exception("El codigo contiene valores fuera de los rangos permitidos.");
+                    throw new Exception("El código contiene valores fuera del rango permitido.");
                 else {
                     int num_reps = repeticiones_canicas.get(val - 1);
                     repeticiones_canicas.set(val - 1, num_reps + 1);
                     if (repeticiones_canicas.get(val - 1) >= max_rep + 1)
-                        throw new Exception("El numero de repeticiones del codigo supera al numero maximo permitido.");
+                        throw new Exception("El número de repeticiones supera al máximo permitido.");
                 }
             }
-        } else throw new Exception("El tamano del codigo introducido no corresponde con el tamano adecuado.");
+        } else throw new Exception("El tamaño del código introducido no corresponde con el tamaño adecuado.");
     }
 
     /**
@@ -103,14 +103,14 @@ public class Codigo implements Comparable<Codigo> {
      */
     public void comprobarNB(Codigo candidato, String nb) throws Exception {
         if (nb.length() != 2)
-            throw new Exception("El codigo nb introducido tiene un numero de valores diferente al esperado.");
+            throw new Exception("El código introducido tiene una cantidad de elementos inválida.");
         int nvalue = Character.getNumericValue(nb.charAt(0));
         int bvalue = Character.getNumericValue(nb.charAt(1));
         if (nvalue < 0 || nvalue > 4 || bvalue < 0 || bvalue > 4)
-            throw new Exception ("El codigo nb introducido tiene valores fuera del rango valido (0 - 4).");
+            throw new Exception ("El codigo introducido tiene valores fuera del rango válido.");
         String NB_correcto = this.calcularNB(candidato);
         if (!NB_correcto.equals(nb))
-            throw new Exception("El codigo nb introducido no corresponde con el codigo nb real.");
+            throw new Exception("La evaluación introducida no corresponde con la correcta.");
     }
 
     @Override

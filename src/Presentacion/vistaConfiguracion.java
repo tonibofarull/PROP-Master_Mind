@@ -67,7 +67,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         jLabel1.setText("Selector de dificultad");
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Facil");
+        jRadioButton1.setText("Fácil");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -83,7 +83,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Dificil");
+        jRadioButton3.setText("Difícil");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);

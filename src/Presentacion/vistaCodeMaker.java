@@ -82,8 +82,6 @@ public class vistaCodeMaker extends vistaPartida {
                 if (c == Color.white) ++num_B;
             }
             
-            
-            
             String NB = num_N + "" + num_B;
             System.out.println(NB);
             
@@ -105,8 +103,8 @@ public class vistaCodeMaker extends vistaPartida {
             // Si NB == 40 -> Se ha acabado el juego
             // Custom button text
             if (NB.equals("40")) {
-                String msj = "Partida finalizada\nPuntuacion: " + CP.getRondas();
-                Object[] options = {"Volver al menu principal"};
+                String msj = "Partida finalizada.\nPuntuacion: " + CP.getRondas();
+                Object[] options = {"Volver al menú principal"};
                  int n = JOptionPane.showOptionDialog(this,
                         msj,
                         "Mensaje",

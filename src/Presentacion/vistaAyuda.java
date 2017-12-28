@@ -50,7 +50,7 @@ public class vistaAyuda extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,11 +70,17 @@ public class vistaAyuda extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     public void mostrarAyudaCB() {
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_breaker.png")));
+        try {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_breaker.png")));
+        }
+        catch (Exception e) {}
     }
     
     public void mostrarAyudaCM() {
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_maker.png")));
+        try {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_maker.png")));
+        }
+        catch (Exception e) {}
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

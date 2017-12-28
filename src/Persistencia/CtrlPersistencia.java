@@ -41,7 +41,7 @@ public class CtrlPersistencia {
             fis.close();
         }
         catch (Exception e){
-            throw new Exception("No se ha encontrado ninguna partida");
+            throw new Exception("No se ha encontrado ninguna partida.");
         }
         return datosPartida;
     }

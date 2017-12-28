@@ -90,7 +90,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         jPanel_NB.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel_NB.setLayout(new java.awt.CardLayout());
 
-        jLabel1.setText("Solucion");
+        jLabel1.setText("Solución");
 
         jPanel_num.setMaximumSize(new java.awt.Dimension(60, 300));
         jPanel_num.setMinimumSize(new java.awt.Dimension(60, 300));
@@ -169,7 +169,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void opcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesActionPerformed
-        String msj = "Selecciona opcion";
+        String msj = "Selecciona opción.";
         Object[] options = {"Guardar","Salir y guardar","Salir"};
          int n = JOptionPane.showOptionDialog(this,
                 msj,
@@ -309,7 +309,7 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         if (i == 4) return Color.cyan;
         if (i == 5) return Color.magenta;
         if (i == 6 )return Color.yellow;
-        else return Color.orange;
+        else return new Color(0xff,0x99,0x00);
     }
    
     protected javax.swing.JPanel NB_act;

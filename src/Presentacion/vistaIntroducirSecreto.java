@@ -120,7 +120,7 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
                         else if (cbut == Color.blue) but.setBackground(Color.cyan);
                         else if (cbut == Color.cyan) but.setBackground(Color.magenta);
                         else if (cbut == Color.magenta) but.setBackground(Color.yellow);
-                        else if (cbut == Color.yellow) but.setBackground(Color.orange);
+                        else if (cbut == Color.yellow) but.setBackground(new Color(0xff,0x99,0x00));
                         else but.setBackground(Color.red);
                     }
                 });
