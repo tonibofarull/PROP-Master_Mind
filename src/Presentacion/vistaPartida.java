@@ -18,12 +18,12 @@ import javax.swing.JPanel;
 public abstract class vistaPartida extends javax.swing.JPanel {
 
     protected CtrlPresentacion CP;
-    protected VistaPrincipal VP;
+    protected vistaPrincipal VP;
     
     protected int j = 0;
     protected int card = 0;
     
-    public vistaPartida(CtrlPresentacion CP, VistaPrincipal VP, String dif) {
+    public vistaPartida(CtrlPresentacion CP, vistaPrincipal VP, String dif) {
         this.CP = CP;
         this.VP = VP;
         initComponents();

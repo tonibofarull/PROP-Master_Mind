@@ -8,11 +8,11 @@ import javax.swing.table.TableModel;
 
 public class vistaRanking extends javax.swing.JPanel {
 
-    private VistaPrincipal VP;
+    private vistaPrincipal VP;
     private CtrlPresentacion CP;
     private DefaultTableModel tableModel;
     
-    public vistaRanking(VistaPrincipal VP, CtrlPresentacion CP) {
+    public vistaRanking(vistaPrincipal VP, CtrlPresentacion CP) {
         this.VP = VP;
         this.CP = CP;
 
@@ -70,12 +70,12 @@ public class vistaRanking extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
+                .addContainerGap(171, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(volver))
-                .addGap(222, 222, 222))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

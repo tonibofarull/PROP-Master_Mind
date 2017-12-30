@@ -12,7 +12,7 @@ import javax.swing.UIManager;
 public class CtrlPresentacion {
     
     private CtrlDominio dominio;
-    private VistaPrincipal vista;
+    private vistaPrincipal vista;
     
 
     public CtrlPresentacion() {
@@ -23,7 +23,7 @@ public class CtrlPresentacion {
         }
         
         dominio = new CtrlDominio();
-        vista = new VistaPrincipal(this);
+        vista = new vistaPrincipal(this);
     }
 
     public void empezarPartida(String dificultad_s, String rol_s) {

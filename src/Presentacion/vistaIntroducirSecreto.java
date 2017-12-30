@@ -15,11 +15,11 @@ import javax.swing.JPanel;
 public class vistaIntroducirSecreto extends javax.swing.JPanel {
 
     private CtrlPresentacion CP;
-    private VistaPrincipal VP;
+    private vistaPrincipal VP;
     
     private String dif;
     
-    public vistaIntroducirSecreto(VistaPrincipal VP, CtrlPresentacion CP, String dif) {
+    public vistaIntroducirSecreto(vistaPrincipal VP, CtrlPresentacion CP, String dif) {
         this.VP = VP;
         this.CP = CP;
         this.dif = dif;
@@ -41,6 +41,7 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 4));
 
+        jLabel1.setFont(jLabel1.getFont().deriveFont((float)17));
         jLabel1.setText("Introduce el secreto");
 
         jButton5.setText("Aceptar");
@@ -62,10 +63,10 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
+                .addContainerGap(164, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButton5)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(103, 103, 103)
                 .addComponent(jButton6)
@@ -74,11 +75,11 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(123, 123, 123)
                 .addComponent(jLabel1)
-                .addGap(71, 71, 71)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addGap(84, 84, 84)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton5))

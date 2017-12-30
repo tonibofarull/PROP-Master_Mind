@@ -12,15 +12,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- * VistaPrincipal es la clase encargada de actualizar el JPanel
+ * vistaPrincipal es la clase encargada de actualizar el JPanel
  *
  * @author Ferran Martinez
  */
-public class VistaPrincipal extends javax.swing.JFrame {
+public class vistaPrincipal extends javax.swing.JFrame {
 
     private CtrlPresentacion CP;
     
-    public VistaPrincipal(CtrlPresentacion CP) {
+    public vistaPrincipal(CtrlPresentacion CP) {
         this.CP = CP;
         initComponents();
         
@@ -44,7 +44,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         ventana = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
         setMinimumSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(640, 480));

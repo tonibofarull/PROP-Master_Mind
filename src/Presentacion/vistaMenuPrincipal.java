@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
  */
 public class vistaMenuPrincipal extends javax.swing.JPanel {
 
-    private VistaPrincipal VP;
+    private vistaPrincipal VP;
     
-    public vistaMenuPrincipal(VistaPrincipal VP) {
+    public vistaMenuPrincipal(vistaPrincipal VP) {
         this.VP = VP;
         initComponents();
     }

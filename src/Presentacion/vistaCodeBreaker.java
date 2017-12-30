@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
  */
 public class vistaCodeBreaker extends vistaPartida {
 
-    public vistaCodeBreaker(VistaPrincipal VP, CtrlPresentacion CP, String dif) {
+    public vistaCodeBreaker(vistaPrincipal VP, CtrlPresentacion CP, String dif) {
         super(CP,VP,dif);
     }
     

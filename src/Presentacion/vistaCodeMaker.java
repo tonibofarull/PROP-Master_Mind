@@ -20,7 +20,7 @@ public class vistaCodeMaker extends vistaPartida {
     private String solucion;
     private String candidato;
     
-    public vistaCodeMaker(VistaPrincipal VP, CtrlPresentacion CP, String solucion, String candidato, String dif) {
+    public vistaCodeMaker(vistaPrincipal VP, CtrlPresentacion CP, String solucion, String candidato, String dif) {
         super(CP,VP,dif);
         jPanel_sol.setBorder(javax.swing.BorderFactory.createEtchedBorder()); // borde para la solucion
         for (int i = 0; i < 4; ++i) {

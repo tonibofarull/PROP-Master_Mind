@@ -25,13 +25,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="221" max="32767" attributes="0"/>
+              <EmptySpace pref="171" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" alignment="2" min="-2" pref="197" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="2" min="-2" pref="297" max="-2" attributes="0"/>
                   <Component id="volver" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
+              <EmptySpace pref="172" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

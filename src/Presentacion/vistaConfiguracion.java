@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
  */
 public class vistaConfiguracion extends javax.swing.JPanel {
 
-    private VistaPrincipal VP; 
+    private vistaPrincipal VP; 
     private CtrlPresentacion CP;
     private String texto_dificultad;
     private String texto_rol;
     
-    public vistaConfiguracion(VistaPrincipal VP, CtrlPresentacion CP) {
+    public vistaConfiguracion(vistaPrincipal VP, CtrlPresentacion CP) {
         this.VP = VP;
         this.CP = CP;
         this.texto_dificultad = "";
