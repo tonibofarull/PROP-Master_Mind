@@ -95,25 +95,30 @@ public class vistaCodeBreaker extends vistaPartida {
         String msj = "Partida finalizada.\nFelicidades! Tienes una puntuación de: " + CP.getRondas();
         Object[] options = {"Registrar ranking",
                         "Volver al menú principal"};
-         int n = JOptionPane.showOptionDialog(this,
-                msj,
-                "Mensaje",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[1]);
-         if (n == 0) {
+        int n = JOptionPane.showOptionDialog(this,
+               msj,
+               "Mensaje",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE,
+               null,
+               options,
+               options[1]);
+        if (n == 0) {
             String user = "";
-            while (user.isEmpty()) {
+            Boolean introducido_ok = false;
+            while (!introducido_ok) {
                 user = JOptionPane.showInputDialog(
                     this, 
                     "Introduce el nickname", 
                     "Registrar ranking", 
                     JOptionPane.WARNING_MESSAGE);
+                if (user == null) introducido_ok = true;
+                else if (user.length() > 0) {
+                    CP.anadirPuntuacion(user, CP.getRondas());
+                    introducido_ok = true;
+                }
             }
-            CP.anadirPuntuacion(user, CP.getRondas());
-         } 
+        } 
         CP.volverMenuPrincipal();
     }
 
