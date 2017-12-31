@@ -1,19 +1,19 @@
 package Presentacion;
 
 import java.util.ArrayList;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
+/**
+ * Muestra una pantalla con el ranking.
+ * 
+ * @author Sergi Avila
+ */
 public class vistaRanking extends javax.swing.JPanel {
 
-    private vistaPrincipal VP;
     private CtrlPresentacion CP;
     private DefaultTableModel tableModel;
     
-    public vistaRanking(vistaPrincipal VP, CtrlPresentacion CP) {
-        this.VP = VP;
+    public vistaRanking(CtrlPresentacion CP) {
         this.CP = CP;
 
         tableModel = new DefaultTableModel() { // Evitamos poder modificar casillas
@@ -91,7 +91,7 @@ public class vistaRanking extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-        VP.goMenuPrincipal();
+        CP.volverMenuPrincipal();
     }//GEN-LAST:event_volverActionPerformed
 
 

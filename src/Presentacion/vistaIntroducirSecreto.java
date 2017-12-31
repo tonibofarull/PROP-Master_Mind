@@ -15,12 +15,10 @@ import javax.swing.JPanel;
 public class vistaIntroducirSecreto extends javax.swing.JPanel {
 
     private CtrlPresentacion CP;
-    private vistaPrincipal VP;
     
     private String dif;
     
-    public vistaIntroducirSecreto(vistaPrincipal VP, CtrlPresentacion CP, String dif) {
-        this.VP = VP;
+    public vistaIntroducirSecreto(CtrlPresentacion CP, String dif) {
         this.CP = CP;
         this.dif = dif;
         initComponents();
@@ -88,7 +86,7 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        VP.goIniciar();
+        CP.irConfiguracionPartida();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -101,7 +99,7 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
             
             String solucion = colorToInt(c1) + "" + colorToInt(c2) + "" + colorToInt(c3) + ""  +colorToInt(c4);
             String candidato = CP.generarSolucion(solucion);
-            VP.goCodeMaker(solucion,candidato,dif);
+            CP.irPartidaCodeMaker(solucion,candidato,dif);
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

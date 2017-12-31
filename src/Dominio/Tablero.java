@@ -2,7 +2,6 @@ package Dominio;
 
 import java.util.ArrayList;
 
-
 /**
  * Tablero representa el conjunto de lineas que se han jugado actualmente en la partida
  * Para todas las lineas excepto la ultima hay una evaluacion realizada
@@ -50,13 +49,15 @@ public class Tablero {
         ArrayList <String> datos=new ArrayList<>();
         for (Linea l:lineas){
             datos.add(l.getCandidato().getCodigo());
-            // TODO: el != null no peta...verdad?
-            if (l.getNB()!=null)datos.add(l.getNB());
+            if (l.getNB() != null) datos.add(l.getNB());
         }
         return datos;
     }
     
-    
+    /**
+     * @pre Los elementos de datos tienen el formato [(candidato,NB),...]
+     * @post Se ha cargado la partida con los datos recibidos.
+     */
     public void cargarPartida(ArrayList<String> datos){
         for (int i = 4; i < datos.size(); i += 2) {
             Codigo candidato = new Codigo(datos.get(i));
@@ -68,4 +69,5 @@ public class Tablero {
             lineas.add(l);
         }
     }
+
 }

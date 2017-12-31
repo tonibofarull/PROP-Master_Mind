@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
  */
 public class vistaMenuPrincipal extends javax.swing.JPanel {
 
-    private vistaPrincipal VP;
+    private CtrlPresentacion CP;
     
-    public vistaMenuPrincipal(vistaPrincipal VP) {
-        this.VP = VP;
+    public vistaMenuPrincipal(CtrlPresentacion CP) {
+        this.CP = CP;
         initComponents();
     }
 
@@ -140,15 +140,15 @@ public class vistaMenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_salirActionPerformed
 
     private void rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingActionPerformed
-        VP.goRanking();
+        CP.irRanking();
     }//GEN-LAST:event_rankingActionPerformed
 
     private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
-        VP.goReanudar();
+        CP.irCargarPartida();
     }//GEN-LAST:event_continuarActionPerformed
 
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
-        VP.goIniciar();
+        CP.irConfiguracionPartida();
     }//GEN-LAST:event_iniciarActionPerformed
 
     

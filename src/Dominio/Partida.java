@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author Sergi Avila
  */
 public class Partida {
+    
     private Codigo solucion;
     private int ronda;
     private Rol rol;
@@ -114,15 +115,16 @@ public class Partida {
         }
         datos.add(String.valueOf(ronda));
         datos.add(solucion.getCodigo());
-        //todo adall los inserta en orden?
         datos.addAll(tablero.guardarPartida());
         
         return datos;
     }
+    
     public void cargarPartida(ArrayList<String> datos) {
         ronda = Integer.valueOf(datos.get(2));
         solucion = new Codigo(datos.get(3));
         tablero = new Tablero();
         tablero.cargarPartida(datos);
     }
+    
 }

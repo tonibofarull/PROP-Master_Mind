@@ -2,13 +2,8 @@ package Presentacion;
 
 import java.awt.CardLayout;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,7 +27,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         } 
         catch (Exception e) {}
         
-        ventana.add(new vistaMenuPrincipal(this));
+        ventana.add(new vistaMenuPrincipal(CP));
         
         this.setVisible(true);
     }
@@ -68,59 +63,68 @@ public class vistaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void goRanking() {
-        ventana.add(new vistaRanking(this,CP));
-        ((CardLayout) ventana.getLayout()).last(ventana);
-    }
-    
-    public void goMenuPrincipal() {
+    public void irRanking() {
         ventana.removeAll();
-        ventana.add(new vistaMenuPrincipal(this));
-    }
-    
-    public void goIniciar() {
-        ventana.add(new vistaConfiguracion(this,CP));
+        ventana.add(new vistaRanking(CP));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
-    public void goCodeBreaker(String dif) {
-        vistaCodeBreaker cb = new vistaCodeBreaker(this,CP, dif);
-        ventana.add(cb);
+    public void irMenuPrincipal() {
+        ventana.removeAll();
+        ventana.add(new vistaMenuPrincipal(CP));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
-    public void goCodeMaker(String solucion, String candidato, String dif) {
-        vistaCodeMaker cm = new vistaCodeMaker(this,CP,solucion,candidato, dif);
-        ventana.add(cm);
+    public void empezarPartida() {
+        ventana.removeAll();
+        ventana.add(new vistaConfiguracion(CP));
+        ((CardLayout) ventana.getLayout()).last(ventana);
+    }
+    
+    public void irPartidaCodeBreaker(String dif) {
+        ventana.removeAll();
+        ventana.add(new vistaCodeBreaker(CP, dif));
+        ((CardLayout) ventana.getLayout()).last(ventana);
+    }
+    
+    public void irPartidaCodeMaker(String solucion, String candidato, String dif) {
+        ventana.removeAll();
+        ventana.add(new vistaCodeMaker(CP,solucion,candidato, dif));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
      
-    public void goIntroCodeMaker(String dif) {
-        vistaIntroducirSecreto cm = new vistaIntroducirSecreto(this,CP,dif);
-        ventana.add(cm);
+    public void irIntroducirSecreto(String dif) {
+        ventana.removeAll();
+        ventana.add(new vistaIntroducirSecreto(CP,dif));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
-    public void goReanudar() {
+    public void irCargarPartida() {
         try {
             ArrayList<String> al = CP.cargarPartida();
+            
+            ventana.removeAll();
             if (al.get(1).equals("CODEMAKER")) {
-                vistaCodeMaker cm = new vistaCodeMaker(this,CP,al.get(3),al.get(4),al.get(0));
+                vistaCodeMaker cm = new vistaCodeMaker(CP,al.get(3),al.get(4),al.get(0));
                 cm.cargarPartida(al);
                 ventana.add(cm);
             }
             else {
-                vistaCodeBreaker cb = new vistaCodeBreaker(this,CP,al.get(0));
+                vistaCodeBreaker cb = new vistaCodeBreaker(CP,al.get(0));
                 cb.cargarPartida(al);
                 ventana.add(cb);
             }
-            
-            
             ((CardLayout) ventana.getLayout()).last(ventana);
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+    
+    public void irConfiguracionPartida() {
+        ventana.removeAll();
+        ventana.add(new vistaConfiguracion(CP));
+        ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

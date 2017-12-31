@@ -218,5 +218,4 @@ public class Maquina {
         return Integer.toString(solucion);
     }
 
-    // TODO: pedirAyuda
 }

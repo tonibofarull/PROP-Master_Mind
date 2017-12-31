@@ -9,13 +9,11 @@ import javax.swing.JOptionPane;
  */
 public class vistaConfiguracion extends javax.swing.JPanel {
 
-    private vistaPrincipal VP; 
     private CtrlPresentacion CP;
     private String texto_dificultad;
     private String texto_rol;
     
-    public vistaConfiguracion(vistaPrincipal VP, CtrlPresentacion CP) {
-        this.VP = VP;
+    public vistaConfiguracion(CtrlPresentacion CP) {
         this.CP = CP;
         this.texto_dificultad = "";
         this.texto_rol = "";
@@ -242,7 +240,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-        VP.goMenuPrincipal();
+        CP.volverMenuPrincipal();
     }//GEN-LAST:event_volverActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -257,10 +255,10 @@ public class vistaConfiguracion extends javax.swing.JPanel {
             // Se ha indicado a dominio que empiece una partida con la configuracion escogida
 
             if (rol_s.equals("CODEMAKER")) {
-                VP.goIntroCodeMaker(dificultad_s);
+                CP.irIntroducirSecreto(dificultad_s);
             }
             else {
-                VP.goCodeBreaker(dificultad_s);
+                CP.irPartidaCodeBreaker(dificultad_s);
             }
         }
         else {

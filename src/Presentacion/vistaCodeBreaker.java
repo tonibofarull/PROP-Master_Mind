@@ -1,14 +1,12 @@
 package Presentacion;
 
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
  * Se encarga de administrar el panel cuando el usuario juga como rol de CodeBreaker
@@ -17,8 +15,9 @@ import javax.swing.SwingConstants;
  */
 public class vistaCodeBreaker extends vistaPartida {
 
-    public vistaCodeBreaker(vistaPrincipal VP, CtrlPresentacion CP, String dif) {
-        super(CP,VP,dif);
+    public vistaCodeBreaker(CtrlPresentacion CP, String dif) {
+        super(CP,dif);
+        VA.mostrarAyudaCB();
     }
     
     protected void datosIntroducidos() {
@@ -27,94 +26,35 @@ public class vistaCodeBreaker extends vistaPartida {
             Color c2 = ((JButton) jPanel_entrada.getComponent(1)).getBackground();
             Color c3 = ((JButton) jPanel_entrada.getComponent(2)).getBackground();
             Color c4 = ((JButton) jPanel_entrada.getComponent(3)).getBackground();
+            ArrayList<Color> entrada_array = new ArrayList<>(); 
+            entrada_array.add(c1); entrada_array.add(c2); entrada_array.add(c3); entrada_array.add(c4);
             
             String candidato = colorToInt(c1) + "" + colorToInt(c2) + "" + colorToInt(c3) + "" + colorToInt(c4);
             
-            String NB = CP.movimientoCB(candidato);
-            // AÑADIMOS LA JUGADA A LA LISTA
+            String NB = CP.generarCandidato(candidato);
 
-            if (j%6 == 0) {
-                tablero_act = new JPanel(new GridLayout(6,4));
-                inicializarTablero(tablero_act);
-                jPanel_tablero.add(tablero_act);
-                ((CardLayout) jPanel_tablero.getLayout()).next(jPanel_tablero);
-                
-                NB_act = new JPanel(new GridLayout(12,2));
-                inicializarTablero(NB_act);
-                jPanel_NB.add(NB_act);
-                ((CardLayout) jPanel_NB.getLayout()).next(jPanel_NB);
-                
-                
-                num_act = new JPanel(new GridLayout(6,1));
-                for (int q = 0; q < 6; ++q) {
-                    JButton but = new JButton();
-                    but.setVisible(false);
-                    num_act.add(but);
-                }
-                jPanel_num.add(num_act);
-                ((CardLayout) jPanel_num.getLayout()).next(jPanel_num);
-                
+            if (index%6 == 0) {
+                inicializarTablero();
+                inicializarNB();
+                inicializarNum();
             }
-            
-            int num_N = Character.getNumericValue(NB.charAt(0));
-            int num_B = Character.getNumericValue(NB.charAt(1));
             for (int i = 0; i < 4; ++i) {
-                tablero_act.getComponent(4*(j%6)+i).setVisible(true);
-                if (i == 0) tablero_act.getComponent(4*(j%6)+i).setBackground(c1);
-                if (i == 1) tablero_act.getComponent(4*(j%6)+i).setBackground(c2);
-                if (i == 2) tablero_act.getComponent(4*(j%6)+i).setBackground(c3);
-                if (i == 3) tablero_act.getComponent(4*(j%6)+i).setBackground(c4);
-                
-                if (i < num_N) {
-                    NB_act.getComponent(4*(j%6)+i).setVisible(true);
-                    NB_act.getComponent(4*(j%6)+i).setBackground(Color.black);
-                }
-                else if (i-num_N < num_B) {
-                    NB_act.getComponent(4*(j%6)+i).setVisible(true);
-                    NB_act.getComponent(4*(j%6)+i).setBackground(Color.white);
-                }
+                tablero_act.getComponent(4*(index%6)+i).setVisible(true);
+                tablero_act.getComponent(4*(index%6)+i).setBackground(entrada_array.get(i));
             }
-            ((JButton) num_act.getComponent(j%6)).setText(Integer.toString(j+1));
-            num_act.getComponent(j%6).setVisible(true);
-            ((JButton) num_act.getComponent(j%6)).setOpaque(false);
-            ((JButton) num_act.getComponent(j%6)).setContentAreaFilled(false);
-            ((JButton) num_act.getComponent(j%6)).setBorderPainted(false);
-            ++j;
+            anadirNB(NB,index);
             
+            ((JButton) num_act.getComponent(index%6)).setText(Integer.toString(index+1));
+            num_act.getComponent(index%6).setVisible(true);
+            ++index;
             
-            // Si NB == 40 -> Se ha acabado el juego
-            //Custom button text
-            if (NB.equals("40")) {
-                String msj = "Partida finalizada.\nFelicidades! Tienes una puntuación de: " + CP.getRondas();
-                Object[] options = {"Registrar ranking",
-                                "Volver al menú principal"};
-                 int n = JOptionPane.showOptionDialog(this,
-                        msj,
-                        "Mensaje",
-                        JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        options,
-                        options[1]);
-                 if (n == 0) {
-                    String user = "";
-                    while (user.isEmpty()) {
-                        user = JOptionPane.showInputDialog(
-                            this, 
-                            "Introduce el nickname", 
-                            "Registrar ranking", 
-                            JOptionPane.WARNING_MESSAGE);
-                    }
-                    CP.anadirPuntuacion(user, CP.getRondas());
-                 } 
-                VP.goMenuPrincipal();
-            }
+            if (NB.equals("40")) finalizarPartida();
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
+    
     protected void inicializarPanelEntrada(JPanel panel, String dif) {
         for (int i = 0; i < 4; ++i) { // Inicializamos los botones del candidato
             JButton but = new JButton();
@@ -150,11 +90,36 @@ public class vistaCodeBreaker extends vistaPartida {
         }
     } 
     
-    protected void mostrarAyuda() {                                         
-        vistaAyuda va = new vistaAyuda();
-        va.mostrarAyudaCB();
-        va.setLocationRelativeTo(this);
-        va.setVisible(true);
+        
+    protected void finalizarPartida() {
+        String msj = "Partida finalizada.\nFelicidades! Tienes una puntuación de: " + CP.getRondas();
+        Object[] options = {"Registrar ranking",
+                        "Volver al menú principal"};
+         int n = JOptionPane.showOptionDialog(this,
+                msj,
+                "Mensaje",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[1]);
+         if (n == 0) {
+            String user = "";
+            while (user.isEmpty()) {
+                user = JOptionPane.showInputDialog(
+                    this, 
+                    "Introduce el nickname", 
+                    "Registrar ranking", 
+                    JOptionPane.WARNING_MESSAGE);
+            }
+            CP.anadirPuntuacion(user, CP.getRondas());
+         } 
+        CP.volverMenuPrincipal();
     }
 
+    
+    protected void mostrarAyuda() { 
+        VA.setVisible(true);
+    }
+    
 }

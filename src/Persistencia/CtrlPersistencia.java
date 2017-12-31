@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * CtrlPersistencia
  *
- * @author Ferran Martinez
+ * @author Sergi Avila
  */
 public class CtrlPersistencia {
 
@@ -25,6 +25,7 @@ public class CtrlPersistencia {
 
 
     }
+    
     /**
      * @pre cierto
      * @post Devuelve un arraylist con la ultima partida guardada, en caso de no haber, el arraylist esta vacio (NO null,vacio)
@@ -54,7 +55,6 @@ public class CtrlPersistencia {
         catch (Exception e) {}
     }
 
-    //igual que para partida,pero con ranking
     public void guardarRanking(ArrayList<ArrayList<String>> ranking){
         File archivo= new File("ranking");
         try {
@@ -67,6 +67,7 @@ public class CtrlPersistencia {
             fos.close();
         } catch (Exception e) {}
     }
+    
     public ArrayList<ArrayList<String>> cargarRanking(){
         ArrayList<ArrayList<String>> datosRanking=new ArrayList<>();
         File archivo= new File("ranking");
@@ -79,4 +80,5 @@ public class CtrlPersistencia {
         }catch (Exception e){}
         return datosRanking;
     }
+    
 }

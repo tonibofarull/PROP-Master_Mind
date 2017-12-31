@@ -1,12 +1,18 @@
 package Presentacion;
 
 /**
- *
+ * Muestra una pantalla de ayuda personalizada para CodeMaker y CodeBreaker
+ * 
  * @author Sergi Avila
  */
 public class vistaAyuda extends javax.swing.JFrame {
 
-    
+    /**
+     * Constructora de vistaAyuda
+     *
+     * @pre Cierto.
+     * @post Se ha creado la instancia de vistaAyuda.
+     */
     public vistaAyuda() {     
         initComponents();
         cerrar.requestFocus();
@@ -70,6 +76,12 @@ public class vistaAyuda extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
 
+    /**
+     * Muestra el mensaje de ayuda para CodeBreaker.
+     *
+     * @pre Cierto.
+     * @post Se ha mostrado el mensaje de ayuda para el CodeBreaker.
+     */
     public void mostrarAyudaCB() {
         try {
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_breaker.png")));
@@ -77,6 +89,12 @@ public class vistaAyuda extends javax.swing.JFrame {
         catch (Exception e) {}
     }
     
+    /**
+     * Muestra el mensaje de ayuda para CodeMaker.
+     *
+     * @pre Cierto.
+     * @post Se ha mostrado el mensaje de ayuda para el CodeMaker.
+     */
     public void mostrarAyudaCM() {
         try {
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("res/help_maker.png")));

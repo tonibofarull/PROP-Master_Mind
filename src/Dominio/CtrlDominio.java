@@ -86,23 +86,15 @@ public class CtrlDominio {
         return nb_ultima_jugada;
     }
     
-    // ------------------------
-    // ANADIDAS PARA LA INTERFAZ TODO: revisar las funciones necesarias
-    
     public String getRondas() {
         return Integer.toString(partida.getRonda());
-    }
-
-    public ArrayList<ArrayList<String>> consultarRanking() {
-        ArrayList<ArrayList<String>> r = ranking.consultaRanking();
-        return r;
     }
     
     public void anadirPuntuacion(String user, String punt) {
         ranking.anadirPuntuacion(user, punt);
         
         ArrayList<ArrayList<String>> top10 = ranking.consultaRanking();
-        CP.guardarRanking(top10); // TODO: ESTA TODO EL RATO GUARDADO EN LA BD!!!!
+        CP.guardarRanking(top10);
     }
     
     public void cargarRanking() {
@@ -115,12 +107,17 @@ public class CtrlDominio {
         }
     }
     
+    public ArrayList<ArrayList<String>> consultarRanking() {
+        ArrayList<ArrayList<String>> r = ranking.consultaRanking();
+        return r;
+    }
+    
     public void guardarPartida() {
         ArrayList<String> gp = partida.guardarPartida();
         CP.guardarPartida(gp);
     }
     
-    public ArrayList<String> cargarPartida() throws Exception { // TODO CARGAR PARTIDA SIN PARTIDA GUARDADA
+    public ArrayList<String> cargarPartida() throws Exception {
         ArrayList<String> gp =  CP.cargarPartida();
         CP.borrarPartida();
         
@@ -137,7 +134,7 @@ public class CtrlDominio {
         maquina = new Maquina(dif, rol);
         maquina.restablecerEstado(gp);
         
-        return gp; // TODO: indices guarros
+        return gp;
     }
     
 }

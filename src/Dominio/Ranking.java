@@ -35,4 +35,5 @@ public class Ranking {
     public ArrayList<ArrayList<String>> consultaRanking() {
         return top10;
     }
+    
 }
