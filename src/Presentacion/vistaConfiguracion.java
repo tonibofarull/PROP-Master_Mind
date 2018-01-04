@@ -13,6 +13,11 @@ public class vistaConfiguracion extends javax.swing.JPanel {
     private String texto_dificultad;
     private String texto_rol;
     
+     /**
+     * @param CP Instancia del CtrlPresentacion usada en la aplicación
+     * @pre Cierto
+     * @post Se ha inicializado la vista de configuracion
+    */
     public vistaConfiguracion(CtrlPresentacion CP) {
         this.CP = CP;
         this.texto_dificultad = "";
@@ -239,10 +244,19 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @pre Cierto
+     * @post Se cambia la vista a la vista correspondiente al menú principal
+    */
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         CP.volverMenuPrincipal();
     }//GEN-LAST:event_volverActionPerformed
 
+        /**
+     * @pre Cierto
+     * @post Se empieza una partida con la dificultad y el rol correspondiente a las seleccionadas.
+     * Si no hay dificultad o rol seleccionado se muestra un mensaje que lo indica
+    */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if ((jRadioButton1.isSelected() || jRadioButton2.isSelected() || jRadioButton3.isSelected()) && 
             (jRadioButton4.isSelected() || jRadioButton5.isSelected())) {
@@ -266,32 +280,62 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+        /**
+     * @pre Se ha pulsado el radioButton correspondiente a dificultad dificil
+     * @post Se cambia el texto de la ayuda para mostrar la información correspondiente a
+     * dificultad dificil
+    */
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         this.texto_dificultad = "<b>Dificultad Difícil:</b> Código de 4 elementos. Con Repeticiones. 7 Colores.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
+        /**
+     * @pre Se ha pulsado el radioButton correspondiente a dificultad facil
+     * @post Se cambia el texto de la ayuda para mostrar la información correspondiente a
+     * dificultad facil
+    */
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         this.texto_dificultad = "<b>Dificultad Fácil:</b> Código de 4 elementos. Sin Repeticiones. 6 Colores.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
+    /**
+     * @pre Se ha pulsado el radioButton correspondiente a Dificultad Medio
+     * @post Se cambia el texto de la ayuda para mostrar la información correspondiente a
+     * dificultad Medio
+    */
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         this.texto_dificultad = "<b>Dificultad Medio:</b> Código de 4 elementos. Con Repeticiones. 6 Colores.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+        /**
+     * @pre Se ha pulsado el radioButton correspondiente a Rol CodeMaker
+     * @post Se cambia el texto de la ayuda para mostrar la información correspondiente al
+     * rol CodeMaker
+    */
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
         this.texto_rol = "<b>Rol CodeMaker:</b> Genera código secreto. Evalua jugadas del CodeBreaker.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
+    /**
+     * @pre Se ha pulsado el radioButton correspondiente a Rol CodeBreaker
+     * @post Se cambia el texto de la ayuda para mostrar la información correspondiente al
+     * rol CodeBreaker
+    */
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
         // TODO add your handling code here:
         this.texto_rol = "<b>Rol CodeBreaker:</b> Intenta adivinar el código secreto del CodeMaker.";
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton5ActionPerformed
     
+    /**
+     * @pre Cierto
+     * @post Se cambia el texto del cuadro de ayuda en función de la dificultad y el
+     * rol escogidos por el usuario
+    */
     private void escribir_ayuda() {
         if (!this.texto_dificultad.equals("")) {
             if (!this.texto_rol.equals("")) {

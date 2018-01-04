@@ -15,6 +15,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
     private CtrlPresentacion CP;
     
+    /**
+     * @param CP instancia del CtrlPresentación que estamos usando.
+     * @pre Cierto.
+     * @post Se genera la ventana de la aplicación, mostrando la vista correspondiente al
+     * menú principal
+    */
     public vistaPrincipal(CtrlPresentacion CP) {
         this.CP = CP;
         initComponents();
@@ -63,42 +69,78 @@ public class vistaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        /**
+     * @pre Ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente a los ranking
+    */
     public void irRanking() {
         ventana.removeAll();
         ventana.add(new vistaRanking(CP));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
+        /**
+     * @pre Ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente al menú principal
+    */
     public void irMenuPrincipal() {
         ventana.removeAll();
         ventana.add(new vistaMenuPrincipal(CP));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
+    /**
+     * @pre Ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente a la configuración de la partida
+    */
     public void empezarPartida() {
         ventana.removeAll();
         ventana.add(new vistaConfiguracion(CP));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
+    /**
+     * @param dif dificultad asociada a la partida
+     * @pre Ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente a la partida con el usuario
+     * como rol CodeBreaker
+    */
     public void irPartidaCodeBreaker(String dif) {
         ventana.removeAll();
         ventana.add(new vistaCodeBreaker(CP, dif));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
+    /**
+     * @param solucion String con el codigo solucion a la partida
+     * @param candidato String con el código candidato 
+     * @param dif dificultad asociada a la partida
+     * @pre Ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente a la partida con el usuario
+     * como rol de CodeMaker
+    */
     public void irPartidaCodeMaker(String solucion, String candidato, String dif) {
         ventana.removeAll();
         ventana.add(new vistaCodeMaker(CP,solucion,candidato, dif));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
-     
+    
+    /**
+     * @param dif String con la dificultad asociada a la partida
+     * @pre Ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente a introducir secreto.
+    */
     public void irIntroducirSecreto(String dif) {
         ventana.removeAll();
         ventana.add(new vistaIntroducirSecreto(CP,dif));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
+    /**
+     * @pre ventana ha sido inicializada. Hay una partida guardada.
+     * @post Se carga la partida. Se cambia la vista a la correspondiente en función
+     * de la partida guardada.
+    */
     public void irCargarPartida() {
         try {
             ArrayList<String> al = CP.cargarPartida();
@@ -121,6 +163,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
         }
     }
     
+   /**
+     * @pre ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente a la configuración de la partida.
+    */
     public void irConfiguracionPartida() {
         ventana.removeAll();
         ventana.add(new vistaConfiguracion(CP));

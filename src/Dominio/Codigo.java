@@ -118,16 +118,33 @@ public class Codigo implements Comparable<Codigo> {
         return codigo.equals(((Codigo) o).codigo);
     }
 
+   /**
+     * @pre El atributo codigo no es nulo.
+     * @post Se devuelve el codigo hash referente al string que corresponde al código
+     * @return String correspondiente al código hash del código atributo
+     */
     @Override
     public int hashCode() {
         return codigo.hashCode();
     }
 
+    /**
+     * 
+     * @param s Instáncia de código a comparar con esta instancia de la clase código
+     * @pre El atributo codigo de esta instancia ha sido inicializado
+     * @post Se devuelve la comparación
+     * @return True si los códigos son iguales. False en cualquier otro caso.
+     */
     @Override
     public int compareTo(Codigo s) {
         return codigo.compareTo(s.codigo);
     }
 
+        /**
+     * @pre Se ha introducido un codigo.
+     * @post Se devuelve el string correspondiente al código
+     * @return Código en formato string correspondiente al código atributo de la clase
+     */
     @Override
     public String toString() {
         return codigo;
