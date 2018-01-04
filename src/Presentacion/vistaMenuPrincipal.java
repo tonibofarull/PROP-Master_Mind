@@ -12,6 +12,10 @@ public class vistaMenuPrincipal extends javax.swing.JPanel {
 
     private CtrlPresentacion CP;
     
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado la vista
+    */
     public vistaMenuPrincipal(CtrlPresentacion CP) {
         this.CP = CP;
         initComponents();

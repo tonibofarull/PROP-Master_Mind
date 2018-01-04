@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * @author Sergi Avila
  */
 public class OpPersistencia {
-      /**
+    
+    /**
      * @pre datos codifica una partida
      * @post se ha guardado la partida en un archivo
      */
@@ -26,13 +27,11 @@ public class OpPersistencia {
             oos.close();
             fos.close();
         } catch (Exception e) {}
-
-
     }
     
     /**
      * @pre cierto
-     * @post Devuelve un arraylist con la ultima partida guardada, en caso de no haber, el arraylist esta vacio (NO null,vacio)
+     * @post Devuelve un arraylist con la ultima partida guardada, en caso de no haber, el arraylist esta vacio
      */
     public static ArrayList<String> cargarPartida() throws Exception {
         ArrayList<String> datosPartida=new ArrayList<>();
@@ -50,6 +49,7 @@ public class OpPersistencia {
         }
         return datosPartida;
     }
+    
     /**
      * @pre cierto
      * @post borra el archivo guardado con la informacion de la partida
@@ -58,9 +58,9 @@ public class OpPersistencia {
         try {
             File f = new File("datos");
             f.delete();
-        }
-        catch (Exception e) {}
+        } catch (Exception e) {}
     }
+    
     /**
      * @pre ranking codifica el ranking
      * @post se ha guardado el ranking en un archivo
@@ -77,6 +77,7 @@ public class OpPersistencia {
             fos.close();
         } catch (Exception e) {}
     }
+    
     /**
      * @pre cierto
      * @post Devuelve un arraylist con el ranking
@@ -90,7 +91,8 @@ public class OpPersistencia {
             datosRanking = (ArrayList<ArrayList<String>>)ois.readObject();
             ois.close();
             fis.close();
-        }catch (Exception e){}
+        } catch (Exception e){}
         return datosRanking;
     }
+
 }

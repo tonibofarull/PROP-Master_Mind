@@ -1,9 +1,5 @@
 package Presentacion;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,33 +11,33 @@ import javax.swing.JPanel;
  */
 public class vistaCodeBreaker extends vistaPartida {
 
-    public vistaCodeBreaker(CtrlPresentacion CP, String dif) {
-        super(CP,dif);
+    /**
+     * @param CP ctrlpresentacion
+     * @pre Cierto.
+     * @post Se ha instancia la clase vistaCodeMaker.
+     */
+    public vistaCodeBreaker(CtrlPresentacion CP) {
+        super(CP);
         VA.mostrarAyudaCB();
     }
     
+    /**
+     * @pre El usuario ha introducido datos.
+     * @post Se han obtenido los datos introducidos en la pantalla
+    */
     protected void datosIntroducidos() {
         try {
-            Color c1 = ((JButton) jPanel_entrada.getComponent(0)).getBackground();
-            Color c2 = ((JButton) jPanel_entrada.getComponent(1)).getBackground();
-            Color c3 = ((JButton) jPanel_entrada.getComponent(2)).getBackground();
-            Color c4 = ((JButton) jPanel_entrada.getComponent(3)).getBackground();
-            ArrayList<Color> entrada_array = new ArrayList<>(); 
-            entrada_array.add(c1); entrada_array.add(c2); entrada_array.add(c3); entrada_array.add(c4);
-            
-            String candidato = colorToInt(c1) + "" + colorToInt(c2) + "" + colorToInt(c3) + "" + colorToInt(c4);
+            String candidato = "";
+            for (int i = 0; i < 4; ++i) {
+                Bola b = ((Bola) jPanel_entrada.getComponent(i));
+                candidato += b.getValue();
+            }
             
             String NB = CP.generarCandidato(candidato);
 
-            if (index%6 == 0) {
-                inicializarTablero();
-                inicializarNB();
-                inicializarNum();
-            }
-            for (int i = 0; i < 4; ++i) {
-                tablero_act.getComponent(4*(index%6)+i).setVisible(true);
-                tablero_act.getComponent(4*(index%6)+i).setBackground(entrada_array.get(i));
-            }
+            if (index%6 == 0) { inicializarTablero(); inicializarNB(); inicializarNum(); }
+
+            anadirCandidato(candidato,index);
             anadirNB(NB,index);
             
             ((JButton) num_act.getComponent(index%6)).setText(Integer.toString(index+1));
@@ -55,42 +51,26 @@ public class vistaCodeBreaker extends vistaPartida {
         }
     }
     
-    protected void inicializarPanelEntrada(JPanel panel, String dif) {
+    /**
+     * @param panel JPanel ha inicializar
+     * 
+     * @pre Cierto
+     * @post Se ha inicializado el panel.
+    */
+    protected void inicializarPanelEntrada(JPanel panel) {
         for (int i = 0; i < 4; ++i) { // Inicializamos los botones del candidato
-            JButton but = new JButton();
-            but.setBackground(Color.gray);
-            if (dif.equals("DIFICIL")) {
-                but.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        Color cbut = ((JButton) evt.getSource()).getBackground();
-                        if (cbut == Color.red) but.setBackground(Color.green);
-                        else if (cbut == Color.green) but.setBackground(Color.blue);
-                        else if (cbut == Color.blue) but.setBackground(Color.cyan);
-                        else if (cbut == Color.cyan) but.setBackground(Color.magenta);
-                        else if (cbut == Color.magenta) but.setBackground(Color.yellow);
-                        else if (cbut == Color.yellow) but.setBackground(new Color(0xff,0x99,0x00));
-                        else but.setBackground(Color.red);
-                    }
-                });
-            }
-            else {
-                but.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        Color cbut = ((JButton) evt.getSource()).getBackground();
-                        if (cbut == Color.red) but.setBackground(Color.green);
-                        else if (cbut == Color.green) but.setBackground(Color.blue);
-                        else if (cbut == Color.blue) but.setBackground(Color.cyan);
-                        else if (cbut == Color.cyan) but.setBackground(Color.magenta);
-                        else if (cbut == Color.magenta) but.setBackground(Color.yellow);
-                        else but.setBackground(Color.red);
-                    }
-                });
-            }
+            JButton but = null;
+            if (CP.getDificultad().equals("DIFICIL")) but = new Bola7();
+            else but = new Bola6();
+            but.setVisible(true);
             panel.add(but);
         }
     } 
     
-        
+    /**
+     * @pre Cierto
+     * @post Se muetra el mensaje de final de partida.
+    */
     protected void finalizarPartida() {
         String msj = "Partida finalizada.\nFelicidades! Tienes una puntuación de: " + CP.getRondas();
         Object[] options = {"Registrar ranking",
@@ -122,7 +102,10 @@ public class vistaCodeBreaker extends vistaPartida {
         CP.volverMenuPrincipal();
     }
 
-    
+    /**
+     * @pre Cierto
+     * @post Muestra el mensaje de ayuda.
+    */
     protected void mostrarAyuda() { 
         VA.setVisible(true);
     }

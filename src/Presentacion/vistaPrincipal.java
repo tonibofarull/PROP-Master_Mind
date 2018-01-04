@@ -69,7 +69,17 @@ public class vistaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        /**
+    /**
+     * @pre Ventana ha sido inicializada.
+     * @post Se cambia la vista a la vista correspondiente a la configuración de la partida
+    */
+    public void empezarPartida() {
+        ventana.removeAll();
+        ventana.add(new vistaConfiguracion(CP));
+        ((CardLayout) ventana.getLayout()).last(ventana);
+    }
+    
+     /**
      * @pre Ventana ha sido inicializada.
      * @post Se cambia la vista a la vista correspondiente a los ranking
     */
@@ -79,7 +89,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
-        /**
+     /**
      * @pre Ventana ha sido inicializada.
      * @post Se cambia la vista a la vista correspondiente al menú principal
     */
@@ -91,48 +101,36 @@ public class vistaPrincipal extends javax.swing.JFrame {
     
     /**
      * @pre Ventana ha sido inicializada.
-     * @post Se cambia la vista a la vista correspondiente a la configuración de la partida
-    */
-    public void empezarPartida() {
-        ventana.removeAll();
-        ventana.add(new vistaConfiguracion(CP));
-        ((CardLayout) ventana.getLayout()).last(ventana);
-    }
-    
-    /**
-     * @param dif dificultad asociada a la partida
-     * @pre Ventana ha sido inicializada.
      * @post Se cambia la vista a la vista correspondiente a la partida con el usuario
      * como rol CodeBreaker
     */
-    public void irPartidaCodeBreaker(String dif) {
+    public void irPartidaCodeBreaker() {
         ventana.removeAll();
-        ventana.add(new vistaCodeBreaker(CP, dif));
+        vistaCodeBreaker a = new vistaCodeBreaker(CP);
+        ventana.add(new vistaCodeBreaker(CP));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
     /**
      * @param solucion String con el codigo solucion a la partida
      * @param candidato String con el código candidato 
-     * @param dif dificultad asociada a la partida
      * @pre Ventana ha sido inicializada.
      * @post Se cambia la vista a la vista correspondiente a la partida con el usuario
      * como rol de CodeMaker
     */
-    public void irPartidaCodeMaker(String solucion, String candidato, String dif) {
+    public void irPartidaCodeMaker(String solucion, String candidato) {
         ventana.removeAll();
-        ventana.add(new vistaCodeMaker(CP,solucion,candidato, dif));
+        ventana.add(new vistaCodeMaker(CP,solucion,candidato));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
-    
+     
     /**
-     * @param dif String con la dificultad asociada a la partida
      * @pre Ventana ha sido inicializada.
      * @post Se cambia la vista a la vista correspondiente a introducir secreto.
     */
-    public void irIntroducirSecreto(String dif) {
+    public void irIntroducirSecreto() {
         ventana.removeAll();
-        ventana.add(new vistaIntroducirSecreto(CP,dif));
+        ventana.add(new vistaIntroducirSecreto(CP));
         ((CardLayout) ventana.getLayout()).last(ventana);
     }
     
@@ -147,15 +145,20 @@ public class vistaPrincipal extends javax.swing.JFrame {
             
             ventana.removeAll();
             if (al.get(1).equals("CODEMAKER")) {
-                vistaCodeMaker cm = new vistaCodeMaker(CP,al.get(3),al.get(4),al.get(0));
+                vistaCodeMaker cm = new vistaCodeMaker(CP,al.get(3),al.get(4));
                 cm.cargarPartida(al);
                 ventana.add(cm);
             }
             else {
-                vistaCodeBreaker cb = new vistaCodeBreaker(CP,al.get(0));
+                vistaCodeBreaker cb = new vistaCodeBreaker(CP);
                 cb.cargarPartida(al);
                 ventana.add(cb);
             }
+            JOptionPane.showMessageDialog(this, 
+                    "Tenga en cuenta que al cargar la partida se borrará el progreso guardado.",
+                    "Mensaje informativo",
+                    JOptionPane.WARNING_MESSAGE
+            );
             ((CardLayout) ventana.getLayout()).last(ventana);
         }
         catch (Exception e) {
@@ -163,7 +166,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         }
     }
     
-   /**
+    /**
      * @pre ventana ha sido inicializada.
      * @post Se cambia la vista a la vista correspondiente a la configuración de la partida.
     */

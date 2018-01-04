@@ -269,10 +269,10 @@ public class vistaConfiguracion extends javax.swing.JPanel {
             // Se ha indicado a dominio que empiece una partida con la configuracion escogida
 
             if (rol_s.equals("CODEMAKER")) {
-                CP.irIntroducirSecreto(dificultad_s);
+                CP.irIntroducirSecreto();
             }
             else {
-                CP.irPartidaCodeBreaker(dificultad_s);
+                CP.irPartidaCodeBreaker();
             }
         }
         else {
@@ -280,7 +280,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-        /**
+    /**
      * @pre Se ha pulsado el radioButton correspondiente a dificultad dificil
      * @post Se cambia el texto de la ayuda para mostrar la información correspondiente a
      * dificultad dificil
@@ -290,7 +290,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
-        /**
+    /**
      * @pre Se ha pulsado el radioButton correspondiente a dificultad facil
      * @post Se cambia el texto de la ayuda para mostrar la información correspondiente a
      * dificultad facil
@@ -310,7 +310,7 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         escribir_ayuda();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-        /**
+    /**
      * @pre Se ha pulsado el radioButton correspondiente a Rol CodeMaker
      * @post Se cambia el texto de la ayuda para mostrar la información correspondiente al
      * rol CodeMaker

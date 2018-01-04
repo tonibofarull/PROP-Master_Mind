@@ -99,33 +99,30 @@ public class CtrlPresentacion {
     /**
      * @param solucion String con la solución a la partida.
      * @param candidato String con el candidato a solución
-     * @param dif String con la dificultad de la partida
      * @pre vistaPrincipal ha sido inicializada.
      * @post Se cambia la vista a la vista de partida desde el punto de vista del
      * CodeMaker
     */
-    public void irPartidaCodeMaker(String solucion, String candidato, String dif) {
-        vista.irPartidaCodeMaker(solucion, candidato, dif);
+    public void irPartidaCodeMaker(String solucion, String candidato) {
+        vista.irPartidaCodeMaker(solucion, candidato);
     }
     
        /**
-     * @param dificultad_s String con la dificultad de la partida
      * @pre vistaPrincipal ha sido inicializada.
      * @post Se cambia la vista a la vista de partida desde el punto de vista del
      * CodeBreaker
     */
-    public void irPartidaCodeBreaker(String dificultad_s) {
-        vista.irPartidaCodeBreaker(dificultad_s);
+    public void irPartidaCodeBreaker() {
+        vista.irPartidaCodeBreaker();
     }
     
     /**
-     * @param dificultad_s String con la dificultad de la partida
      * @pre vistaPrincipal ha sido inicializada.
      * @post Se cambia la vista a la vista de partida de introducir secreto
      * (CodeMaker)
     */
-    public void irIntroducirSecreto(String dificultad_s) {
-        vista.irIntroducirSecreto(dificultad_s);
+    public void irIntroducirSecreto() {
+        vista.irIntroducirSecreto();
     }
     
     // Introducir Secreto
@@ -186,12 +183,20 @@ public class CtrlPresentacion {
         dominio.anadirPuntuacion(user, punt);
     }
     
-        /**
+    /**
      * @pre vistaPrincipal ha sido inicializada.
      * @post Se cambia la vista a la vista correspondiente al menú principal.
     */
     public void volverMenuPrincipal() {
         vista.irMenuPrincipal();
+    }
+    
+    /**
+     * @pre Se ha empezado una partida.
+     * @post Se devuelve el string asociado a la dificultad
+    */
+    public String getDificultad() {
+        return dominio.getDificultad();
     }
     
 }

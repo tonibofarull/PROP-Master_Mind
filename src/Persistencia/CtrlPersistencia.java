@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * @author Sergi Avila
  */
 public class CtrlPersistencia {
+    
     /**
      * @pre datos codifica una partida
      * @post se ha guardado la partida en un archivo
@@ -19,11 +20,12 @@ public class CtrlPersistencia {
     
     /**
      * @pre cierto
-     * @post Devuelve un arraylist con la ultima partida guardada, en caso de no haber, el arraylist esta vacio (NO null,vacio)
+     * @post Devuelve un arraylist con la ultima partida guardada, en caso de no haber, el arraylist esta vacio
      */
     public ArrayList<String> cargarPartida() throws Exception {
         return OpPersistencia.cargarPartida();
     }
+    
     /**
      * @pre cierto
      * @post borra el archivo guardado con la informacion de la partida
@@ -31,6 +33,7 @@ public class CtrlPersistencia {
     public void borrarPartida(){
         OpPersistencia.borrarPartida();
     }
+    
     /**
      * @pre ranking codifica el ranking
      * @post se ha guardado el ranking en un archivo
@@ -38,6 +41,7 @@ public class CtrlPersistencia {
     public void guardarRanking(ArrayList<ArrayList<String>> ranking){
         OpPersistencia.guardarRanking(ranking);
     }
+    
     /**
      * @pre cierto
      * @post Devuelve un arraylist con el ranking

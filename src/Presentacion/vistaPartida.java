@@ -21,13 +21,21 @@ public abstract class vistaPartida extends javax.swing.JPanel {
     protected int index = 0;
     protected int card = 0;
     
-    public vistaPartida(CtrlPresentacion CP, String dif) {
+    /**
+     * Constructor de vistaPartida
+     *
+     * @param CP CtrlPresentacion
+     *
+     * @pre Cierto.
+     * @post Se ha creado instancia de vistaPartida
+     */
+    public vistaPartida(CtrlPresentacion CP) {
         this.CP = CP;
         VA = new vistaAyuda();
         VA.setLocationRelativeTo(null);
         initComponents();
-        text_sol.setVisible(false);
-        inicializarPanelEntrada(jPanel_entrada,dif);
+        text_sol.setVisible(false); // ocultamos el panel con la solucion (solo visible en rol CM).
+        inicializarPanelEntrada(jPanel_entrada);
     }
 
     @SuppressWarnings("unchecked")
@@ -216,9 +224,15 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         mostrarAyuda();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * @param info Contiene la informacion de la partida a cargar
+     *
+     * @pre info tiene el formato [dificultad,rol,ronda,secreto,[candidato,eval)*]
+     * @post Se ha actualizado las estructuras de datos con la informacion de la partida
+     */
     public void cargarPartida(ArrayList<String> info) {
         index = 0;
-        if (info.get(1).equals("CODEBREAKER")) {
+        if (info.get(1).equals("CODEBREAKER")) { // inicializamos los paneles (CM los inicializa en la constructora).
             inicializarTablero();
             inicializarNB();
             inicializarNum();
@@ -228,19 +242,15 @@ public abstract class vistaPartida extends javax.swing.JPanel {
             String NB = null;
             if (i+1 < info.size()) NB = info.get(i+1);
             
-            if (index != 0 && index%6 == 0) {
+            if (index != 0 && index%6 == 0) { // Si hemos rellenado el panel, creamos nueva pagina
                 inicializarTablero();
                 inicializarNB();
                 inicializarNum();
             }
+            anadirCandidato(candidato,index);
             
-            for (int u = 0; u < 4; ++u) { // introducimos el candidato en el tablero
-                tablero_act.getComponent(4*(index%6)+u).setBackground(intToColor(Character.getNumericValue(candidato.charAt(u))));
-                tablero_act.getComponent(4*(index%6)+u).setVisible(true);
-            }
-            
-            ((JButton) num_act.getComponent(index%6)).setText(Integer.toString(index+1));
-            num_act.getComponent(index%6).setVisible(true); // ponemos el numero de la ronda y lo hacemos visible
+            ((JButton) num_act.getComponent(index%6)).setText(Integer.toString(index+1)); 
+            num_act.getComponent(index%6).setVisible(true); // Ponemos el numero de ronda y lo hacemos visible
             
             if (NB == null) { ++index; return; }
             anadirNB(NB,index);
@@ -248,14 +258,23 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * @param panel contiene el panel al que hay que rellenar con los distintos botones
+     *
+     * @pre Cierto.
+     * @post Se ha anadido al panel los 4*6 botones necesarios
+     */
     protected void inicializarTableroNB(JPanel panel) {
         for (int i = 0; i < 4*6; ++i) { // Inicializamos los botones del tablero
-            JButton but = new JButton();
-            but.setVisible(false);
+            Bola but = new Bola();
             panel.add(but);
         }
     } 
     
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado el panel del tablero
+     */
     protected void inicializarTablero() {
         tablero_act = new JPanel(new GridLayout(6,4));
         inicializarTableroNB(tablero_act);
@@ -263,6 +282,10 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         ((CardLayout) jPanel_tablero.getLayout()).next(jPanel_tablero);
     }
     
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado el panel de las evaluaciones
+     */
     protected void inicializarNB() {
         NB_act = new JPanel(new GridLayout(12,2));
         inicializarTableroNB(NB_act);
@@ -270,6 +293,10 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         ((CardLayout) jPanel_NB.getLayout()).next(jPanel_NB);
     }
     
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado el panel de los numeros de ronda
+     */
     protected void inicializarNum() {
         num_act = new JPanel(new GridLayout(6,1));
         for (int q = 0; q < 6; ++q) {
@@ -286,52 +313,69 @@ public abstract class vistaPartida extends javax.swing.JPanel {
         ((CardLayout) jPanel_num.getLayout()).next(jPanel_num);
     }
     
-        
+    /**
+     * @pre Cierto.
+     * @post Se han administrado los datos introducidos por el usuario.
+     */
     protected abstract void datosIntroducidos();
     
-    protected abstract void inicializarPanelEntrada(JPanel jPanel_entrada, String dif);
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado el panel.
+     */
+    protected abstract void inicializarPanelEntrada(JPanel panel);
     
+    /**
+     * @pre Cierto.
+     * @post Se ha mostrado mensaje de final de partida.
+     */
     protected abstract void finalizarPartida();
     
+    /**
+     * @pre Cierto.
+     * @post Se ha mostrado mensaje de ayuda.
+     */
     protected abstract void mostrarAyuda();
-   
+
+    /**
+     * @param candidato evaluacion correcta para la partida
+     * @param k indica la posicion del panel en el que hay que introducir la evaluacion
+     * 
+     * @pre k es la posicion correcta del panel.
+     * @post Se  ha anadido el candidato al panel correspondiente.
+     */
+    protected void anadirCandidato(String candidato, int k) {
+        for (int q = 0; q < 4; ++q) { // colocamos las bolas negras y blancas
+            Bola b = (Bola) tablero_act.getComponent(4*(index%6)+q);
+            b.setBackground(Character.getNumericValue(candidato.charAt(q)));
+            b.setVisible(true);
+        }
+    }
+    
+    
+    /**
+     * @param NB evaluacion correcta para la partida
+     * @param k indica la posicion del panel en el que hay que introducir la evaluacion
+     * 
+     * @pre k es la posicion correcta del panel.
+     * @post Se ha anadido la evaluacion al panel correspondiente.
+     */
     protected void anadirNB(String NB, int k) {
         int num_N = Character.getNumericValue(NB.charAt(0));
         int num_B = Character.getNumericValue(NB.charAt(1));
         for (int q = 0; q < 4; ++q) { // colocamos las bolas negras y blancas
+            Bola b = (Bola) NB_act.getComponent(4*(k%6)+q);
             if (q < num_N) {
-                NB_act.getComponent(4*(k%6)+q).setBackground(Color.black);
-                NB_act.getComponent(4*(k%6)+q).setVisible(true);
+                b.setBackground(Color.black);
+                b.setVisible(true);
             }
             else if (q-num_N < num_B) {
-                NB_act.getComponent(4*(k%6)+q).setBackground(Color.white);
-                NB_act.getComponent(4*(k%6)+q).setVisible(true);
+                b.setBackground(Color.white);
+                b.setVisible(true);
             }
         }
     }
-    
-    protected int colorToInt(Color c) {
-        if (c == Color.red) return 1;
-        if (c == Color.green) return 2;
-        if (c == Color.blue) return 3;
-        if (c == Color.cyan) return 4;
-        if (c == Color.magenta) return 5;
-        if (c == Color.yellow) return 6;
-        if (c.equals(new Color(0xff,0x99,0x00))) return 7;
-        return 8;
-    }
-    
-    protected Color intToColor(int i) {
-        if (i == 1) return Color.red;
-        if (i == 2) return Color.green;
-        if (i == 3) return Color.blue;
-        if (i == 4) return Color.cyan;
-        if (i == 5) return Color.magenta;
-        if (i == 6 )return Color.yellow;
-        if (i == 7) return new Color(0xff,0x99,0x00);
-        return null;
-    }
-   
+ 
     protected javax.swing.JPanel NB_act;
     protected javax.swing.JPanel tablero_act;
     protected javax.swing.JPanel num_act;

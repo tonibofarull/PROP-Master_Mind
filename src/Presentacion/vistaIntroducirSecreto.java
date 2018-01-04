@@ -1,8 +1,5 @@
 package Presentacion;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,11 +13,12 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
 
     private CtrlPresentacion CP;
     
-    private String dif;
-    
-    public vistaIntroducirSecreto(CtrlPresentacion CP, String dif) {
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado la vista
+    */
+    public vistaIntroducirSecreto(CtrlPresentacion CP) {
         this.CP = CP;
-        this.dif = dif;
         initComponents();
         
         inicializarPanelEntrada(jPanel1);
@@ -91,65 +89,33 @@ public class vistaIntroducirSecreto extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
-            Color c1 = ((JButton) jPanel1.getComponent(0)).getBackground();
-            Color c2 = ((JButton) jPanel1.getComponent(1)).getBackground();
-            Color c3 = ((JButton) jPanel1.getComponent(2)).getBackground();
-            Color c4 = ((JButton) jPanel1.getComponent(3)).getBackground();
+            String solucion = "";
+            for (int i = 0; i < 4; ++i) {
+                Bola b = ((Bola) jPanel1.getComponent(i));
+                solucion += b.getValue();
+            }
             
-            
-            String solucion = colorToInt(c1) + "" + colorToInt(c2) + "" + colorToInt(c3) + ""  +colorToInt(c4);
             String candidato = CP.generarSolucion(solucion);
-            CP.irPartidaCodeMaker(solucion,candidato,dif);
+            CP.irPartidaCodeMaker(solucion,candidato);
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    protected void inicializarPanelEntrada(JPanel panel) {
-        for (int i = 0; i < 4; ++i) { // Inicializamos los botones del candidato
-            JButton but = new JButton();
-            but.setBackground(Color.gray);
-            if (dif.equals("DIFICIL")) {
-                but.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        Color cbut = ((JButton) evt.getSource()).getBackground();
-                        if (cbut == Color.red) but.setBackground(Color.green);
-                        else if (cbut == Color.green) but.setBackground(Color.blue);
-                        else if (cbut == Color.blue) but.setBackground(Color.cyan);
-                        else if (cbut == Color.cyan) but.setBackground(Color.magenta);
-                        else if (cbut == Color.magenta) but.setBackground(Color.yellow);
-                        else if (cbut == Color.yellow) but.setBackground(new Color(0xff,0x99,0x00));
-                        else but.setBackground(Color.red);
-                    }
-                });
-            }
-            else {
-                but.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        Color cbut = ((JButton) evt.getSource()).getBackground();
-                        if (cbut == Color.red) but.setBackground(Color.green);
-                        else if (cbut == Color.green) but.setBackground(Color.blue);
-                        else if (cbut == Color.blue) but.setBackground(Color.cyan);
-                        else if (cbut == Color.cyan) but.setBackground(Color.magenta);
-                        else if (cbut == Color.magenta) but.setBackground(Color.yellow);
-                        else but.setBackground(Color.red);
-                    }
-                });
-            }
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado el panel.
+     */
+    private void inicializarPanelEntrada(JPanel panel) {
+        for (int i = 0; i < 4; ++i) {
+            JButton but = null;
+            if (CP.getDificultad().equals("DIFICIL")) but = new Bola7();
+            else but = new Bola6();
+            but.setVisible(true);
             panel.add(but);
         }
     } 
-    
-    private int colorToInt(Color c) {
-        if (c == Color.red) return 1;
-        if (c == Color.green) return 2;
-        if (c == Color.blue) return 3;
-        if (c == Color.cyan) return 4;
-        if (c == Color.magenta) return 5;
-        if (c == Color.yellow) return 6;
-        else return 7;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;

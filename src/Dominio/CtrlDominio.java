@@ -96,7 +96,7 @@ public class CtrlDominio {
      * @pre Se ha empezado la partida
      * @post Se devuelven las rondas jugadas en la partida actual
      * @return Integer con el número de rondas jugadas
-    */
+     */
     public String getRondas() {
         return Integer.toString(partida.getRonda());
     }
@@ -106,7 +106,7 @@ public class CtrlDominio {
      * @param punt puntuación a guardar en el ranking
      * @pre Cierto
      * @post Se guarda al usuario en el ranking
-    */
+     */
     public void anadirPuntuacion(String user, String punt) {
         ranking.anadirPuntuacion(user, punt);
         
@@ -118,7 +118,7 @@ public class CtrlDominio {
      * @pre Existe un ranking guardado
      * @post Se carga el ranking guardado en la instancia de la clase ranking que tenemos
      * como atributo
-    */
+     */
     public void cargarRanking() {
         ranking = new Ranking();
         ArrayList<ArrayList<String>> top10 = CP.cargarRanking();
@@ -133,7 +133,7 @@ public class CtrlDominio {
      * @pre La variable ranking ha sido inicializada
      * @post Se devuelve una matriz con los usuarios y puntuaciones guardados en el ranking
      * @return Matriz donde hay guardado el ranking (ArrayList de ArrayList de Strings)
-    */
+     */
     public ArrayList<ArrayList<String>> consultarRanking() {
         ArrayList<ArrayList<String>> r = ranking.consultaRanking();
         return r;
@@ -142,7 +142,7 @@ public class CtrlDominio {
     /**
      * @pre Existe una partida en curso
      * @post La partida queda guardada
-    */
+     */
     public void guardarPartida() {
         ArrayList<String> gp = partida.guardarPartida();
         CP.guardarPartida(gp);
@@ -152,7 +152,7 @@ public class CtrlDominio {
      * @throws Excepcion si no hay partida guardada
      * @pre Hay una partida guardada
      * @post Se carga la partida guardada y pasa a ser la partida actual.
-    */
+     */
     public ArrayList<String> cargarPartida() throws Exception {
         ArrayList<String> gp =  CP.cargarPartida();
         CP.borrarPartida();
@@ -171,6 +171,17 @@ public class CtrlDominio {
         maquina.restablecerEstado(gp);
         
         return gp;
+    }
+    
+    /**
+     * @pre Cierto
+     * @post Se devuelve la dificultad.
+     */
+    public String getDificultad() {
+        Dificultad dif = partida.getDificultad();
+        if (dif == Dificultad.DIFICIL) return "DIFICIL";
+        if (dif == Dificultad.MEDIO) return "MEDIO";
+        return "FACIL";
     }
     
 }

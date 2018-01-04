@@ -1,9 +1,6 @@
 package Presentacion;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,27 +15,33 @@ public class vistaCodeMaker extends vistaPartida {
     private String solucion;
     private String candidato;
     
-    public vistaCodeMaker(CtrlPresentacion CP, String solucion, String candidato, String dif) {
-        super(CP,dif);
+    /**
+     * @param CP ctrlpresentacion
+     * @pre Cierto.
+     * @post Se ha instancia la clase vistaCodeMaker.
+     */
+    public vistaCodeMaker(CtrlPresentacion CP, String solucion, String candidato) {
+        super(CP);
         VA.mostrarAyudaCM();
         this.solucion = solucion;
         this.candidato = candidato;
         inicializarSolucion();
         inicializarTablero();
         // introducimos en el tablero el primer candidato del codebreaker
-        for (int i = 0; i < 4; ++i) {
-            tablero_act.getComponent(i).setBackground(intToColor(Character.getNumericValue(candidato.charAt(i))));
-            tablero_act.getComponent(i).setVisible(true);
-        }
+        anadirCandidato(candidato,index);
         inicializarNB();
         inicializarNum();
         ((JButton) num_act.getComponent(0)).setText("1");
         ((JButton) num_act.getComponent(0)).setVisible(true); // introducimos el numero "1" al primer boton
         
         text_sol.setVisible(true);
-        index = 1;
+        ++index;
     }
-    
+
+    /**
+     * @pre El usuario ha introducido datos.
+     * @post Se han obtenido los datos introducidos en la pantalla
+    */
     protected void datosIntroducidos() {
         try {
             // calculamos el valor numerico de la evaluacion introducida por el usuario
@@ -62,11 +65,7 @@ public class vistaCodeMaker extends vistaPartida {
                 inicializarNB();
                 inicializarNum();
             }
-            ArrayList<Color> al = stringToColor(candidato);
-            for (int i = 0; i < 4; ++i) { // actualizamos el tablero con los colores del nuevo candidato del codebreaker
-                tablero_act.getComponent(4*(index%6)+i).setBackground(al.get(i));
-                tablero_act.getComponent(4*(index%6)+i).setVisible(true);
-            }
+            anadirCandidato(candidato,index);
             // introducimos el numero de la ronda
             ((JButton) num_act.getComponent(index%6)).setText(Integer.toString(index+1));
             num_act.getComponent(index%6).setVisible(true);
@@ -76,24 +75,25 @@ public class vistaCodeMaker extends vistaPartida {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-    
-    protected void inicializarPanelEntrada(JPanel panel, String dif) {
+
+    /**
+     * @param panel JPanel ha inicializar
+     * 
+     * @pre Cierto
+     * @post Se ha inicializado el panel.
+    */
+    protected void inicializarPanelEntrada(JPanel panel) {
         for (int i = 0; i < 4; ++i) { // Inicializamos los botones del candidato
-            JButton but = new JButton();
-            but.setBackground(Color.gray);
-            but.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    Color cbut = ((JButton) evt.getSource()).getBackground();
-                    if (cbut == Color.white) but.setBackground(Color.black);
-                    else if (cbut == Color.black) but.setBackground(Color.gray);
-                    else but.setBackground(Color.white);
-                }
-            });
+            JButton but = new NB();
+            but.setVisible(true);
             panel.add(but);
         }
     }
-    
-    
+
+    /**
+     * @pre Cierto
+     * @post Se muetra el mensaje de final de partida.
+    */
     protected void finalizarPartida() {
         String msj = "Partida finalizada.\nPuntuacion: " + CP.getRondas();
         Object[] options = {"Volver al menú principal"};
@@ -107,28 +107,26 @@ public class vistaCodeMaker extends vistaPartida {
                 options[0]);
         CP.volverMenuPrincipal();
     }
-    
+
+    /**
+     * @pre Cierto
+     * @post Muestra el mensaje de ayuda.
+    */
     protected void mostrarAyuda() {
         VA.setVisible(true);
     }
     
+    /**
+     * @pre Cierto.
+     * @post Se ha inicializado el panel de la solucion.
+     */
     private void inicializarSolucion() {
         jPanel_sol.setBorder(javax.swing.BorderFactory.createEtchedBorder()); // borde para la solucion
         for (int i = 0; i < 4; ++i) { // rellenamos el panel de solucion
-            Color c = intToColor(Character.getNumericValue(solucion.charAt(i)));
-            JButton but = new JButton();
-            but.setBackground(c);
-            jPanel_sol.add(but);
+            Bola b = new Bola(Character.getNumericValue(solucion.charAt(i)));
+            b.setVisible(true);
+            jPanel_sol.add(b);
         }
-    }
-    
-    private ArrayList<Color> stringToColor(String s) {
-        ArrayList<Color> al = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            Color c = intToColor(Character.getNumericValue(s.charAt(i)));
-            al.add(c);
-        }
-        return al;
     }
     
 }

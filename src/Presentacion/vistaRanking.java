@@ -13,6 +13,10 @@ public class vistaRanking extends javax.swing.JPanel {
     private CtrlPresentacion CP;
     private DefaultTableModel tableModel;
     
+    /**
+     * @pre Cierto
+     * @post Crea instancia de ranking
+     */
     public vistaRanking(CtrlPresentacion CP) {
         this.CP = CP;
 
