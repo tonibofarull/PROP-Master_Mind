@@ -55,7 +55,7 @@ public class Tablero {
     }
     
     /**
-     * @pre Los elementos de datos tienen el formato [(candidato,NB),...]
+     * @pre Los elementos de datos tienen el formato [candidato,NB,...]
      * @post Se ha cargado la partida con los datos recibidos.
      */
     public void cargarPartida(ArrayList<String> datos){

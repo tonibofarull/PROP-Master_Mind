@@ -1,8 +1,5 @@
 package Persistencia;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
  
 /**
@@ -11,18 +8,12 @@ import java.util.ArrayList;
  * @author Sergi Avila
  */
 public class CtrlPersistencia {
-
+    /**
+     * @pre datos codifica una partida
+     * @post se ha guardado la partida en un archivo
+     */
     public void guardarPartida(ArrayList<String> datos){
-        File archivo= new File("datos");
-        try {
-            FileOutputStream fos = new FileOutputStream(archivo);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(datos);
-            oos.flush();
-            oos.close();
-            fos.close();
-        } catch (Exception e) {}
-
+        OpPersistencia.guardarPartida(datos);
 
     }
     
@@ -31,54 +22,28 @@ public class CtrlPersistencia {
      * @post Devuelve un arraylist con la ultima partida guardada, en caso de no haber, el arraylist esta vacio (NO null,vacio)
      */
     public ArrayList<String> cargarPartida() throws Exception {
-        ArrayList<String> datosPartida=new ArrayList<>();
-        File archivo= new File("datos");
-        try {
-            FileInputStream fis ;
-            fis= new FileInputStream(archivo);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            datosPartida = (ArrayList<String>)ois.readObject();
-            ois.close();
-            fis.close();
-        }
-        catch (Exception e){
-            throw new Exception("No se ha encontrado ninguna partida.");
-        }
-        return datosPartida;
+        return OpPersistencia.cargarPartida();
     }
-    
+    /**
+     * @pre cierto
+     * @post borra el archivo guardado con la informacion de la partida
+     */    
     public void borrarPartida(){
-        try {
-            File f = new File("datos");
-            f.delete();
-        }
-        catch (Exception e) {}
+        OpPersistencia.borrarPartida();
     }
-
+    /**
+     * @pre ranking codifica el ranking
+     * @post se ha guardado el ranking en un archivo
+     */
     public void guardarRanking(ArrayList<ArrayList<String>> ranking){
-        File archivo= new File("ranking");
-        try {
-            FileOutputStream fos;
-            fos = new FileOutputStream(archivo);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(ranking);
-            oos.flush();
-            oos.close();
-            fos.close();
-        } catch (Exception e) {}
+        OpPersistencia.guardarRanking(ranking);
     }
-    
+    /**
+     * @pre cierto
+     * @post Devuelve un arraylist con el ranking
+     */    
     public ArrayList<ArrayList<String>> cargarRanking(){
-        ArrayList<ArrayList<String>> datosRanking=new ArrayList<>();
-        File archivo= new File("ranking");
-        try {
-            FileInputStream fis = new FileInputStream(archivo);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            datosRanking = (ArrayList<ArrayList<String>>)ois.readObject();
-            ois.close();
-            fis.close();
-        }catch (Exception e){}
-        return datosRanking;
+        return OpPersistencia.cargarRanking();
     }
     
 }

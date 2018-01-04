@@ -25,11 +25,12 @@ public class vistaRanking extends javax.swing.JPanel {
         tableModel.addColumn("Puntuación");
                 
         initComponents();
-        
+        //inserta en la tabla el ranking
         ArrayList<ArrayList<String>> top10 = CP.getRanking();
         for (ArrayList<String> pos : top10) {
             tableModel.addRow(new String[]{pos.get(0),pos.get(1)});
         }
+        //rellena posiciones vacias
         for (int i = 0; i < 10-top10.size(); ++i) {
             tableModel.addRow(new String[]{"",""});
         }

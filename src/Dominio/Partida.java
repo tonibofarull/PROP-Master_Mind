@@ -88,9 +88,10 @@ public class Partida {
     public Dificultad getDificultad() { return dificultad; }
 
     /*
-     * formato de los datos a guardar: arraylist de string
+     * @pre Cierto
      *
-     * {rol,dificultad,ronda,solucion,candidato1,NB1......candidatoN,NBN}
+     * @post Devuelve un arraylist que codifica la partida con el siguiente formato:
+     * [rol,dificultad,ronda,solucion,candidato1,NB1......candidatoN,NBN]
      */
     public ArrayList<String> guardarPartida(){
         ArrayList<String> datos = new ArrayList<>();
@@ -119,7 +120,11 @@ public class Partida {
         
         return datos;
     }
-    
+     /*
+     * @pre datos es un arraylist que codifica la partida
+     *
+     * @post la partida se ha cargado
+     */   
     public void cargarPartida(ArrayList<String> datos) {
         ronda = Integer.valueOf(datos.get(2));
         solucion = new Codigo(datos.get(3));
