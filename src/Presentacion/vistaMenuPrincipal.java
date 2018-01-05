@@ -38,7 +38,7 @@ public class vistaMenuPrincipal extends javax.swing.JPanel {
         jLabel1.setFont(jLabel1.getFont().deriveFont(30.0f));
         jLabel1.setText("MASTERMIND");
 
-        jLabel2.setText("Versión 1.0");
+        jLabel2.setText("Versión 2.0");
 
         jPanel2.setBackground(new java.awt.Color(241, 241, 241));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

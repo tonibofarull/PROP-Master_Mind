@@ -34,8 +34,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         catch (Exception e) {}
         
         ventana.add(new vistaMenuPrincipal(CP));
-        
-        this.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

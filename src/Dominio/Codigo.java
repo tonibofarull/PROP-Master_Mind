@@ -122,7 +122,7 @@ public class Codigo implements Comparable<Codigo> {
         return codigo.equals(((Codigo) o).codigo);
     }
 
-   /**
+    /**
      * @pre El atributo codigo no es nulo.
      * @post Se devuelve el codigo hash referente al string que corresponde al código
      * @return int correspondiente al código hash del código atributo

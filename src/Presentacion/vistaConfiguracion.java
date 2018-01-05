@@ -252,11 +252,11 @@ public class vistaConfiguracion extends javax.swing.JPanel {
         CP.volverMenuPrincipal();
     }//GEN-LAST:event_volverActionPerformed
 
-        /**
+    /**
      * @pre Cierto
      * @post Se empieza una partida con la dificultad y el rol correspondiente a las seleccionadas.
      * Si no hay dificultad o rol seleccionado se muestra un mensaje que lo indica
-    */
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if ((jRadioButton1.isSelected() || jRadioButton2.isSelected() || jRadioButton3.isSelected()) && 
             (jRadioButton4.isSelected() || jRadioButton5.isSelected())) {

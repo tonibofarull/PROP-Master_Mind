@@ -29,6 +29,14 @@ public class CtrlPresentacion {
         dominio = new CtrlDominio();
         vista = new vistaPrincipal(this);
     }
+    
+    /**
+     * @pre Cierto.
+     * @post Se muestra la vista principal.
+    */
+    public void inicializarPresentacion() {
+        vista.setVisible(true);
+    }
 
     // Partida
     /**
