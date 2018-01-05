@@ -98,7 +98,8 @@ public class vistaCodeBreaker extends vistaPartida {
                     introducido_ok = true;
                 }
             }
-        } 
+        }
+        VA.dispose();
         CP.volverMenuPrincipal();
     }
 

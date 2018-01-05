@@ -105,6 +105,7 @@ public class vistaCodeMaker extends vistaPartida {
                 null,
                 options,
                 options[0]);
+        VA.dispose();
         CP.volverMenuPrincipal();
     }
 
