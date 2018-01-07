@@ -17,6 +17,8 @@ public class vistaCodeMaker extends vistaPartida {
     
     /**
      * @param CP ctrlpresentacion
+     * @param solucion solucion de la partida
+     * @param candidato primer candidato del codebreaker
      * @pre Cierto.
      * @post Se ha instancia la clase vistaCodeMaker.
      */

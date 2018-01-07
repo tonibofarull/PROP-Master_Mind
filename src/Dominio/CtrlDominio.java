@@ -149,7 +149,7 @@ public class CtrlDominio {
     }
     
     /**
-     * @throws Excepcion si no hay partida guardada
+     * @throws Exception si no hay partida guardada
      * @pre Hay una partida guardada
      * @post Se carga la partida guardada y pasa a ser la partida actual.
      */

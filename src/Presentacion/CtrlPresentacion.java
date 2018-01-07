@@ -135,7 +135,7 @@ public class CtrlPresentacion {
     
     // Introducir Secreto
        /**
-     * @param dificultad_s String con la dificultad de la partida
+     * @param solucion String con la solucion de la partida
      * @pre vistaPrincipal ha sido inicializada.
      * @post Se cambia la vista a la vista de partida de introducir secreto
      * (CodeMaker)
